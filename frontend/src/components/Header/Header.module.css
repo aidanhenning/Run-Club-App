@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: flex-end;
   width: 100%;
-  padding: 14px 100px;
+  padding: 14px 14px;
 }
 .btnPrimary {
   padding: 12px 40px;
@@ -14,6 +14,7 @@
 }
 
 @media (min-width: 768px) {
-}
-@media (min-width: 1025px) {
+  .header {
+    padding: 14px 100px;
+  }
 }

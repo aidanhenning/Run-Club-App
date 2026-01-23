@@ -5,7 +5,7 @@ import { Link } from "react-router";
 export default function Header() {
   return (
     <header className={styles.header}>
-      <Link to="/login" className={styles.btnPrimary}>
+      <Link to="/register" className={styles.btnPrimary}>
         Sign Up
       </Link>
     </header>
