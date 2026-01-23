@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./Login.module.css";
-import Header from "../../components/Header/Header";
+import RegisterHeader from "../../components/Header/RegisterHeader";
 import { Link } from "react-router";
 
 export default function Login() {
   return (
     <>
-      <Header />
+      <RegisterHeader />
       <h1 className={styles.loginHeading}>Log In</h1>
       <form className={styles.loginForm}>
         <label htmlFor="email" className={styles.label}>
