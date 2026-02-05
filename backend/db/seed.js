@@ -15,9 +15,6 @@ async function seed() {
       lastName: faker.person.lastName(),
       email: faker.internet.email(),
       password: faker.internet.password(),
-      bio: faker.person.bio(),
-      profilePictureUrl: faker.image.avatar(),
-      location: faker.location.state(),
     };
     await createUser(user);
   }

@@ -1,11 +1,14 @@
 import express from "express";
-import { createUser } from "../db/queries/users.js";
+import { getUsers, createUser } from "../db/queries/users.js";
 const router = express.Router();
-export default router;
 
 router.get("/", async (req, res) => {
-  const users = await getUsers();
-  res.json(users);
+  try {
+    const users = await getUsers();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 router.post("/", async (req, res) => {
@@ -19,3 +22,5 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+export default router;
