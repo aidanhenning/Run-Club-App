@@ -8,4 +8,8 @@ app.use(express.json());
 
 app.use("/users", usersRouter);
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the runclub API!");
+});
+
 export default app;
