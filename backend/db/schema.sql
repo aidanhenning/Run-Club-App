@@ -31,7 +31,8 @@ CREATE TABLE clubs (
 CREATE TABLE club_memberships (
     user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE, 
     club_id UUID NOT NULL REFERENCES clubs(id) ON DELETE CASCADE,
-    runs_with_club INT NOT NULL DEFAULT 0
+    runs_with_club INT NOT NULL DEFAULT 0,
+    joined_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE TABLE followers (
