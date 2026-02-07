@@ -1,15 +1,21 @@
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS clubs;
-DROP TABLE IF EXISTS club_memberships;
-DROP TABLE IF EXISTS followers;
-DROP TABLE IF EXISTS posts;
-DROP TABLE IF EXISTS post_pictures;
-DROP TABLE IF EXISTS post_attendees;
-DROP TABLE IF EXISTS post_comments;
+-- Drop the "Grandchildren" first
+DROP TABLE IF EXISTS comment_likes;
 DROP TABLE IF EXISTS post_likes;
+DROP TABLE IF EXISTS post_comments;
+DROP TABLE IF EXISTS post_attendees;
+DROP TABLE IF EXISTS post_pictures;
+
+-- Then drop the "Children"
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS followers;
+DROP TABLE IF EXISTS club_memberships;
+
+-- Finally drop the "Parents"
+DROP TABLE IF EXISTS clubs;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
-    id UUID PRIMARY KEY gen_random_uuid(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -22,36 +28,36 @@ CREATE TABLE users (
 
 CREATE TABLE clubs (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL UNIQUE,
     description TEXT,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    owner UUID NOT NULL REFERENCES users(id) 
+    owner UUID NOT NULL REFERENCES users(id), 
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE TABLE club_memberships (
     user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE, 
     club_id UUID NOT NULL REFERENCES clubs(id) ON DELETE CASCADE,
     runs_with_club INT NOT NULL DEFAULT 0,
-    joined_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    joined_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    PRIMARY KEY (user_id, club_id)
 );
 
 CREATE TABLE followers (
     follower_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    followed_user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE
+    followed_user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    PRIMARY KEY (follower_id, followed_user_id)
 );
 
 CREATE TABLE posts (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    club_id UUID REFERENCES clubs(id),
-    host_id UUID REFERENCES users(id),
+    club_id UUID REFERENCES clubs(id) ON DELETE SET NULL,
+    host_id UUID REFERENCES users(id) ON DELETE CASCADE,
     title VARCHAR(255) NOT NULL,
-    date TIMESTAMPTZ NOT NULL,
-    time TIME NOT NULL,
+    starts_at TIMESTAMPTZ NOT NULL,
     type_of_run VARCHAR(50),
     distance DECIMAL(10, 2),
     terrain VARCHAR(100),
     address VARCHAR(255),
-    devo TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
@@ -64,10 +70,9 @@ CREATE TABLE post_pictures (
 );
 
 CREATE TABLE post_attendees (
-    attendee_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     post_id UUID NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
     user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    attended_at TIMESTAMPTZ NOT NULL DEFAULT now()
+    PRIMARY KEY (post_id, user_id)
 );
 
 CREATE TABLE post_comments (
@@ -75,18 +80,19 @@ CREATE TABLE post_comments (
     post_id UUID NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
     user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     content TEXT NOT NULL,
-    created_at TIMESTAMP NOT NULL DEFAULT now()
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE TABLE post_likes (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    post_id UUID REFERENCES posts(id) ON DELETE CASCADE,
-    comment_id UUID REFERENCES post_comments(id) ON DELETE CASCADE,
+    post_id UUID NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
     user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-    UNIQUE (post_id, user_id),
-    CONSTRAINT chk_like_type CHECK (
-        (post_id IS NOT NULL AND comment_id IS NULL) OR
-        (comment_id IS NOT NULL AND post_id IS NULL)
-    )
+    PRIMARY KEY (post_id, user_id)
+);
+
+CREATE TABLE comment_likes (
+    comment_id UUID NOT NULL REFERENCES post_comments(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    PRIMARY KEY (comment_id, user_id)
 );
