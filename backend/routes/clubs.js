@@ -11,4 +11,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post("/", async (req, res) => {
+  const { name, description, owner } = req.body;
+
+  try {
+    const club = await createUser({ name, description, owner });
+    res.status(201).json(club);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 export default router;
