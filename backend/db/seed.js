@@ -74,11 +74,12 @@ async function seedPosts(clubs) {
 
   for (let i = 0; i < clubs.length; i++) {
     const clubId = clubs[i].id;
+    const clubOwner = clubs[i].owner;
 
     for (let j = 0; j < 3; j++) {
       const post = await createPost({
         clubId: clubId,
-        hostId: clubId.owner,
+        hostId: clubOwner,
         title: faker.lorem.words({ min: 3, max: 5 }),
         startsAt: faker.date.soon({ days: 14 }),
         typeOfRun: faker.helpers.arrayElement([
@@ -109,7 +110,7 @@ async function seedPostPictures(users, posts) {
     const postId = posts[i].id;
 
     for (let j = 0; j < 2; j++) {
-      createPostPicture({
+      await createPostPicture({
         postId: postId,
         userId: users[Math.floor(Math.random() * users.length)].id,
         imageUrl: faker.image.url(),
