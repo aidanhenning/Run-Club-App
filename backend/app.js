@@ -4,8 +4,10 @@ const app = express();
 
 import usersRouter from "./routes/users.js";
 import clubsRouter from "./routes/clubs.js";
+import getUserFromToken from "./middleware/getUserFromToken.js";
 
 app.use(express.json());
+app.use(getUserFromToken);
 
 app.use("/users", usersRouter);
 app.use("/clubs", clubsRouter);
