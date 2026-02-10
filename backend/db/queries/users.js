@@ -61,16 +61,22 @@ export async function getUserById(id) {
 export async function searchUsers(userId, searchTerm) {
   const sql = `
   SELECT 
-    u.id, 
-    u.full_name, 
-    u.profile_picture,
-    f.id AS follow_id
+    u.id,
+    u.first_name,
+    u.last_name,
+    u.profile_picture_url,
+    u.location,
+    COALESCE(BOOL_OR(f.follower_id = $1), false) AS is_followed
   FROM users u
   LEFT JOIN followers f 
-    ON u.id = f.following_id AND f.follower_id = $1
-  WHERE u.full_name ILIKE $2 AND u.id != $1
-  LIMIT 15;
+    ON u.id = f.followed_user_id
+  WHERE 
+    u.first_name ILIKE $2 OR 
+    u.last_name ILIKE $2
+  AND u.id != $1
+  GROUP BY u.id
+  ORDER BY u.last_name ASC;
   `;
-  const { rows } = await db.query(sql, [userId, searchTerm]);
+  const { rows } = await db.query(sql, [userId, `%${searchTerm}%`]);
   return rows;
 }
