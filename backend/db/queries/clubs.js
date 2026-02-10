@@ -24,17 +24,19 @@ export async function getClubs() {
 
 export async function searchClubs(userId, searchTerm) {
   const sql = `
-  SELECT 
-    c.id, 
-    c.name, 
-    c.location, 
-    cm.id AS membership_id 
+  SELECT
+    c.id,
+    c.name,
+    c.logo,
+    COUNT(cm.user_id) AS member_count,
+    BOOL_OR(cm.user_id = $1) AS is_member
   FROM clubs c
-  LEFT JOIN club_memberships cm 
-    ON c.id = cm.club_id AND cm.user_id = $1
+  LEFT JOIN club_memberships cm
+    ON cm.club_id = c.id
   WHERE c.name ILIKE $2
-  LIMIT 15
+  GROUP BY c.id, c.name, c.logo
+  ORDER BY c.name;
   `;
-  const { rows } = await db.query(sql, [userId, searchTerm]);
+  const { rows } = await db.query(sql, [userId, `%${searchTerm}%`]);
   return rows;
 }
