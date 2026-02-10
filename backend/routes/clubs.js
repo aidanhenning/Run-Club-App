@@ -1,6 +1,7 @@
 import express from "express";
-import { getClubs } from "../db/queries/clubs.js";
 const router = express.Router();
+
+import { getClubs } from "../db/queries/clubs.js";
 
 router.get("/", async (req, res) => {
   try {

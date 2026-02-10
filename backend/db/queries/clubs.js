@@ -21,3 +21,20 @@ export async function getClubs() {
   const { rows } = await db.query(sql);
   return rows;
 }
+
+export async function searchClubs(userId, searchTerm) {
+  const sql = `
+  SELECT 
+    c.id, 
+    c.name, 
+    c.location, 
+    cm.id AS membership_id 
+  FROM clubs c
+  LEFT JOIN club_memberships cm 
+    ON c.id = cm.club_id AND cm.user_id = $1
+  WHERE c.name ILIKE $2
+  LIMIT 15
+  `;
+  const { rows } = await db.query(sql, [userId, searchTerm]);
+  return rows;
+}
