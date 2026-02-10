@@ -21,3 +21,12 @@ export async function getClubMemberships() {
   const { rows } = await db.query(sql);
   return rows;
 }
+
+export async function getClubMembershipsByUserId(userId) {
+  const sql = `
+  SELECT * FROM club_memberships
+  WHERE user_id = $1
+  `;
+  const { rows } = await db.query(sql, [userId]);
+  return rows;
+}
