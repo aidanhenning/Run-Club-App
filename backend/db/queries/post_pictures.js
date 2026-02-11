@@ -21,3 +21,15 @@ export async function getPostPictures() {
   const { rows } = await db.query(sql);
   return rows;
 }
+
+export async function removePostPicture(postId) {
+  const sql = `
+  DELETE FROM post_pictures
+  WHERE id = $1
+  RETURNING *
+  `;
+  const {
+    rows: [picture],
+  } = await db.query(sql, [postId]);
+  return picture;
+}

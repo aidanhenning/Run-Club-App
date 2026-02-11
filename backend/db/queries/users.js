@@ -80,3 +80,46 @@ export async function searchUsers(userId, searchTerm) {
   const { rows } = await db.query(sql, [userId, `%${searchTerm}%`]);
   return rows;
 }
+
+export async function updateUserById(
+  userId,
+  firstName,
+  lastName,
+  email,
+  password,
+  bio,
+  profilePictureUrl,
+  location,
+) {
+  const sql = `
+  UPDATE users
+  SET first_name = $2, last_name = $3, email = $4, password = $5, bio = $6, profile_picture_url = $7, location = $8
+  WHERE id = $1 
+  RETURNING *
+  `;
+  const {
+    rows: [user],
+  } = await db.query(sql, [
+    userId,
+    firstName,
+    lastName,
+    email,
+    password,
+    bio,
+    profilePictureUrl,
+    location,
+  ]);
+  return user;
+}
+
+export async function removeUser(userId) {
+  const sql = `
+  DELETE FROM users
+  WHERE id = $1
+  RETURNING*
+  `;
+  const {
+    rows: [user],
+  } = await db.query(sql, [userId]);
+  return user;
+}
