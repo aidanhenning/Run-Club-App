@@ -21,3 +21,15 @@ export async function getCommentLikes() {
   const { rows } = await db.query(sql);
   return rows;
 }
+
+export async function removeCommentLike(userId, commentId) {
+  const sql = `
+  DELETE FROM comment_likes
+  WHERE user_id = $1 AND comment_id = $2
+  RETURNING *
+  `;
+  const {
+    rows: [commentLike],
+  } = await db.query(sql, [userId, commentId]);
+  return commentLike;
+}

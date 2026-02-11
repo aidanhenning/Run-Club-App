@@ -21,3 +21,15 @@ export async function getPostLikes() {
   const { rows } = await db.query(sql);
   return rows;
 }
+
+export async function removePostLike(userId, postId) {
+  const sql = `
+  DELETE FROM post_likes
+  WHERE user_id = $1 AND post_id = $2
+  RETURNING *
+  `;
+  const {
+    rows: [postLike],
+  } = await db.query(sql, [userId, postId]);
+  return postLike;
+}
