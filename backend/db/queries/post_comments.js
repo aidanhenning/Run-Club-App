@@ -21,3 +21,26 @@ export async function getPostComments() {
   const { rows } = await db.query(sql);
   return rows;
 }
+
+export async function updatePostCommentById(commentId, content) {
+  const sql = `
+  UPDATE post_comments 
+  SET content = $2 
+  WHERE id = $1
+  RETURNING *
+  `;
+  const { rows: comment } = await db.query(sql, [commentId, content]);
+  return comment;
+}
+
+export async function removePostComment(commentId) {
+  const sql = `
+  DELETE FROM post_comments
+  WHERE comment_id = $1
+  RETURNING *
+  `;
+  const {
+    rows: [comment],
+  } = await db.query(sql, [commentId]);
+  return comment;
+}

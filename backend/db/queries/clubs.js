@@ -65,7 +65,7 @@ export async function searchClubs(userId, searchTerm) {
   return rows;
 }
 
-export async function deleteClub(clubId) {
+export async function removeClub(clubId) {
   const sql = `
   DELETE FROM clubs
   WHERE club_id = $1

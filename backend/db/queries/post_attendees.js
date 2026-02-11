@@ -21,3 +21,15 @@ export async function getPostAttendees() {
   const { rows } = await db.query(sql);
   return rows;
 }
+
+export async function removePostAttendee(userId, postId) {
+  const sql = `
+  DELETE FROM post_attendees
+  WHERE user_id = $1 AND post_id = $2
+  RETURNING *
+  `;
+  const {
+    rows: [attendee],
+  } = await db.query(sql, [userId, postId]);
+  return rows;
+}
