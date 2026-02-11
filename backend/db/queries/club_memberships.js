@@ -30,3 +30,13 @@ export async function getClubMembershipsByUserId(userId) {
   const { rows } = await db.query(sql, [userId]);
   return rows;
 }
+
+export async function removeClubMembershipByUserIdAndClubId(userId, clubId) {
+  const sql = `
+  DELETE FROM club_memberships
+  WHERE user_id = $1 AND club_id = $2
+  RETURNING *
+  `;
+  const { rows } = await db.query(sql, [userId, clubId]);
+  return rows[0];
+}
