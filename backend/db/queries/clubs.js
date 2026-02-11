@@ -33,19 +33,6 @@ export async function getClubById(clubId) {
   return club;
 }
 
-export async function updateClubById(clubId, name, description, logo, owner) {
-  const sql = `
-  UPDATE clubs 
-  SET name = $2, description = $3, logo = $4, owner = $5 
-  WHERE id = $1 
-  RETURNING *
-  `;
-  const {
-    rows: [club],
-  } = await db.query(sql, [clubId, name, description, logo, owner]);
-  return club;
-}
-
 export async function searchClubs(userId, searchTerm) {
   const sql = `
   SELECT
@@ -63,6 +50,19 @@ export async function searchClubs(userId, searchTerm) {
   `;
   const { rows } = await db.query(sql, [userId, `%${searchTerm}%`]);
   return rows;
+}
+
+export async function updateClubById(clubId, name, description, logo, owner) {
+  const sql = `
+  UPDATE clubs 
+  SET name = $2, description = $3, logo = $4, owner = $5 
+  WHERE id = $1 
+  RETURNING *
+  `;
+  const {
+    rows: [club],
+  } = await db.query(sql, [clubId, name, description, logo, owner]);
+  return club;
 }
 
 export async function removeClub(clubId) {
