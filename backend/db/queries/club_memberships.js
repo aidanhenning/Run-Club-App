@@ -24,8 +24,17 @@ export async function getClubMemberships() {
 
 export async function getClubMembershipsByUserId(userId) {
   const sql = `
-  SELECT * FROM club_memberships
-  WHERE user_id = $1
+  SELECT 
+    c.id,
+    c.name, 
+    c.logo,
+
+    (SELECT COUNT(*) FROM club_memberships WHERE club_id = c.id) AS member_count
+    
+  FROM clubs c
+  JOIN club_memberships cm ON c.id = cm.club_id
+  WHERE cm.user_id = $1
+  ORDER BY c.name ASC;
   `;
   const { rows } = await db.query(sql, [userId]);
   return rows;
