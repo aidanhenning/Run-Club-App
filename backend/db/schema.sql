@@ -52,13 +52,15 @@ CREATE TABLE followers (
 CREATE TABLE posts (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     club_id UUID REFERENCES clubs(id) ON DELETE SET NULL,
-    host_id UUID REFERENCES users(id) ON DELETE CASCADE,
     title VARCHAR(255) NOT NULL,
     starts_at TIMESTAMPTZ NOT NULL,
-    type_of_run VARCHAR(50),
-    distance DECIMAL(10, 2),
-    terrain VARCHAR(100),
     address VARCHAR(255),
+    distance DECIMAL(10, 2),
+    elevation DECIMAL(10, 2),
+    run_type VARCHAR(50),
+    estimated_time INTERVAL,
+    bible_reference VARCHAR(255),
+    bible_text TEXT, 
     created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
