@@ -14,25 +14,6 @@ export async function createClub({ name, description, owner }) {
   return club;
 }
 
-export async function getClubs() {
-  const sql = `
-  SELECT * FROM clubs
-  `;
-  const { rows } = await db.query(sql);
-  return rows;
-}
-
-export async function getClubById(clubId) {
-  const sql = `
-  SELECT * FROM clubs
-  WHERE id = $1
-  `;
-  const {
-    rows: [club],
-  } = await db.query(sql, [clubId]);
-  return club;
-}
-
 export async function searchClubs(userId, searchTerm) {
   const sql = `
   SELECT
@@ -52,27 +33,29 @@ export async function searchClubs(userId, searchTerm) {
   return rows;
 }
 
-export async function updateClubById(clubId, name, description, logo, owner) {
+export async function updateClub(clubId, userId, { name, description, logo }) {
   const sql = `
-  UPDATE clubs 
-  SET name = $2, description = $3, logo = $4, owner = $5 
-  WHERE id = $1 
-  RETURNING *
+    UPDATE clubs 
+    SET name = $1, description = $2, logo = $3
+    WHERE id = $4 AND owner = $5
+    RETURNING *;
   `;
-  const {
-    rows: [club],
-  } = await db.query(sql, [clubId, name, description, logo, owner]);
-  return club;
+  const { rows } = await db.query(sql, [
+    name,
+    description,
+    logo,
+    clubId,
+    userId,
+  ]);
+  return rows[0]; // Will be undefined if the user isn't the owner
 }
 
-export async function removeClub(clubId) {
+export async function removeClub(clubId, userId) {
   const sql = `
-  DELETE FROM clubs
-  WHERE club_id = $1
-  RETURNING *
+    DELETE FROM clubs 
+    WHERE id = $1 AND owner = $2
+    RETURNING *;
   `;
-  const {
-    rows: [club],
-  } = await db.query(sql, [clubId]);
-  return club;
+  const { rows } = await db.query(sql, [clubId, userId]);
+  return rows[0]; // Will be undefined if the user isn't the owner
 }
