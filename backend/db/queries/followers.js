@@ -14,11 +14,35 @@ export async function createFollower({ followerId, followedUserId }) {
   return follower;
 }
 
-export async function getFollowers() {
+export async function getFollowers(userId) {
   const sql = `
-  SELECT * FROM followers
+    SELECT 
+      u.id, 
+      u.first_name, 
+      u.last_name, 
+      u.profile_picture_url
+    FROM users u
+    JOIN followers f ON u.id = f.follower_id
+    WHERE f.followed_user_id = $1
+    ORDER BY u.first_name ASC;
   `;
-  const { rows } = await db.query(sql);
+  const { rows } = await db.query(sql, [userId]);
+  return rows;
+}
+
+export async function getFollowing(userId) {
+  const sql = `
+    SELECT 
+      u.id, 
+      u.first_name, 
+      u.last_name, 
+      u.profile_picture_url
+    FROM users u
+    JOIN followers f ON u.id = f.followed_user_id
+    WHERE f.follower_id = $1
+    ORDER BY u.first_name ASC;
+  `;
+  const { rows } = await db.query(sql, [userId]);
   return rows;
 }
 

@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/", requireUser, async (req, res) => {
+router.get("/search", requireUser, async (req, res) => {
   try {
     const { searchTerm } = req.query;
     const userId = req.user.id;
