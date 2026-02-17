@@ -14,14 +14,6 @@ export async function createClubMembership({ userId, clubId }) {
   return membership;
 }
 
-export async function getClubMemberships() {
-  const sql = `
-  SELECT * FROM club_memberships
-  `;
-  const { rows } = await db.query(sql);
-  return rows;
-}
-
 export async function getClubMembershipsByUserId(userId) {
   const sql = `
   SELECT 
