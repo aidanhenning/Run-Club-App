@@ -31,7 +31,7 @@ router.get("/", requireUser, async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", requireUser, async (req, res) => {
   try {
     const userId = req.user.id;
     const profile = await getClubProfile(req.params.id, userId);
@@ -42,7 +42,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", requireUser, async (req, res) => {
   try {
     const updatedClub = await updateClub(req.params.id, req.user.id, req.body);
 
@@ -58,7 +58,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", requireUser, async (req, res) => {
   try {
     const deleted = await removeClub(req.params.id, req.user.id);
 
@@ -73,3 +73,5 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ error: "Delete failed" });
   }
 });
+
+export default router;
