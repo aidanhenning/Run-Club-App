@@ -4,6 +4,7 @@ const app = express();
 
 import usersRouter from "./routes/users.js";
 import clubsRouter from "./routes/clubs.js";
+import clubMembershipsRouter from "./routes/club_memberships.js";
 import feedRouter from "./routes/feed.js";
 import searchRouter from "./routes/search.js";
 import getUserFromToken from "./middleware/getUserFromToken.js";
@@ -13,6 +14,7 @@ app.use(getUserFromToken);
 
 app.use("/users", usersRouter);
 app.use("/clubs", clubsRouter);
+app.use("/clubmemberships", clubMembershipsRouter);
 app.use("/feed", feedRouter);
 app.use("/search", searchRouter);
 

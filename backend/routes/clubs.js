@@ -26,7 +26,7 @@ router.get("/", requireUser, async (req, res) => {
     const userId = req.user.id;
     const clubs = await searchClubs(userId, searchTerm || "");
     res.json(clubs);
-  } catch (error) {
+  } catch (err) {
     res.status(500).json({ error: "Failed to fetch clubs" });
   }
 });

@@ -3,18 +3,17 @@ const router = express.Router();
 
 import bcrypt from "bcrypt";
 
-import { createUser, getUsers, getUserByEmail } from "../db/queries/users.js";
-import requireBody from "../middleware/requireBody.js";
+import {
+  createUser,
+  getUserByEmail,
+  searchUsers,
+  updateUserById,
+  removeUser,
+} from "../db/queries/users.js";
+import { getUserProfile } from "../db/queries/getUserProfile.js";
 import { createToken } from "../utils/jwt.js";
-
-router.get("/", async (req, res) => {
-  try {
-    const users = await getUsers();
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+import requireBody from "../middleware/requireBody.js";
+import requireUser from "../middleware/requireUser.js";
 
 router.post(
   "/register",
@@ -65,6 +64,59 @@ router.post("/login", requireBody(["email", "password"]), async (req, res) => {
     res.status(200).json({ token, user });
   } catch (err) {
     res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+router.get("/", requireUser, async (req, res) => {
+  try {
+    const { searchTerm } = req.query;
+    const userId = req.user.id;
+    const users = await searchUsers(userId, searchTerm || "");
+    res.json(users);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to search users" });
+  }
+});
+
+router.get("/:id", requireUser, async (req, res) => {
+  try {
+    const profile = await getUserFullProfile(req.params.id);
+    if (!profile.user) {
+      return res.status(404).json({ error: "User profile not found" });
+    }
+    res.json(profile);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch user profile" });
+  }
+});
+
+router.put("/:id", requireUser, async (req, res) => {
+  try {
+    if (req.params.id !== req.user.id) {
+      return res
+        .status(403)
+        .json({ error: "Unauthorized to update this profile" });
+    }
+
+    const updatedUser = await updateUserById(req.params.id, req.body);
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ error: "Update failed" });
+  }
+});
+
+router.delete("/:id", requireUser, async (req, res) => {
+  try {
+    if (req.params.id !== req.user.id) {
+      return res
+        .status(403)
+        .json({ error: "Unauthorized to delete this profile" });
+    }
+
+    const deleted = await removeUser(req.params.id);
+    res.json({ message: "User deleted successfully", user: deleted });
+  } catch (err) {
+    res.status(500).json({ error: "Delete failed" });
   }
 });
 
