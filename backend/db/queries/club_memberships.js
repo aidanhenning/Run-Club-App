@@ -28,9 +28,7 @@ export async function getClubMembershipsByUserId(userId) {
     c.id,
     c.name, 
     c.logo,
-
     (SELECT COUNT(*) FROM club_memberships WHERE club_id = c.id) AS member_count
-    
   FROM clubs c
   JOIN club_memberships cm ON c.id = cm.club_id
   WHERE cm.user_id = $1

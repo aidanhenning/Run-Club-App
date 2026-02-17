@@ -72,16 +72,31 @@ async function seedFollowers(users) {
 async function seedPosts(clubs) {
   const posts = [];
 
+  function generateRunInterval() {
+    const hours = faker.number.int({ min: 0, max: 5 });
+    const minutes = faker.number.int({ min: 0, max: 59 });
+    const seconds = faker.number.int({ min: 0, max: 59 });
+
+    const padded = (num) => String(num).padStart(2, "0");
+
+    return `${padded(hours)}:${padded(minutes)}:${padded(seconds)}`;
+  }
+
   for (let i = 0; i < clubs.length; i++) {
     const clubId = clubs[i].id;
-    const clubOwner = clubs[i].owner;
 
     for (let j = 0; j < 3; j++) {
       const post = await createPost({
         clubId: clubId,
-        hostId: clubOwner,
         title: faker.lorem.words({ min: 3, max: 5 }),
         startsAt: faker.date.soon({ days: 14 }),
+        address: faker.location.streetAddress({ fullAddress: true }),
+        distance: faker.number.float({ min: 1, max: 20, fractionDigits: 1 }),
+        elevation: faker.number.float({
+          min: -100,
+          max: 1000,
+          fractionDigits: 1,
+        }),
         typeOfRun: faker.helpers.arrayElement([
           "Race",
           "Long Run",
@@ -89,14 +104,10 @@ async function seedPosts(clubs) {
           "Tempo",
           "Intervals",
         ]),
-        distance: faker.number.float({ min: 1, max: 20, fractionDigits: 1 }),
-        terrain: faker.helpers.arrayElement([
-          "Road",
-          "Trail",
-          "Track",
-          "Mixed",
-        ]),
-        address: faker.location.streetAddress({ fullAddress: true }),
+        estimatedTime: generateRunInterval(),
+        bibleReference: "John 3:16",
+        bibleText:
+          "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
       });
 
       posts.push(post);
