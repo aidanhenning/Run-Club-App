@@ -37,7 +37,7 @@
   z-index: -1;
   height: 25px;
   width: 240px;
-  background-color: var(--primary-color);
+  background-color: var(--color-brand-base);
 }
 .subheading {
   text-align: center;
@@ -50,8 +50,8 @@
   text-align: center;
   text-decoration: none;
   font-size: 20px;
-  color: var(--white-primary);
-  background-color: var(--black-primary);
+  color: var(--color-white);
+  background-color: var(--color-black);
 }
 
 @media (min-width: 768px) {

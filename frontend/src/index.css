@@ -7,11 +7,18 @@
 
 /* ---------- COLORS ---------- */
 :root {
-  --primary-color: #e53a3a;
-  --primary-tint: #e64c4c;
-  --primary-shade: #c53030;
-  --black-primary: #000000;
-  --white-primary: #ffffff;
+  --color-brand-base: #e53a3a;
+  --color-brand-tint: #e64c4c;
+  --color-brand-shade: #c53030;
+
+  --color-bg-primary: #121212;
+  --color-bg-secondary: #1f1f1f;
+
+  --color-text-primary: #e3e3e3;
+  --color-text-secondary: #919191;
+
+  --color-black: #000000;
+  --color-white: #ffffff;
 }
 
 /* ---------- TYPOGRAPHY ----------

@@ -9,8 +9,8 @@
   padding: 12px 40px;
   border-radius: 4px;
   text-decoration: none;
-  color: var(--white-primary);
-  background-color: var(--primary-color);
+  color: var(--color-white);
+  background-color: var(--color-brand-base);
 }
 
 @media (min-width: 768px) {

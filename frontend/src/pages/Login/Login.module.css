@@ -33,15 +33,15 @@
   text-align: center;
   text-decoration: none;
   font-size: 16px;
-  color: var(--white-primary);
-  background-color: var(--black-primary);
+  color: var(--color-white);
+  background-color: var(--color-black);
 }
 .btnSecondary:hover {
   cursor: pointer;
 }
 .link {
   font-weight: 700;
-  color: var(--black-primary);
+  color: var(--color-black);
 }
 
 @media (min-width: 768px) {
