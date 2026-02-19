@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Login.module.css";
-import RegisterHeader from "../../components/Header/RegisterHeader";
 import { Link, Navigate, useNavigate } from "react-router";
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
