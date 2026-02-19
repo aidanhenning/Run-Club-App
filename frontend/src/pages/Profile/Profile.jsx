@@ -29,7 +29,14 @@ export default function Profile() {
 
   return (
     <div className={styles.container}>
-      <button onClick={handleSubmit}>Log Out</button>
+      <header className={styles.header}>
+        <h1 className={styles.headerTitle}>Profile</h1>
+      </header>
+
+      <main className={styles.content}>
+        <button onClick={handleSubmit}>Log Out</button>
+      </main>
+
       <BottomNav />
     </div>
   );
