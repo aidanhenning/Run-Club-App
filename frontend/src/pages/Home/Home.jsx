@@ -1,15 +1,18 @@
 import React from "react";
 import styles from "./Home.module.css";
-import BottomNav from "../../components/BootomNav/BottomNav";
+import BottomNav from "../../components/BottomNav/BottomNav";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 
 export default function Home() {
   const { token, API } = useAuth();
+
   const [feed, setFeed] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!token || !API) return;
+
     const fetchFeed = async () => {
       try {
         const response = await fetch(`${API}/feed`, {
@@ -18,7 +21,6 @@ export default function Home() {
           },
         });
         const data = await response.json();
-        console.log("Feed Data:", data);
         setFeed(data);
       } catch (err) {
         console.error("Failed to fetch feed:", err);
@@ -27,10 +29,8 @@ export default function Home() {
       }
     };
 
-    if (token) fetchFeed();
+    fetchFeed();
   }, [token, API]);
-
-  if (loading) return <p>Loading your miles...</p>;
 
   return (
     <div className={styles.container}>
@@ -40,7 +40,14 @@ export default function Home() {
 
       <main className={styles.content}>
         {feed.length > 0 ? (
-          feed.map((post) => console.log(post))
+          feed.map((post) => (
+            <div key={post.id} className={styles.card}>
+              <h2>{post.title}</h2>
+              <p>
+                {post.type_of_run} - {post.distance} miles
+              </p>
+            </div>
+          ))
         ) : (
           <div className={styles.emptyState}>
             <p>No runs yet. Join a club to see what's happening!</p>

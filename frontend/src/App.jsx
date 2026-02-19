@@ -13,11 +13,12 @@ function App() {
   return (
     <>
       <Routes>
+        {/* Public Routes */}
         <Route index element={<Entry />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-      </Routes>
-      <Routes>
+
+        {/* Protected Routes */}
         <Route
           path="/home"
           element={
