@@ -1,4 +1,5 @@
 import db from "./client.js";
+import bcrypt from "bcrypt";
 import { faker } from "@faker-js/faker";
 
 import { createUser } from "./queries/users.js";
@@ -14,13 +15,14 @@ import { createCommentLike } from "./queries/comment_likes.js";
 
 async function seedUsers() {
   const users = [];
+  const hashedPassword = await bcrypt.hash("password123", 10);
 
   for (let i = 0; i < 10; i++) {
     const user = await createUser({
       firstName: faker.person.firstName(),
       lastName: faker.person.lastName(),
       email: faker.internet.email(),
-      password: "password123",
+      password: hashedPassword,
     });
 
     users.push(user);
