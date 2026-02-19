@@ -27,7 +27,6 @@ async function seedUsers() {
 
     users.push(user);
   }
-
   return users.filter((u) => u !== undefined);
 }
 
@@ -71,6 +70,7 @@ async function seedFollowers(users) {
     }
   }
 }
+
 async function seedPosts(clubs) {
   const posts = [];
 
@@ -86,9 +86,11 @@ async function seedPosts(clubs) {
 
   for (let i = 0; i < clubs.length; i++) {
     const clubId = clubs[i].id;
+    const owner = clubs[i].owner;
 
     for (let j = 0; j < 3; j++) {
       const post = await createPost({
+        userId: owner,
         clubId: clubId,
         title: faker.lorem.words({ min: 3, max: 5 }),
         startsAt: faker.date.soon({ days: 14 }),
@@ -99,7 +101,7 @@ async function seedPosts(clubs) {
           max: 1000,
           fractionDigits: 1,
         }),
-        typeOfRun: faker.helpers.arrayElement([
+        runType: faker.helpers.arrayElement([
           "Race",
           "Long Run",
           "Easy Run",
@@ -124,8 +126,6 @@ async function seedPostPictures(users, posts) {
 
     const randomIndex = Math.floor(Math.random() * users.length);
     const randomUser = users[randomIndex];
-
-    console.log(`Index: ${randomIndex}, User:`, randomUser);
 
     for (let j = 0; j < 2; j++) {
       await createPostPicture({
@@ -172,7 +172,7 @@ async function seedPostComments(users, posts) {
     }
   }
 
-  return comments;
+  return comments.filter((c) => c !== undefined);
 }
 
 async function seedPostLikes(users, posts) {
