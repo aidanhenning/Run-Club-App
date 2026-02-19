@@ -1,7 +1,7 @@
 .container {
   min-height: 100vh;
+  padding-bottom: 3.75rem;
   background-color: var(--color-bg-primary);
-  padding-bottom: 88px;
 }
 
 .header {
@@ -18,8 +18,8 @@
 }
 
 .headerTitle {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
 }
 
@@ -43,11 +43,11 @@
 
 .skeletonCard {
   background-color: var(--color-bg-primary);
-  padding: 16px;
+  padding: 1rem;
   margin-top: 0.25rem;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
 }
 
 .skeletonTitle {
@@ -65,18 +65,18 @@
 
 .skeletonTitleText {
   width: 40%;
-  height: 12px;
+  height: 0.75rem;
 }
 
 .skeletonStats {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0;
+  padding: 0.5rem 0;
 }
 
 .skeletonStatsItem {
   width: 20%;
-  height: 12px;
+  height: 0.75rem;
 }
 
 .skeletonPictures {
@@ -87,13 +87,13 @@
 
 .skeletonBibleVerse {
   width: 90%;
-  height: 12px;
-  margin: 8px 0;
+  height: 0.75rem;
+  margin: 0.5rem 0;
 }
 
 .skeletonComments {
   width: 30%;
-  height: 12px;
+  height: 0.75rem;
 }
 
 @keyframes shimmer {

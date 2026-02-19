@@ -11,10 +11,10 @@
   justify-content: space-evenly;
 
   padding: 1rem 0 1.5rem;
-
   background-color: var(--color-bg-secondary);
 }
+
 .bottomNavLink svg {
-  font-size: 24px;
+  font-size: var(--font-size-large);
   color: var(--color-text-primary);
 }

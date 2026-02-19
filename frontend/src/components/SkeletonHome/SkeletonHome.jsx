@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./SkeletonHome.module.css";
 import BottomNav from "../BottomNav/BottomNav";
 

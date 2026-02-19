@@ -1,10 +1,9 @@
-import React from "react";
 import styles from "./Home.module.css";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 import SkeletonHome from "../../components/SkeletonHome/SkeletonHome";
 import PostCard from "../../components/PostCard/PostCard";
 import BottomNav from "../../components/BottomNav/BottomNav";
-import { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext";
 
 export default function Home() {
   const { token, API } = useAuth();

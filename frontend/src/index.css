@@ -28,10 +28,11 @@
   --font-size-display: 3.875rem; /* 62px */
 
   --font-weight-normal: 400;
+  --font-weight-semibold: 500;
   --font-weight-bold: 700;
 
-  --line-height-tight: 1.2;
-  --line-height-base: 1.5;
+  --line-height-tight: 1.2; /* headers */
+  --line-height-base: 1.5; /* descriptions */
 
   --letter-spacing-normal: 0;
   --letter-spacing-tight: -0.125rem; /* -2px / 16 */

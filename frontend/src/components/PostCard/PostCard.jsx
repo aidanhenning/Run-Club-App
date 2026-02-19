@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./PostCard.module.css";
 
 export default function PostCard({ post }) {

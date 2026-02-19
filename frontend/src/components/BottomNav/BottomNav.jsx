@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./BottomNav.module.css";
 import { Link, useLocation } from "react-router";
 import { GoHome } from "react-icons/go";

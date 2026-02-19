@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Entry.module.css";
 import { Link } from "react-router";
 import { useAuth } from "../../context/AuthContext";

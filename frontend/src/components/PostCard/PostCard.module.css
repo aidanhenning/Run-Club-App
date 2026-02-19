@@ -1,94 +1,94 @@
 .card {
-  background-color: var(--color-bg-primary); /* Match container bg */
-  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  border-bottom: 1px solid var(--color-bg-secondary); /* Subtle separator */
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--color-bg-secondary);
+  background-color: var(--color-bg-primary);
 }
 
 .title {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.75rem;
 }
 
 .titleProfileImage {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background-color: var(--color-brand-base);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
+  border-radius: 50%;
+  font-weight: var(--font-weight-bold);
   color: var(--color-white);
+  background-color: var(--color-brand-base);
 }
 
 .titleText {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
   color: var(--color-text-primary);
-  font-weight: 600;
-  font-size: 14px;
 }
 
 .stats {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0;
+  padding: 0.5rem 0;
 }
 
 .statsItem {
+  width: 20%;
   display: flex;
   flex-direction: column;
-  width: 20%;
 }
 
 .label {
-  font-size: 10px;
-  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
   text-transform: uppercase;
+  color: var(--color-text-secondary);
 }
 
 .value {
-  font-size: 13px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
-  font-weight: 500;
 }
 
 .pictures {
   width: 100%;
   aspect-ratio: 1 / 1;
-  background-color: var(--color-bg-secondary);
-  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 8px;
+  background-color: var(--color-bg-secondary);
 }
 
 .mapPlaceholder {
+  font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
-  font-size: 12px;
 }
 
 .bibleVerse {
-  padding: 4px 0;
+  padding: 0.25rem 0;
 }
 
 .reference {
+  margin-bottom: 0.25rem;
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-sm);
   color: var(--color-brand-tint);
-  font-weight: 700;
-  font-size: 14px;
-  margin-bottom: 4px;
 }
 
 .verseText {
-  color: var(--color-text-primary);
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: var(--font-size-sm);
+  line-height: var(--letter-spacing-tight);
   font-style: italic;
+  color: var(--color-text-primary);
 }
 
 .comments {
+  font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
-  font-size: 12px;
 }
