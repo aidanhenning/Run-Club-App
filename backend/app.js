@@ -1,4 +1,5 @@
 import "dotenv/config";
+import cors from "cors";
 import express from "express";
 const app = express();
 
@@ -16,6 +17,11 @@ import commentLikesRouter from "./routes/comment_likes.js";
 
 import getUserFromToken from "./middleware/getUserFromToken.js";
 
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+  }),
+);
 app.use(express.json());
 app.use(getUserFromToken);
 
