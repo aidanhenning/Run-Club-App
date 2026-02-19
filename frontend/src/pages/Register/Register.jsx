@@ -42,10 +42,10 @@ export default function Register() {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <LoginHeader />
-      <h1 className={styles.loginHeading}>Register</h1>
-      <form className={styles.loginForm} onSubmit={handleSubmit}>
+      <h1 className={styles.heading}>Register</h1>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <label htmlFor="firstName" className={styles.label}>
           First Name
         </label>
@@ -111,6 +111,6 @@ export default function Register() {
           Already a member? Log in
         </Link>
       </form>
-    </>
+    </div>
   );
 }

@@ -1,24 +1,31 @@
-.loginHeading {
+.container {
+}
+
+.heading {
   margin-top: 100px;
   margin-bottom: 50px;
   text-align: center;
   font-size: 48px;
   font-weight: 700;
 }
-.loginForm {
+
+.form {
   display: flex;
   flex-direction: column;
   width: 90%;
   padding: 10px;
   margin: 0 auto;
 }
+
 .label {
   margin-bottom: 5px;
 }
+
 .inputField {
   padding: 10px 15px;
   margin-bottom: 20px;
 }
+
 .checkboxField {
   display: flex;
   flex-direction: row;
@@ -26,6 +33,7 @@
   gap: 5px;
   margin-bottom: 20px;
 }
+
 .btnSecondary {
   padding: 10px 50px;
   border-radius: 8px;
@@ -36,9 +44,11 @@
   color: var(--color-white);
   background-color: var(--color-black);
 }
+
 .btnSecondary:hover {
   cursor: pointer;
 }
+
 .link {
   font-weight: 700;
   color: var(--color-black);

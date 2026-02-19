@@ -40,10 +40,10 @@ export default function Login() {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <RegisterHeader />
-      <h1 className={styles.loginHeading}>Log In</h1>
-      <form className={styles.loginForm} onSubmit={handleSubmit}>
+      <h1 className={styles.heading}>Log In</h1>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <label htmlFor="email" className={styles.label}>
           Email
         </label>
@@ -87,6 +87,6 @@ export default function Login() {
           Create a New Account
         </Link>
       </form>
-    </>
+    </div>
   );
 }

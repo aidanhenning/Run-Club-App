@@ -35,16 +35,22 @@ export default function Home() {
   if (loading) return <p>Loading your miles...</p>;
 
   return (
-    <>
-      <header className={styles.homeHeader}>
-        <h1 className={styles.homeHeaderText}>Home</h1>
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <h1 className={styles.headerTitle}>Home</h1>
       </header>
-      <main className={styles.homeContent}>
-        <article className={styles.homePost}>
-          <div></div>
-        </article>
+
+      <main className={styles.content}>
+        {feed.length > 0 ? (
+          feed.map((post) => <RunCard key={post.id} run={post} />)
+        ) : (
+          <div className={styles.emptyState}>
+            <p>No runs yet. Join a club to see what's happening!</p>
+          </div>
+        )}
       </main>
+
       <BottomNav />
-    </>
+    </div>
   );
 }

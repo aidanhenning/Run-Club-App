@@ -4,12 +4,12 @@ import { Link } from "react-router";
 
 export default function Entry() {
   return (
-    <>
-      <div className={styles.entryBackgroundDiv}>
-        <div className={styles.entryBackgroundFade}></div>
+    <div className={styles.container}>
+      <div className={styles.heroImage}>
+        <div className={styles.fadeOverlay}></div>
       </div>
-      <div className={styles.entryContent}>
-        <div className={styles.entryText}>
+      <div className={styles.content}>
+        <div className={styles.textContent}>
           <h1 className={styles.stackedHeading}>
             <span>Community</span>
             <span>Driven</span>
@@ -21,6 +21,6 @@ export default function Entry() {
           Get Started
         </Link>
       </div>
-    </>
+    </div>
   );
 }
