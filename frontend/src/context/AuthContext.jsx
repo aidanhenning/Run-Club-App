@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
 
     const result = await response.json();
     if (!response.ok) throw Error(result);
-    setToken(result);
+    setToken(result.token);
   };
 
   const register = async (credentials) => {
@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, register, logout }}>
+    <AuthContext.Provider value={{ token, login, register, logout, API }}>
       {children}
     </AuthContext.Provider>
   );
