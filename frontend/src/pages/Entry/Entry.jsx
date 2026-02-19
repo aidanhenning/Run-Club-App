@@ -11,6 +11,7 @@ export default function Entry() {
       <div className={styles.heroImage}>
         <div className={styles.fadeOverlay}></div>
       </div>
+
       <div className={styles.content}>
         <div className={styles.textContent}>
           <h1 className={styles.stackedHeading}>

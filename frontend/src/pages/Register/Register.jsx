@@ -50,6 +50,7 @@ export default function Register() {
           Log In
         </Link>
       </header>
+
       <h1 className={styles.heading}>Register</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label htmlFor="firstName" className={styles.label}>
@@ -113,6 +114,7 @@ export default function Register() {
           disabled={isLoading}
           className={styles.btnSecondary}
         />
+
         <Link to="/login" className={styles.link}>
           Already a member? Log in
         </Link>

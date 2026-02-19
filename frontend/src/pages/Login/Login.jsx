@@ -48,6 +48,7 @@ export default function Login() {
           Sign Up
         </Link>
       </header>
+
       <h1 className={styles.heading}>Log In</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label htmlFor="email" className={styles.label}>
@@ -83,12 +84,14 @@ export default function Login() {
           <input type="checkbox" id="checkbox" />
           <label htmlFor="checkbox">Stay Signed In?</label>
         </div>
+
         <input
           type="submit"
           value="Sign In"
           disabled={isLoading}
           className={styles.btnSecondary}
         />
+
         <Link to="/register" className={styles.link}>
           Create a New Account
         </Link>

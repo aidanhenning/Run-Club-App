@@ -18,7 +18,9 @@ export default function SkeletonHome() {
       </div>
 
       <div className={styles.skeletonPictures}></div>
+
       <div className={styles.skeletonBibleVerse}></div>
+
       <div className={styles.skeletonComments}></div>
     </div>
   );

@@ -4,7 +4,6 @@ import styles from "./PostCard.module.css";
 export default function PostCard({ post }) {
   return (
     <div className={styles.card}>
-      {/* Header */}
       <div className={styles.title}>
         <div className={styles.titleProfileImage}>
           {post.club_logo === null
@@ -14,7 +13,6 @@ export default function PostCard({ post }) {
         <div className={styles.titleText}>{post.club_name}</div>
       </div>
 
-      {/* Stats */}
       <div className={styles.stats}>
         <div className={styles.statsItem}>
           <span className={styles.label}>Distance</span>
@@ -34,20 +32,17 @@ export default function PostCard({ post }) {
         </div>
       </div>
 
-      {/* Picture Area */}
       <div className={styles.pictures}>
         <div className={styles.mapPlaceholder}>
           <span>Route Map</span>
         </div>
       </div>
 
-      {/* Scripture */}
       <div className={styles.bibleVerse}>
         <p className={styles.reference}>{post.bible_reference}</p>
         <p className={styles.verseText}>{post.bible_text}</p>
       </div>
 
-      {/* Comments Footer */}
       <div className={styles.comments}>View all comments</div>
     </div>
   );
