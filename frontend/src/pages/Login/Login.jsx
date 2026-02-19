@@ -2,19 +2,57 @@ import React from "react";
 import styles from "./Login.module.css";
 import RegisterHeader from "../../components/Header/RegisterHeader";
 import { Link } from "react-router";
+import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
 
 export default function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setIsLoading(true);
+
+    try {
+      await login(formData);
+      navigate("/home");
+    } catch (err) {
+      setError("Invalid email or password");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <>
       <RegisterHeader />
       <h1 className={styles.loginHeading}>Log In</h1>
-      <form className={styles.loginForm}>
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
         <label htmlFor="email" className={styles.label}>
           Email
         </label>
         <input
           type="email"
           id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
           required
           placeholder="Enter Email"
           className={styles.inputField}
@@ -25,15 +63,26 @@ export default function Login() {
         <input
           type="password"
           id="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
           required
           placeholder="Enter Password"
           className={styles.inputField}
         />
+
+        {error && <p className={styles.errorText}>{error}</p>}
+
         <div className={styles.checkboxField}>
           <input type="checkbox" id="checkbox" />
           <label htmlFor="checkbox">Stay Signed In?</label>
         </div>
-        <input type="submit" value="Sign In" className={styles.btnSecondary} />
+        <input
+          type="submit"
+          value="Sign In"
+          disabled={isLoading}
+          className={styles.btnSecondary}
+        />
         <Link to="/register" className={styles.link}>
           Create a New Account
         </Link>

@@ -2,29 +2,72 @@ import React from "react";
 import styles from "./Register.module.css";
 import LoginHeader from "../../components/Header/LoginHeader";
 import { Link } from "react-router";
+import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
 
 export default function Register() {
+  const { register } = useAuth();
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setIsLoading(true);
+
+    try {
+      await register(formData);
+      navigate("/home");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   return (
     <>
       <LoginHeader />
       <h1 className={styles.loginHeading}>Register</h1>
-      <form className={styles.loginForm}>
-        <label htmlFor="fName" className={styles.label}>
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
+        <label htmlFor="firstName" className={styles.label}>
           First Name
         </label>
         <input
           type="text"
-          id="fName"
+          id="firstName"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
           required
           placeholder="First Name"
           className={styles.inputField}
         />
-        <label htmlFor="lName" className={styles.label}>
+        <label htmlFor="lastName" className={styles.label}>
           Last Name
         </label>
         <input
           type="text"
-          id="lName"
+          id="lastName"
+          name="lastName"
+          value={formData.lastName}
+          onChange={handleChange}
           required
           placeholder="Last Name"
           className={styles.inputField}
@@ -35,6 +78,9 @@ export default function Register() {
         <input
           type="email"
           id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
           required
           placeholder="Enter Email"
           className={styles.inputField}
@@ -45,13 +91,20 @@ export default function Register() {
         <input
           type="password"
           id="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
           required
           placeholder="Enter Password"
           className={styles.inputField}
         />
+
+        {error && <p className={styles.errorText}>{error}</p>}
+
         <input
           type="submit"
           value="Create Account"
+          disabled={isLoading}
           className={styles.btnSecondary}
         />
         <Link to="/login" className={styles.link}>

@@ -44,6 +44,11 @@
   color: var(--color-black);
 }
 
+/* ERROR */
+.errorText {
+  color: red;
+}
+
 @media (min-width: 768px) {
   .loginForm {
     width: 40%;
