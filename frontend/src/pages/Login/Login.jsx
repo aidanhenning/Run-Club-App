@@ -44,7 +44,11 @@ export default function Login() {
 
   return (
     <div className={styles.container}>
-      <RegisterHeader />
+      <header className={styles.header}>
+        <Link to="/register" className={styles.btnPrimary}>
+          Sign Up
+        </Link>
+      </header>
       <h1 className={styles.heading}>Log In</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label htmlFor="email" className={styles.label}>

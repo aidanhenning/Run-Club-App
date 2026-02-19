@@ -1,6 +1,14 @@
 .container {
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 14px 14px;
+}
+
 .heading {
   margin-top: 100px;
   margin-bottom: 50px;
@@ -34,6 +42,14 @@
   margin-bottom: 20px;
 }
 
+.btnPrimary {
+  padding: 12px 40px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--color-white);
+  background-color: var(--color-brand-base);
+}
+
 .btnSecondary {
   padding: 10px 50px;
   border-radius: 8px;
@@ -60,6 +76,9 @@
 }
 
 @media (min-width: 768px) {
+  .header {
+    padding: 14px 100px;
+  }
   .loginForm {
     width: 40%;
   }

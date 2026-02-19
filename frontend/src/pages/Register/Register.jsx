@@ -46,7 +46,11 @@ export default function Register() {
 
   return (
     <div className={styles.container}>
-      <LoginHeader />
+      <header className={styles.header}>
+        <Link to="/login" className={styles.btnPrimary}>
+          Log In
+        </Link>
+      </header>
       <h1 className={styles.heading}>Register</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label htmlFor="firstName" className={styles.label}>
