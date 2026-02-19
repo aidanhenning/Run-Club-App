@@ -13,6 +13,8 @@ export default function Home() {
   useEffect(() => {
     if (!token || !API) return;
 
+    setLoading(true);
+
     const fetchFeed = async () => {
       try {
         const response = await fetch(`${API}/feed`, {

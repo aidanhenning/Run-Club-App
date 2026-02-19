@@ -9,16 +9,16 @@ export default function Login() {
   const { login, token } = useAuth();
   const navigate = useNavigate();
 
-  if (token) {
-    return <Navigate to="/home" replace />;
-  }
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  if (token) {
+    return <Navigate to="/home" replace />;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();

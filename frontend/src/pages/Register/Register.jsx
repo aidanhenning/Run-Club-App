@@ -9,10 +9,6 @@ export default function Register() {
   const { register, token } = useAuth();
   const navigate = useNavigate();
 
-  if (token) {
-    return <Navigate to="/home" replace />;
-  }
-
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -21,6 +17,10 @@ export default function Register() {
   });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  if (token) {
+    return <Navigate to="/home" replace />;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
