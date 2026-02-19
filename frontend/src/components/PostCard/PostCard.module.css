@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  color: white;
+  color: var(--color-white);
 }
 
 .titleText {
