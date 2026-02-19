@@ -1,0 +1,94 @@
+.card {
+  background-color: var(--color-bg-primary); /* Match container bg */
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-bottom: 1px solid var(--color-bg-secondary); /* Subtle separator */
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.titleProfileImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-brand-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+}
+
+.titleText {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.statsItem {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.label {
+  font-size: 10px;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}
+
+.value {
+  font-size: 13px;
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.pictures {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color-bg-secondary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mapPlaceholder {
+  color: var(--color-text-secondary);
+  font-size: 12px;
+}
+
+.bibleVerse {
+  padding: 4px 0;
+}
+
+.reference {
+  color: var(--color-brand-tint);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.verseText {
+  color: var(--color-text-primary);
+  font-size: 14px;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.comments {
+  color: var(--color-text-secondary);
+  font-size: 12px;
+}

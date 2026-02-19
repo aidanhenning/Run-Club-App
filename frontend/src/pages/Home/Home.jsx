@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Home.module.css";
 import SkeletonHome from "../../components/SkeletonHome/SkeletonHome";
+import PostCard from "../../components/PostCard/PostCard";
 import BottomNav from "../../components/BottomNav/BottomNav";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
@@ -25,6 +26,7 @@ export default function Home() {
         });
         const data = await response.json();
         setFeed(data);
+        console.log(data);
       } catch (err) {
         console.error("Failed to fetch feed:", err);
       } finally {
@@ -53,14 +55,7 @@ export default function Home() {
 
       <main className={styles.content}>
         {feed.length > 0 ? (
-          feed.map((post) => (
-            <div key={post.id} className={styles.card}>
-              <h2>{post.title}</h2>
-              <p>
-                {post.type_of_run} - {post.distance} miles
-              </p>
-            </div>
-          ))
+          feed.map((post) => <PostCard key={post.id} post={post} />)
         ) : (
           <div className={styles.emptyState}>
             <p>No runs yet. Join a club to see what's happening!</p>
