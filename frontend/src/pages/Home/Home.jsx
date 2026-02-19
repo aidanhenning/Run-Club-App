@@ -40,7 +40,7 @@ export default function Home() {
 
       <main className={styles.content}>
         {feed.length > 0 ? (
-          feed.map((post) => <RunCard key={post.id} run={post} />)
+          feed.map((post) => console.log(post))
         ) : (
           <div className={styles.emptyState}>
             <p>No runs yet. Join a club to see what's happening!</p>
