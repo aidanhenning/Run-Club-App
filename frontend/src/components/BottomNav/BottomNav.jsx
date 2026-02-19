@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./BottomNav.module.css";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { GoHome } from "react-icons/go";
 import { GoHomeFill } from "react-icons/go";
 import { IoSearchCircleOutline } from "react-icons/io5";
@@ -11,23 +11,26 @@ import { CgProfile } from "react-icons/cg";
 import { IoPersonCircle } from "react-icons/io5";
 
 export default function BottomNav() {
+  const location = useLocation();
+  const path = location.pathname;
+
   return (
     <nav className={styles.bottomNav}>
       <Link to="/home" className={styles.bottomNavLink}>
-        <GoHome />
-        <GoHomeFill />
+        {path === "/home" ? <GoHomeFill /> : <GoHome />}
       </Link>
       <Link to="/search" className={styles.bottomNavLink}>
-        <IoSearchCircleOutline />
-        <IoSearchCircle />
+        {path === "/search" ? <IoSearchCircle /> : <IoSearchCircleOutline />}
       </Link>
       <Link to="/clubs" className={styles.bottomNavLink}>
-        <HiOutlineRectangleGroup />
-        <HiMiniRectangleGroup />
+        {path === "/clubs" ? (
+          <HiMiniRectangleGroup />
+        ) : (
+          <HiOutlineRectangleGroup />
+        )}
       </Link>
       <Link to="/profile" className={styles.bottomNavLink}>
-        <CgProfile />
-        <IoPersonCircle />
+        {path === "/profile" ? <IoPersonCircle /> : <CgProfile />}
       </Link>
     </nav>
   );

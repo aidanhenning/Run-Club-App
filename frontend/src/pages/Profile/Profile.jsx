@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Profile.module.css";
+import BottomNav from "../../components/BottomNav/BottomNav";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
@@ -27,8 +28,9 @@ export default function Profile() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <button onClick={handleSubmit}>Log Out</button>
+      <BottomNav />
     </div>
   );
 }
