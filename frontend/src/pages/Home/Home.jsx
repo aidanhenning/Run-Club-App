@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Home.module.css";
+import SkeletonHome from "../../components/SkeletonHome/SkeletonHome";
 import BottomNav from "../../components/BottomNav/BottomNav";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
@@ -27,12 +28,22 @@ export default function Home() {
       } catch (err) {
         console.error("Failed to fetch feed:", err);
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       }
     };
 
     fetchFeed();
   }, [token, API]);
+
+  if (loading) {
+    return (
+      <>
+        <SkeletonHome />
+      </>
+    );
+  }
 
   return (
     <div className={styles.container}>

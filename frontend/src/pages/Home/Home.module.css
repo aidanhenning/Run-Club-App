@@ -1,7 +1,7 @@
 .container {
   min-height: 100vh;
   background-color: var(--color-bg-primary);
-  padding-bottom: 80px;
+  padding-bottom: 88px;
 }
 
 .header {
@@ -26,7 +26,6 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .emptyState {
