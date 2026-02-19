@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./Profile.module.css";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router";
 
 export default function Profile() {
   const { logout } = useAuth();

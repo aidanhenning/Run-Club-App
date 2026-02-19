@@ -1,10 +1,8 @@
 import React from "react";
-
-import { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-
 import styles from "./Home.module.css";
 import BottomNav from "../../components/BootomNav/BottomNav";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Home() {
   const { token, API } = useAuth();

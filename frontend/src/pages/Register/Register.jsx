@@ -1,14 +1,17 @@
 import React from "react";
 import styles from "./Register.module.css";
 import LoginHeader from "../../components/Header/LoginHeader";
-import { Link } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router";
 
 export default function Register() {
-  const { register } = useAuth();
+  const { register, token } = useAuth();
   const navigate = useNavigate();
+
+  if (token) {
+    return <Navigate to="/home" replace />;
+  }
 
   const [formData, setFormData] = useState({
     firstName: "",

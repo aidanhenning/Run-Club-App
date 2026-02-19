@@ -1,14 +1,17 @@
 import React from "react";
 import styles from "./Login.module.css";
 import RegisterHeader from "../../components/Header/RegisterHeader";
-import { Link } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router";
 
 export default function Login() {
-  const { login } = useAuth();
+  const { login, token } = useAuth();
   const navigate = useNavigate();
+
+  if (token) {
+    return <Navigate to="/home" replace />;
+  }
 
   const [formData, setFormData] = useState({
     email: "",
