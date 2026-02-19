@@ -5,7 +5,7 @@ import {
   createClubMembership,
   getClubMembershipsByUserId,
   removeClubMembership,
-} from "../db/queries/club_memberships";
+} from "../db/queries/club_memberships.js";
 import requireUser from "../middleware/requireUser.js";
 
 router.get("/", requireUser, async (req, res) => {

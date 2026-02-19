@@ -80,7 +80,7 @@ router.get("/search", requireUser, async (req, res) => {
 
 router.get("/:id", requireUser, async (req, res) => {
   try {
-    const profile = await getUserFullProfile(req.params.id);
+    const profile = await getUserProfile(req.params.id);
     if (!profile.user) {
       return res.status(404).json({ error: "User profile not found" });
     }

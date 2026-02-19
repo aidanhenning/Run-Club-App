@@ -5,7 +5,7 @@ import {
   createCommentLike,
   getCommentLikesByCommentId,
   removeCommentLike,
-} from "../models/commentLikes.js";
+} from "../db/queries/comment_likes.js";
 import requireUser from "../middleware/requireUser.js";
 
 router.get("/:commentId", requireUser, async (req, res) => {

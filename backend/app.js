@@ -7,13 +7,12 @@ import clubsRouter from "./routes/clubs.js";
 import clubMembershipsRouter from "./routes/club_memberships.js";
 import followersRouter from "./routes/followers.js";
 import feedRouter from "./routes/feed.js";
-import searchRouter from "./routes/search.js";
 import postsRouter from "./routes/posts.js";
-import postPicturesRouter from "./routes/postPictures.js";
-import postAttendeesRouter from "./routes/postAttendees.js";
-import postCommentsRouter from "./routes/postComments.js";
-import postLikesRouter from "./routes/postLikes.js";
-import commentLikesRouter from "./routes/commentLikes.js";
+import postPicturesRouter from "./routes/post_pictures.js";
+import postAttendeesRouter from "./routes/post_attendees.js";
+import postCommentsRouter from "./routes/post_comments.js";
+import postLikesRouter from "./routes/post_likes.js";
+import commentLikesRouter from "./routes/comment_likes.js";
 
 import getUserFromToken from "./middleware/getUserFromToken.js";
 
@@ -25,7 +24,6 @@ app.use("/users", usersRouter);
 app.use("/clubs", clubsRouter);
 app.use("/clubmemberships", clubMembershipsRouter);
 app.use("/followers", followersRouter);
-app.use("/search", searchRouter);
 
 // Feed & Posts
 app.use("/feed", feedRouter);

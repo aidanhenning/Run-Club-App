@@ -5,7 +5,7 @@ import {
   createPostPicture,
   getPostPicturesByPostId,
   removePostPicture,
-} from "../models/postPictures.js";
+} from "../db/queries/post_pictures.js";
 import requireUser from "../middleware/requireUser.js";
 
 router.get("/:postId", requireUser, async (req, res) => {

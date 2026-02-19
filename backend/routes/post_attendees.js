@@ -5,7 +5,7 @@ import {
   createPostAttendee,
   getPostAttendeesByPostId,
   removePostAttendee,
-} from "../models/postAttendees.js";
+} from "../db/queries/post_attendees.js";
 import requireUser from "../middleware/requireUser.js";
 
 router.get("/:postId", requireUser, async (req, res) => {

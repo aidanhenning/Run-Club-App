@@ -6,7 +6,7 @@ import {
   getPostById,
   updatePostById,
   removePost,
-} from "../models/posts.js";
+} from "../db/queries/posts.js";
 import requireUser from "../middleware/requireUser.js";
 
 router.post("/", requireUser, async (req, res) => {

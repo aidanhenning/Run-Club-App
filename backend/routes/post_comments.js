@@ -6,7 +6,7 @@ import {
   getPostCommentsByPostId,
   updatePostCommentById,
   removePostComment,
-} from "../models/postComments.js";
+} from "../db/queries/post_comments.js";
 import requireUser from "../middleware/requireUser.js";
 
 router.get("/:postId", requireUser, async (req, res) => {

@@ -6,8 +6,8 @@ import {
   removeFollower,
   getFollowers,
   getFollowing,
-} from "../db/queries/followers";
-import requireUser from "../middleware/requireUser";
+} from "../db/queries/followers.js";
+import requireUser from "../middleware/requireUser.js";
 
 router.get("/followers", requireUser, async (req, res) => {
   try {

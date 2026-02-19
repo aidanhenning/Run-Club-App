@@ -5,7 +5,7 @@ import {
   createPostLike,
   getPostLikesByPostId,
   removePostLike,
-} from "../models/postLikes.js";
+} from "../db/queries/post_likes.js";
 import requireUser from "../middleware/requireUser.js";
 
 router.get("/:postId", requireUser, async (req, res) => {
