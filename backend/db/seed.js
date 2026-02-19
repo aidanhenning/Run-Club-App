@@ -20,13 +20,13 @@ async function seedUsers() {
       firstName: faker.person.firstName(),
       lastName: faker.person.lastName(),
       email: faker.internet.email(),
-      password: faker.internet.password(),
+      password: "password123",
     });
 
     users.push(user);
   }
 
-  return users;
+  return users.filter((u) => u !== undefined);
 }
 
 async function seedClubs(users) {
@@ -43,7 +43,7 @@ async function seedClubs(users) {
 
     clubs.push(club);
   }
-  return clubs;
+  return clubs.filter((c) => c !== undefined);
 }
 
 async function seedClubMemberships(users, clubs) {
@@ -113,17 +113,22 @@ async function seedPosts(clubs) {
       posts.push(post);
     }
   }
-  return posts;
+  return posts.filter((p) => p !== undefined);
 }
 
 async function seedPostPictures(users, posts) {
   for (let i = 0; i < posts.length; i++) {
     const postId = posts[i].id;
 
+    const randomIndex = Math.floor(Math.random() * users.length);
+    const randomUser = users[randomIndex];
+
+    console.log(`Index: ${randomIndex}, User:`, randomUser);
+
     for (let j = 0; j < 2; j++) {
       await createPostPicture({
         postId: postId,
-        userId: users[Math.floor(Math.random() * users.length)].id,
+        userId: randomUser.id,
         imageUrl: faker.image.url(),
       });
     }
