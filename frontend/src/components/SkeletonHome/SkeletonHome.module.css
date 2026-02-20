@@ -4,30 +4,6 @@
   background-color: var(--color-bg-primary);
 }
 
-.header {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  min-height: 5rem;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 0.5rem;
-  background-color: var(--color-bg-secondary);
-  z-index: 10;
-}
-
-.headerTitle {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-}
-
 /* Shimmer Effect */
 .skeletonTitleProfileImage,
 .skeletonTitleText,

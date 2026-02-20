@@ -1,4 +1,5 @@
 import styles from "./SkeletonHome.module.css";
+import Header from "../Header/Header";
 import BottomNav from "../BottomNav/BottomNav";
 
 export default function SkeletonHome() {
@@ -26,9 +27,7 @@ export default function SkeletonHome() {
 
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.headerTitle}>Home</h1>
-      </header>
+      <Header title="Home" />
 
       <main className={styles.content}>
         {[1, 2, 3, 4].map((i) => (
