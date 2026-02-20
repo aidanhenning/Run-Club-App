@@ -28,7 +28,6 @@ export async function getClubProfile(clubId, userId) {
     ORDER BY cm.runs_with_club DESC;
   `;
 
-  // Execute all queries
   const clubHeader = await db.query(clubHeaderSql, [clubId, userId]);
   const upcoming = await db.query(upcomingEventsSql, [clubId]);
   const members = await db.query(membersSql, [clubId]);

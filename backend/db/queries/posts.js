@@ -15,15 +15,15 @@ export async function createPost({
 }) {
   const sql = `
     INSERT INTO posts
-      (club_id, title, starts_at, address, distance, elevation, run_type, estimated_time, bible_reference, bible_text)
-    SELECT $1, $3, $4, $5, $6, $7, $8, $9, $10, $11
+      (user_id, club_id, title, starts_at, address, distance, elevation, run_type, estimated_time, bible_reference, bible_text)
+    SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11
     FROM clubs
-    WHERE id = $1 AND owner = $2
+    WHERE owner = $1 AND id = $2
     RETURNING *;
   `;
   const { rows } = await db.query(sql, [
-    clubId,
     userId,
+    clubId,
     title,
     startsAt,
     address,
@@ -34,7 +34,7 @@ export async function createPost({
     bibleReference,
     bibleText,
   ]);
-  return rows[0]; // Returns undefined if the user isn't the owner
+  return rows[0];
 }
 
 export async function getPostById(postId) {

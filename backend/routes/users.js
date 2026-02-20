@@ -78,15 +78,16 @@ router.get("/search", requireUser, async (req, res) => {
   }
 });
 
-router.get("/:id", requireUser, async (req, res) => {
+router.get("/me", requireUser, async (req, res) => {
   try {
-    const profile = await getUserProfile(req.params.id);
-    if (!profile.user) {
-      return res.status(404).json({ error: "User profile not found" });
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ error: "User identity lost" });
     }
+    const profile = await getUserProfile(req.user.id);
     res.json(profile);
   } catch (err) {
-    res.status(500).json({ error: "Failed to fetch user profile" });
+    console.error(err);
+    res.status(500).json({ error: "Database query failed" });
   }
 });
 

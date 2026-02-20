@@ -51,6 +51,7 @@ CREATE TABLE followers (
 
 CREATE TABLE posts (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     club_id UUID REFERENCES clubs(id) ON DELETE SET NULL,
     title VARCHAR(255) NOT NULL,
     starts_at TIMESTAMPTZ NOT NULL,
