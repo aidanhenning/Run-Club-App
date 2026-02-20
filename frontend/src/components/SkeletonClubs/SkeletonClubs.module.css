@@ -1,0 +1,53 @@
+.container {
+  min-height: 100vh;
+  padding-bottom: 3.75rem;
+  background-color: var(--color-bg-primary);
+}
+
+/* Shimmer Effect */
+.skeletonClubLogo,
+.skeletonClubName,
+.skeletonClubMemberCount {
+  background: linear-gradient(90deg, #1f1f1f 8%, #2a2a2a 18%, #1f1f1f 33%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+  border-radius: 4px;
+}
+
+.skeletonCard {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem 2rem 0;
+  background-color: var(--color-bg-primary);
+}
+
+.skeletonClubLogo {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.skeletonClubText {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skeletonClubName {
+  width: 50%;
+  height: 1rem;
+}
+
+.skeletonClubMemberCount {
+  width: 40%;
+  height: 0.75rem;
+}
+
+@keyframes shimmer {
+  to {
+    background-position-x: -200%;
+  }
+}
