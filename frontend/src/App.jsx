@@ -4,6 +4,8 @@ import Entry from "./pages/Entry/Entry";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Home from "./pages/Home/Home";
+import CreatePost from "./pages/CreatePost/CreatePost";
+import CreateClub from "./pages/CreateClub/CreateClub";
 import Search from "./pages/Search/Search";
 import Clubs from "./pages/Clubs/Clubs";
 import Profile from "./pages/Profile/Profile";
@@ -24,6 +26,22 @@ function App() {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/create-post"
+          element={
+            <ProtectedRoute>
+              <CreatePost />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/create-club"
+          element={
+            <ProtectedRoute>
+              <CreateClub />
             </ProtectedRoute>
           }
         />
