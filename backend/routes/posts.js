@@ -11,20 +11,37 @@ import requireUser from "../middleware/requireUser.js";
 
 router.post("/", requireUser, async (req, res) => {
   try {
-    const { clubId, ...postData } = req.body;
+    const { clubId, images, ...postData } = req.body;
+    const userId = req.user.id;
     const newPost = await createPost({
-      userId: req.user.id,
+      userId,
       clubId,
       ...postData,
     });
+
     if (!newPost) {
       return res.status(403).json({
         error:
           "Unauthorized: You must be the club owner to create a post for this club.",
       });
     }
+
+    if (images && Array.isArray(images) && images.length > 0) {
+      const picturePromises = images.map((imageUrl) =>
+        createPostPicture({
+          postId: newPost.id,
+          userId: userId,
+          imageUrl: imageUrl,
+        }),
+      );
+
+      const savedPictures = await Promise.all(picturePromises);
+      newPost.pictures = savedPictures;
+    }
+
     res.status(201).json(newPost);
   } catch (err) {
+    console.error("Error creating post with images:", err);
     res.status(500).json({ error: "Failed to create post" });
   }
 });

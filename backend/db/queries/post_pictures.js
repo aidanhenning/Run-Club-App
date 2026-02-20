@@ -12,7 +12,7 @@ export async function createPostPicture({ postId, userId, imageUrl }) {
   const {
     rows: [postPicture],
   } = await db.query(sql, [postId, userId, imageUrl]);
-  return postPicture; // Returns undefined if membership check fails
+  return postPicture;
 }
 
 export async function getPostPicturesByPostId(postId) {
