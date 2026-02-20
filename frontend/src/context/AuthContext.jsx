@@ -6,12 +6,36 @@ const API = import.meta.env.VITE_API;
 
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
+  const [user, setUser] = useState(null);
+  const [userLoading, setUserLoading] = useState(true);
 
   useEffect(() => {
     if (token) {
       sessionStorage.setItem("token", token);
+
+      const fetchProfile = async () => {
+        try {
+          const response = await fetch(`${API}/users/me`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          if (response.ok) {
+            const userData = await response.json();
+            setUser(userData.user);
+          } else {
+            logout();
+          }
+        } catch (err) {
+          console.error("Failed to fetch user profile:", err);
+        } finally {
+          setUserLoading(false);
+        }
+      };
+
+      fetchProfile();
     } else {
       sessionStorage.removeItem("token");
+      setUser(null);
+      setUserLoading(false);
     }
   }, [token]);
 
@@ -23,7 +47,7 @@ export function AuthProvider({ children }) {
     });
 
     const result = await response.json();
-    if (!response.ok) throw Error(result);
+    if (!response.ok) throw Error(result.error);
     setToken(result.token);
   };
 
@@ -44,7 +68,9 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, register, logout, API }}>
+    <AuthContext.Provider
+      value={{ token, user, userLoading, login, register, logout, API }}
+    >
       {children}
     </AuthContext.Provider>
   );
