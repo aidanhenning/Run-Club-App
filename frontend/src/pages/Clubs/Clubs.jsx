@@ -1,12 +1,11 @@
 import styles from "./Clubs.module.css";
+import Header from "../../components/Header/Header";
 import BottomNav from "../../components/BottomNav/BottomNav";
 
 export default function Clubs() {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.headerTitle}>Clubs</h1>
-      </header>
+      <Header title="Clubs" />
 
       <main className={styles.content}></main>
 

@@ -4,24 +4,6 @@
   background-color: var(--color-bg-primary);
 }
 
-.header {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 1.5rem 0 1rem;
-  background-color: var(--color-bg-secondary);
-  z-index: 10;
-}
-
-.headerTitle {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-}
-
 .content {
   display: flex;
   flex-direction: column;

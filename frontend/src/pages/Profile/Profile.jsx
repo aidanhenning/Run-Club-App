@@ -2,6 +2,7 @@ import styles from "./Profile.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
+import Header from "../../components/Header/Header";
 import BottomNav from "../../components/BottomNav/BottomNav";
 
 export default function Profile() {
@@ -28,9 +29,7 @@ export default function Profile() {
 
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.headerTitle}>Profile</h1>
-      </header>
+      <Header title="Profile" />
 
       <main className={styles.content}>
         <button onClick={handleSubmit}>Log Out</button>
