@@ -80,6 +80,16 @@ router.get("/search", requireUser, async (req, res) => {
 
 router.get("/me", requireUser, async (req, res) => {
   try {
+    const user = req.user;
+    delete user.password;
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch user data" });
+  }
+});
+
+router.get("/:id", requireUser, async (req, res) => {
+  try {
     if (!req.user || !req.user.id) {
       return res.status(401).json({ error: "User identity lost" });
     }
