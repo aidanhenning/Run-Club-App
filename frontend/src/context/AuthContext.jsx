@@ -13,26 +13,27 @@ export function AuthProvider({ children }) {
     if (token) {
       sessionStorage.setItem("token", token);
 
-      const fetchProfile = async () => {
+      const fetchUser = async () => {
         try {
           const response = await fetch(`${API}/users/me`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           if (response.ok) {
             const userData = await response.json();
-            setUser(userData.user);
-            console.log(userData.user);
+            setUser(userData);
+            console.log(userData);
           } else {
             logout();
           }
         } catch (err) {
-          console.error("Failed to fetch user profile:", err);
+          console.error("Failed to fetch user:", err);
+          logout();
         } finally {
           setUserLoading(false);
         }
       };
 
-      fetchProfile();
+      fetchUser();
     } else {
       sessionStorage.removeItem("token");
       setUser(null);
