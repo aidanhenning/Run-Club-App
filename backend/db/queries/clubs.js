@@ -14,6 +14,18 @@ export async function createClub({ name, description, owner }) {
   return club;
 }
 
+export async function getClubsByOwner(userId) {
+  const sql = `
+  SELECT id, name
+  FROM clubs
+  WHERE owner = $1
+  ORDER BY name
+  ASC
+  `;
+  const { rows } = await db.query(sql, [userId]);
+  return rows;
+}
+
 export async function searchClubs(userId, searchTerm) {
   const sql = `
   SELECT

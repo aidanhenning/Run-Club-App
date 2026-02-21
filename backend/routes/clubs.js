@@ -3,6 +3,7 @@ const router = express.Router();
 
 import {
   createClub,
+  getClubsByOwner,
   searchClubs,
   updateClub,
   removeClub,
@@ -28,6 +29,17 @@ router.get("/search", requireUser, async (req, res) => {
     res.json(clubs);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch clubs" });
+  }
+});
+
+router.get("/owned", requireUser, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const clubs = await getClubsByOwner(userId);
+    if (!clubs) return res.status(404).json({ error: "Clubs not found" });
+    res.json(clubs);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch your clubs" });
   }
 });
 
