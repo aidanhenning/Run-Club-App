@@ -12,14 +12,15 @@ export default function CreatePost() {
   const [formData, setFormData] = useState({
     title: "",
     clubId: "",
+    runType: "Run",
+    images: [],
+    startsAt: "",
+    estimatedTime: "",
     distance: "",
     elevation: "",
-    runType: "Run",
-    estimatedTime: "",
     address: "",
     bibleReference: "",
     bibleText: "",
-    images: [],
   });
 
   useEffect(() => {
@@ -80,17 +81,24 @@ export default function CreatePost() {
     }
   };
 
+  const isFormValid =
+    formData.title.trim() !== "" &&
+    formData.clubId !== "" &&
+    formData.distance !== "" &&
+    formData.estimatedTime !== "";
+
   return (
     <div className={styles.container}>
       <Header title="Create Post" />
 
       <form className={styles.form} onSubmit={handleSubmit}>
         {/* SECTION 1: MAIN DETAILS */}
-        <section>
+        <section className={styles.section}>
           <div className={styles.row}>
             <input
               type="text"
-              placeholder="Title (eg. Morning Run)"
+              placeholder="Title"
+              className={styles.mainInput}
               value={formData.title}
               onChange={(e) =>
                 setFormData({ ...formData, title: e.target.value })
@@ -98,33 +106,25 @@ export default function CreatePost() {
             />
           </div>
           <div className={styles.row}>
-            <input
-              type="text"
-              placeholder="Park or City"
-              value={formData.address}
-              onChange={(e) =>
-                setFormData({ ...formData, address: e.target.value })
-              }
-            />
-          </div>
-          <div className={styles.row}>
             <select
               value={formData.clubId}
+              className={styles.mainSelect}
               onChange={(e) =>
                 setFormData({ ...formData, clubId: e.target.value })
               }
             >
-              <option value="">Select Club</option>
-              {ownedClubs.map((club) => {
+              <option value="">Select a Club</option>
+              {ownedClubs.map((club) => (
                 <option key={club.id} value={club.id}>
                   {club.name}
-                </option>;
-              })}
+                </option>
+              ))}
             </select>
           </div>
           <div className={styles.row}>
             <select
               value={formData.runType}
+              className={styles.mainSelect}
               onChange={(e) =>
                 setFormData({ ...formData, runType: e.target.value })
               }
@@ -139,7 +139,7 @@ export default function CreatePost() {
         </section>
 
         {/* SECTION 2: PHOTO UPLOAD */}
-        <section>
+        <section className={styles.mediaUpload}>
           <input
             type="file"
             multiple
@@ -149,11 +149,12 @@ export default function CreatePost() {
         </section>
 
         {/* SECTION 3: STATS */}
-        <h3>Stats</h3>
-        <section>
+        <h3>Activity Stats</h3>
+        <section className={styles.section}>
           <div className={styles.row}>
             <input
               type="datetime-local"
+              className={styles.mainInput}
               onChange={(e) =>
                 setFormData({ ...formData, startsAt: e.target.value })
               }
@@ -164,6 +165,7 @@ export default function CreatePost() {
               type="time"
               step="1"
               placeholder="00:00:00"
+              className={styles.mainInput}
               onChange={(e) =>
                 setFormData({ ...formData, estimatedTime: e.target.value })
               }
@@ -173,7 +175,8 @@ export default function CreatePost() {
             <input
               type="number"
               step="0.01"
-              placeholder="0.00"
+              placeholder="0.00 mi"
+              className={styles.mainInput}
               onChange={(e) =>
                 setFormData({ ...formData, distance: e.target.value })
               }
@@ -182,7 +185,8 @@ export default function CreatePost() {
           <div className={styles.row}>
             <input
               type="number"
-              placeholder="0"
+              placeholder="0 ft"
+              className={styles.mainInput}
               onChange={(e) =>
                 setFormData({ ...formData, elevation: e.target.value })
               }
@@ -190,13 +194,30 @@ export default function CreatePost() {
           </div>
         </section>
 
-        {/* SECTION 4: SCRIPTURE REFERENCE */}
-        <h3>Scripture</h3>
-        <section>
+        {/* SECTION 4: DETAILS */}
+        <h3>Details</h3>
+        <section className={styles.section}>
           <div className={styles.row}>
             <input
               type="text"
-              placeholder="bible Reference (eg. John 3:16)"
+              placeholder="Location"
+              className={styles.mainInput}
+              value={formData.address}
+              onChange={(e) =>
+                setFormData({ ...formData, address: e.target.value })
+              }
+            />
+          </div>
+        </section>
+
+        {/* SECTION 5: SCRIPTURE REFERENCE */}
+        <h3>Scripture</h3>
+        <section className={styles.section}>
+          <div className={styles.row}>
+            <input
+              type="text"
+              placeholder="Bible Reference (eg. John 3:16)"
+              className={styles.mainInput}
               onChange={(e) =>
                 setFormData({ ...formData, bibleReference: e.target.value })
               }
@@ -211,7 +232,11 @@ export default function CreatePost() {
           ></textarea>
         </section>
 
-        <button type="submit" className={styles.saveButton}>
+        <button
+          type="submit"
+          disabled={!isFormValid}
+          className={`${styles.saveButton} ${isFormValid ? styles.saveButtonActive : ""}`}
+        >
           Save Post
         </button>
       </form>
