@@ -63,8 +63,8 @@ export async function searchUsers(userId, searchTerm) {
   LEFT JOIN followers f 
     ON u.id = f.followed_user_id
   WHERE 
-    u.first_name ILIKE $2 OR 
-    u.last_name ILIKE $2
+    (u.first_name ILIKE $2 OR 
+    u.last_name ILIKE $2)
   AND u.id != $1
   GROUP BY u.id
   ORDER BY u.last_name ASC;
