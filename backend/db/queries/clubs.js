@@ -1,16 +1,16 @@
 import db from "../client.js";
 
-export async function createClub({ name, description, owner }) {
+export async function createClub({ name, description, logo, owner }) {
   const sql = `
   INSERT INTO clubs
-    (name, description, owner)
+    (name, description, logo, owner)
   VALUES
-    ($1, $2, $3)
+    ($1, $2, $3, $4)
   RETURNING *
   `;
   const {
     rows: [club],
-  } = await db.query(sql, [name, description, owner]);
+  } = await db.query(sql, [name, description, logo, owner]);
   return club;
 }
 

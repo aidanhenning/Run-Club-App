@@ -13,8 +13,8 @@ import requireUser from "../middleware/requireUser.js";
 
 router.post("/", async (req, res) => {
   try {
-    const { name, description } = req.body;
-    const newClub = await createClub(name, description, req.user.id);
+    const { name, description, logo } = req.body;
+    const newClub = await createClub(name, description, logo, req.user.id);
     res.status(201).json(newClub);
   } catch (err) {
     res.status(500).json({ error: "Failed to create club" });
