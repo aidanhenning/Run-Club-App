@@ -30,6 +30,28 @@
   background-color: var(--color-bg-secondary);
 }
 
+.uploadLabel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-brand-base);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+.uploadLogo {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.hiddenInput {
+  display: none;
+}
+
 .mainInput,
 .mainSelect,
 .textarea {

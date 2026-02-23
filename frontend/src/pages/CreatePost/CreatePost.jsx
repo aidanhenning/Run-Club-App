@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header/Header";
+import { CiImageOn } from "react-icons/ci";
 
 export default function CreatePost() {
   const { API, token } = useAuth();
@@ -140,12 +141,19 @@ export default function CreatePost() {
 
         {/* SECTION 2: PHOTO UPLOAD */}
         <section className={styles.mediaUpload}>
-          <input
-            type="file"
-            multiple
-            accept="image/*"
-            onChange={handleFileSelection}
-          />
+          <label htmlFor="fileUpload" className={styles.uploadLabel}>
+            <span className={styles.uploadLogo}>
+              <CiImageOn />
+            </span>
+            <span>Add Photos</span>
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleFileSelection}
+              className={styles.hiddenInput}
+            />
+          </label>
         </section>
 
         {/* SECTION 3: STATS */}
