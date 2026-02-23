@@ -34,7 +34,7 @@ router.post("/:id", requireUser, async (req, res) => {
     if (followerId === followedId) {
       return res.status(400).json({ error: "You cannot follow yourself" });
     }
-    await createFollower(followerId, followedId);
+    await createFollower({ followerId, followedId });
     res.status(201).json({ success: true, message: "User followed" });
   } catch (err) {
     res.status(400).json({ error: "Already following or user not found" });

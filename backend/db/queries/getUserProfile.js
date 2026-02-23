@@ -5,7 +5,7 @@ export async function getUserProfile(userId) {
   const userHeaderSql = `
     SELECT 
       u.id, u.first_name, u.last_name, u.bio, u.profile_picture_url, u.location,
-      (SELECT COUNT(*) FROM followers WHERE followed_user_id = $1)::int AS followers_count,
+      (SELECT COUNT(*) FROM followers WHERE followed_id = $1)::int AS followers_count,
       (SELECT COUNT(*) FROM followers WHERE follower_id = $1)::int AS following_count,
       COALESCE(SUM(p.distance), 0)::float AS total_distance,
       COALESCE(SUM(EXTRACT(EPOCH FROM p.estimated_time)), 0)::int AS total_time,

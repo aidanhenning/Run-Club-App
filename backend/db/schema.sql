@@ -45,8 +45,8 @@ CREATE TABLE club_memberships (
 
 CREATE TABLE followers (
     follower_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    followed_user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    PRIMARY KEY (follower_id, followed_user_id)
+    followed_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    PRIMARY KEY (follower_id, followed_id)
 );
 
 CREATE TABLE posts (

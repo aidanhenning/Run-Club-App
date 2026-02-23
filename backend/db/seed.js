@@ -60,12 +60,12 @@ async function seedFollowers(users) {
     const followerId = users[i].id;
 
     for (let j = 0; j < users.length; j++) {
-      const followedUserId = users[j].id;
+      const followedId = users[j].id;
 
       const willFollow = Math.random() > 0.5;
 
-      if (followerId !== followedUserId && willFollow) {
-        await createFollower({ followerId, followedUserId });
+      if (followerId !== followedId && willFollow) {
+        await createFollower({ followerId, followedId });
       }
     }
   }

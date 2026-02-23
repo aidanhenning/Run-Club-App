@@ -61,7 +61,7 @@ export async function searchUsers(userId, searchTerm) {
     COALESCE(BOOL_OR(f.follower_id = $1), false) AS is_followed
   FROM users u
   LEFT JOIN followers f 
-    ON u.id = f.followed_user_id
+    ON u.id = f.followed_id
   WHERE 
     (u.first_name ILIKE $2 OR 
     u.last_name ILIKE $2)

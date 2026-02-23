@@ -3,7 +3,7 @@ import db from "../client.js";
 export async function createFollower({ followerId, followedId }) {
   const sql = `
   INSERT INTO followers
-    (follower_id, followed_user_id)
+    (follower_id, followed_id)
   VALUES
     ($1, $2)
   RETURNING *
@@ -23,7 +23,7 @@ export async function getFollowers(userId) {
       u.profile_picture_url
     FROM users u
     JOIN followers f ON u.id = f.follower_id
-    WHERE f.followed_user_id = $1
+    WHERE f.followed_id = $1
     ORDER BY u.first_name ASC;
   `;
   const { rows } = await db.query(sql, [userId]);
@@ -38,7 +38,7 @@ export async function getFollowing(userId) {
       u.last_name, 
       u.profile_picture_url
     FROM users u
-    JOIN followers f ON u.id = f.followed_user_id
+    JOIN followers f ON u.id = f.followed_id
     WHERE f.follower_id = $1
     ORDER BY u.first_name ASC;
   `;
@@ -46,14 +46,14 @@ export async function getFollowing(userId) {
   return rows;
 }
 
-export async function removeFollower(followerId, followedUserId) {
+export async function removeFollower(followerId, followedId) {
   const sql = `
   DELETE FROM followers
-  WHERE follower_id = $1 AND followed_user_id = $2
+  WHERE follower_id = $1 AND followed_id = $2
   RETURNING *
   `;
   const {
     rows: [follower],
-  } = await db.query(sql, [followerId, followedUserId]);
+  } = await db.query(sql, [followerId, followedId]);
   return follower;
 }
