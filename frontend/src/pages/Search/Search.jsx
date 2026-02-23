@@ -1,11 +1,14 @@
 import styles from "./Search.module.css";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
 import Header from "../../components/Header/Header";
 import BottomNav from "../../components/BottomNav/BottomNav";
 
 export default function Search() {
   const { API, token } = useAuth();
+  const navigate = useNavigate();
+
   const [activeTab, setActiveTab] = useState("people");
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -30,6 +33,53 @@ export default function Search() {
     const timer = setTimeout(fetchResults, 300);
     return () => clearTimeout(timer);
   }, [query, activeTab, API, token]);
+
+  const handleItemSelect = (id) => {
+    if (activeTab === "people") {
+      navigate(`/profile/${id}`);
+    } else {
+      navigate(`/clubs/${id}`);
+    }
+  };
+
+  const handleAction = async (itemId, isCurrentlyActive) => {
+    const baseEndpoint =
+      activeTab === "people" ? "followers" : "clubmemberships";
+    const url = `${API}/${baseEndpoint}/${itemId}`;
+
+    const method = isCurrentlyActive ? "DELETE" : "POST";
+
+    const previousResults = [...results];
+    setResults((prev) =>
+      prev.map((item) => {
+        if (item.id === itemId) {
+          return activeTab === "people"
+            ? { ...item, is_followed: !isCurrentlyActive }
+            : { ...item, is_member: !isCurrentlyActive };
+        }
+        return item;
+      }),
+    );
+
+    try {
+      const res = await fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error("Server request failed");
+      }
+      console.log(`${method} successful for ${itemId}`);
+    } catch (err) {
+      console.error("Action failed, rolling back:", err);
+      setResults(previousResults);
+      alert("Something went wrong. Please try again.");
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -67,7 +117,10 @@ export default function Search() {
         <div className={styles.list}>
           {results.map((item) => (
             <div key={item.id} className={styles.resultItem}>
-              <div className={styles.profile}>
+              <div
+                className={styles.profile}
+                onClick={() => handleItemSelect(item.id)}
+              >
                 <img
                   src={
                     activeTab === "people"
@@ -90,7 +143,15 @@ export default function Search() {
                   </p>
                 </div>
               </div>
-              <button className={styles.actionButton}>
+              <button
+                className={styles.actionButton}
+                onClick={() =>
+                  handleAction(
+                    item.id,
+                    activeTab === "people" ? item.is_followed : item.is_member,
+                  )
+                }
+              >
                 {activeTab === "people"
                   ? item.is_followed
                     ? "Following"
