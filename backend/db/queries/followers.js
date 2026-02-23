@@ -1,6 +1,6 @@
 import db from "../client.js";
 
-export async function createFollower({ followerId, followedUserId }) {
+export async function createFollower({ followerId, followedId }) {
   const sql = `
   INSERT INTO followers
     (follower_id, followed_user_id)
@@ -10,7 +10,7 @@ export async function createFollower({ followerId, followedUserId }) {
   `;
   const {
     rows: [follower],
-  } = await db.query(sql, [followerId, followedUserId]);
+  } = await db.query(sql, [followerId, followedId]);
   return follower;
 }
 
