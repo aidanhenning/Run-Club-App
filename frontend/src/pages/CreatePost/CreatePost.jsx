@@ -90,7 +90,7 @@ export default function CreatePost() {
 
   return (
     <div className={styles.container}>
-      <Header title="Create Post" />
+      <Header title="Create Post" showBack={true} />
 
       <form className={styles.form} onSubmit={handleSubmit}>
         {/* SECTION 1: MAIN DETAILS */}

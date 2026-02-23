@@ -59,7 +59,7 @@ export default function CreateClub() {
 
   return (
     <div className={styles.container}>
-      <Header title="Create Club" />
+      <Header title="Create Club" showBack={true} />
 
       <div className={styles.info}>
         <h2>Customize your club</h2>

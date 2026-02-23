@@ -10,12 +10,10 @@
   z-index: 10;
 }
 
-.createButton {
+.icon {
   justify-self: start;
-  border: none;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   color: var(--color-text-primary);
-  background: none;
 }
 
 .headerTitle {
