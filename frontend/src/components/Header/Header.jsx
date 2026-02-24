@@ -10,6 +10,7 @@ import { HiOutlineUserGroup } from "react-icons/hi2";
 export default function Header({ title, showBack = false }) {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const profilePath = `/profile/${user?.id}`;
 
   const [isCreateOpen, setIsCreateOpen] = useState(false);
 
@@ -25,7 +26,7 @@ export default function Header({ title, showBack = false }) {
           />
         )}
         <h1 className={styles.headerTitle}>{title}</h1>
-        <Link to="/profile" className={styles.headerProfileLink}>
+        <Link to={profilePath} className={styles.headerProfileLink}>
           {user?.profile_picture_url ? (
             <img
               src={user.profile_picture_url}
