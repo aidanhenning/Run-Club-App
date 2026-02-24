@@ -5,21 +5,25 @@ import { useParams } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header/Header";
 import BottomNav from "../../components/BottomNav/BottomNav";
+import SkeletonPicture from "../../components/SkeletonPicture/SkeletonPicture";
+import PictureGrid from "../../components/PictureGrid/PictureGrid";
+import SkeletonClubs from "../../components/SkeletonClubs/SkeletonClubs";
+import ClubCard from "../../components/ClubCard/ClubCard";
 
 export default function Profile() {
-  const { API, token, user, logout } = useAuth();
+  const { API, token, userLoading, user, logout } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [profile, setProfile] = useState(null);
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [profile, setProfile] = useState(null);
 
   const isOwnProfile = user?.id === id;
 
   useEffect(() => {
     const fetchProfile = async () => {
-      setIsLoading(true);
+      setLoading(true);
       setError(null);
 
       try {
@@ -34,7 +38,9 @@ export default function Profile() {
         console.error("Failed to fetch profile:", err);
         setError(err.message);
       } finally {
-        setIsLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       }
     };
 
@@ -73,7 +79,7 @@ export default function Profile() {
   const handleLogout = async (e) => {
     e.preventDefault();
     setError(null);
-    setIsLoading(true);
+    setLoading(true);
 
     try {
       await logout();
@@ -81,7 +87,7 @@ export default function Profile() {
     } catch (err) {
       setError(err.message);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
@@ -91,39 +97,39 @@ export default function Profile() {
 
       <main className={styles.content}>
         <section className={styles.user}>
-          <div>
+          <div className={styles.userKeyInfo}>
             <img
               src={profile?.user?.profile_picture_url}
               alt="avatar"
               className={styles.avatar}
             />
             <div>
-              <h2>
-                {profile?.user?.first_name}
-                {profile?.user?.last_name}
+              <h2 className={styles.name}>
+                <span>{profile?.user?.first_name}</span>
+                <span>{profile?.user?.last_name}</span>
               </h2>
-              <p>{profile?.user?.location}</p>
+              <p className={styles.location}>{profile?.user?.location}</p>
+              <div className={styles.mainStats}>
+                <div className={styles.keyValue}>
+                  <span>{profile?.user?.club_runs_count}</span>
+                  <span>Activities</span>
+                </div>
+                <div className={styles.keyValue}>
+                  <span>{profile?.user?.followers_count}</span>
+                  <span>Followers</span>
+                </div>
+                <div className={styles.keyValue}>
+                  <span>{profile?.user?.following_count}</span>
+                  <span>Following</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div>
+          <div className={styles.userBio}>
             <p>{profile?.user?.bio}</p>
           </div>
-          <div>
-            <span>{profile?.user?.followers_count}</span> Followers
-            <span>{profile?.user?.following_count}</span> Following
-          </div>
-          <div>
-            <span>{profile?.user?.total_distance}</span>
-            <span>{profile?.user?.total_elevation}</span>
-            <span>{profile?.user?.total_time}</span>
-          </div>
         </section>
-        <section className={styles.posts}></section>
-        <section className={styles.clubs}></section>
-        {isOwnProfile && <button onClick={handleLogout}>Log Out</button>}
-        <div className={styles.profileHeader}>
-          {/* Display Stats from your new query */}
-
+        <section className={styles.profileInteraction}>
           {isOwnProfile ? (
             <button className={styles.editBtn}>Edit Profile</button>
           ) : (
@@ -136,7 +142,55 @@ export default function Profile() {
               {profile?.user?.is_followed ? "Following" : "Follow"}
             </button>
           )}
-        </div>
+          {isOwnProfile ? (
+            <button onClick={handleLogout} className={styles.logout}>
+              Log Out
+            </button>
+          ) : (
+            // TO DO:
+            <button className={styles.message}>Message</button>
+          )}
+        </section>
+        <section className={styles.secondaryStats}>
+          <h3>Stats</h3>
+          <div className={styles.data}>
+            <div className={styles.keyValue}>
+              <span>{profile?.user?.total_distance}</span>
+              <span>Total distance</span>
+            </div>
+            <div className={styles.keyValue}>
+              <span>{profile?.user?.total_elevation}</span>
+              <span>Total elevation</span>
+            </div>
+            <div className={styles.keyValue}>
+              <span>{profile?.user?.total_time}</span>
+              <span>Total time</span>
+            </div>
+          </div>
+        </section>
+        <section className={styles.posts}>
+          <h3>Photos</h3>
+          {profile?.posts.length > 0 ? (
+            profile?.posts.map((picture) => (
+              <PictureGrid key={picture.id} picture={picture} />
+            ))
+          ) : (
+            <div className={styles.emptyState}>
+              <p>No pictures uploaded</p>
+              {/* add placeholder grey boxes if there are no pictures */}
+            </div>
+          )}
+        </section>
+        <section className={styles.clubs}>
+          <h3>Clubs</h3>
+          {profile?.clubs.length > 0 ? (
+            profile?.clubs.map((club) => <ClubCard key={club.id} club={club} />)
+          ) : (
+            <div className={styles.emptyState}>
+              <p>No clubs joined</p>
+            </div>
+          )}
+        </section>
       </main>
 
       <BottomNav />

@@ -8,3 +8,134 @@
   display: flex;
   flex-direction: column;
 }
+
+.user {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  color: var(--color-text-primary);
+}
+
+.userKeyInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.avatar {
+}
+
+.name {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.location {
+  margin-bottom: 0.25rem;
+}
+
+.mainStats {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.keyValue {
+  display: flex;
+  flex-direction: column;
+}
+
+.userBio {
+  padding: 1rem 0;
+}
+
+.profileInteraction {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  padding: 0 1rem;
+}
+
+.editBtn {
+  width: 50%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-tertiary);
+}
+
+.logout {
+  width: 50%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-tertiary);
+}
+
+.following {
+  width: 50%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-tertiary);
+}
+
+.follow {
+  width: 50%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  background-color: var(--color-brand-base);
+}
+
+.message {
+  width: 50%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-tertiary);
+}
+
+.secondaryStats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  color: var(--color-text-primary);
+}
+
+.data {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 1rem 1rem;
+  color: var(--color-text-primary);
+}
+
+.clubs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 1rem 1rem;
+  color: var(--color-text-primary);
+}
