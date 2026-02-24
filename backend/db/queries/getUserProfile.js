@@ -1,4 +1,6 @@
 import db from "../client.js";
+import { getPostPicturesByUserId } from "./post_pictures.js";
+import { getClubMembershipsByUserId } from "./club_memberships.js";
 
 export async function getUserProfile(targetUserId, currentUserId) {
   // 1. Get Core Profile Info + Social Counts + Activity Totals
@@ -11,6 +13,12 @@ export async function getUserProfile(targetUserId, currentUserId) {
       ) AS is_followed,
       (SELECT COUNT(*) FROM followers WHERE followed_id = $1)::int AS followers_count,
       (SELECT COUNT(*) FROM followers WHERE follower_id = $1)::int AS following_count,
+      (
+        SELECT COUNT(*)::int 
+        FROM post_attendees pa
+        JOIN posts p_inner ON pa.post_id = p_inner.id
+        WHERE pa.user_id = $1 AND p_inner.club_id IS NOT NULL
+      ) AS club_runs_count,
       COALESCE(SUM(p.distance), 0)::float AS total_distance,
       COALESCE(SUM(EXTRACT(EPOCH FROM p.estimated_time)), 0)::int AS total_time,
       COALESCE(SUM(p.elevation), 0)::int AS total_elevation
@@ -19,36 +27,15 @@ export async function getUserProfile(targetUserId, currentUserId) {
     WHERE u.id = $1
     GROUP BY u.id;
   `;
-
-  // 2. Get Post Gallery (All image URLs for posts owned by this user)
-  const userPostsSql = `
-  SELECT DISTINCT ON (p.id) 
-    p.id, p.title, p.created_at, pp.image_url
-  FROM posts p
-  LEFT JOIN post_pictures pp ON p.id = pp.post_id
-  WHERE p.user_id = $1
-  ORDER BY p.id, p.created_at DESC;
-`;
-
-  // 3. Get Club Memberships (Clubs this user is a part of)
-  const userClubsSql = `
-    SELECT c.id, c.name, c.logo
-    FROM clubs c
-    JOIN club_memberships cm ON c.id = cm.club_id
-    WHERE cm.user_id = $1
-    ORDER BY c.name ASC;
-  `;
-
-  const userHeader = await db.query(userHeaderSql, [
-    targetUserId,
-    currentUserId,
+  const [headerRes, posts, clubs] = await Promise.all([
+    db.query(userHeaderSql, [targetUserId, currentUserId]),
+    getPostPicturesByUserId(targetUserId),
+    getClubMembershipsByUserId(targetUserId),
   ]);
-  const userPosts = await db.query(userPostsSql, [targetUserId]);
-  const userClubs = await db.query(userClubsSql, [targetUserId]);
 
   return {
-    user: userHeader.rows[0],
-    posts: userPosts.rows,
-    clubs: userClubs.rows,
+    user: headerRes.rows[0],
+    posts: posts,
+    clubs: clubs,
   };
 }

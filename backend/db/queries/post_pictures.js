@@ -27,6 +27,19 @@ export async function getPostPicturesByPostId(postId) {
   return rows;
 }
 
+export async function getPostPicturesByUserId(userId) {
+  const sql = `
+    SELECT DISTINCT ON (p.id) 
+      p.id, p.title, p.created_at, pp.image_url
+    FROM posts p
+    LEFT JOIN post_pictures pp ON p.id = pp.post_id
+    WHERE p.user_id = $1
+    ORDER BY p.id, p.created_at DESC;
+  `;
+  const { rows } = await db.query(sql, [userId]);
+  return rows;
+}
+
 export async function removePostPicture(pictureId, userId) {
   const sql = `
     DELETE FROM post_pictures
