@@ -1,5 +1,6 @@
 import styles from "./BottomNav.module.css";
 import { Link, useLocation } from "react-router";
+import { useAuth } from "../../context/AuthContext";
 import { GoHome } from "react-icons/go";
 import { GoHomeFill } from "react-icons/go";
 import { IoSearchCircleOutline } from "react-icons/io5";
@@ -12,6 +13,9 @@ import { IoPersonCircle } from "react-icons/io5";
 export default function BottomNav() {
   const location = useLocation();
   const path = location.pathname;
+  const { user } = useAuth();
+
+  const profilePath = `/profile/${user?.id}`;
 
   return (
     <nav className={styles.bottomNav}>
@@ -28,8 +32,8 @@ export default function BottomNav() {
           <HiOutlineRectangleGroup />
         )}
       </Link>
-      <Link to="/profile" className={styles.bottomNavLink}>
-        {path === "/profile" ? <IoPersonCircle /> : <CgProfile />}
+      <Link to={profilePath} className={styles.bottomNavLink}>
+        {path === profilePath ? <IoPersonCircle /> : <CgProfile />}
       </Link>
     </nav>
   );
