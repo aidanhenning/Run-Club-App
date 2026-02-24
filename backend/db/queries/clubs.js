@@ -33,13 +33,15 @@ export async function searchClubs(userId, searchTerm) {
     c.name,
     c.logo,
     COUNT(cm.user_id) AS member_count,
-    BOOL_OR(cm.user_id = $1) AS is_member
+    COALESCE(BOOL_OR(cm.user_id = $1), false) AS is_member
   FROM clubs c
   LEFT JOIN club_memberships cm
     ON cm.club_id = c.id
   WHERE c.name ILIKE $2
   GROUP BY c.id, c.name, c.logo
-  ORDER BY c.name;
+  ORDER BY 
+    is_member DESC, -- Prioritize joined clubs
+    c.name ASC;
   `;
   const { rows } = await db.query(sql, [userId, `%${searchTerm}%`]);
   return rows;

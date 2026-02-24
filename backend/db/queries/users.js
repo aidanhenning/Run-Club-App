@@ -67,7 +67,9 @@ export async function searchUsers(userId, searchTerm) {
     u.last_name ILIKE $2)
   AND u.id != $1
   GROUP BY u.id
-  ORDER BY u.last_name ASC;
+  ORDER BY 
+    is_followed DESC,
+    u.last_name ASC;
   `;
   const { rows } = await db.query(sql, [userId, `%${searchTerm}%`]);
   return rows;
