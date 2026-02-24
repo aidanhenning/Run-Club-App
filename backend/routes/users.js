@@ -93,10 +93,18 @@ router.get("/:id", requireUser, async (req, res) => {
     if (!req.user || !req.user.id) {
       return res.status(401).json({ error: "User identity lost" });
     }
-    const profile = await getUserProfile(req.user.id);
+
+    const targetUserId = req.params.id;
+    const currentUserId = req.user.id;
+
+    const profile = await getUserProfile(targetUserId, currentUserId);
+
+    if (!profile.user) {
+      return res.status(404).json({ error: "User not found" });
+    }
     res.json(profile);
   } catch (err) {
-    console.error(err);
+    console.error("Profile Route Error:", err);
     res.status(500).json({ error: "Database query failed" });
   }
 });

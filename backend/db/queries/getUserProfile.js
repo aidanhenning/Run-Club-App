@@ -1,10 +1,14 @@
 import db from "../client.js";
 
-export async function getUserProfile(userId) {
+export async function getUserProfile(targetUserId, currentUserId) {
   // 1. Get Core Profile Info + Social Counts + Activity Totals
   const userHeaderSql = `
     SELECT 
       u.id, u.first_name, u.last_name, u.bio, u.profile_picture_url, u.location,
+      EXISTS (
+        SELECT 1 FROM followers 
+        WHERE follower_id = $2 AND followed_id = $1
+      ) AS is_followed,
       (SELECT COUNT(*) FROM followers WHERE followed_id = $1)::int AS followers_count,
       (SELECT COUNT(*) FROM followers WHERE follower_id = $1)::int AS following_count,
       COALESCE(SUM(p.distance), 0)::float AS total_distance,
@@ -35,9 +39,12 @@ export async function getUserProfile(userId) {
     ORDER BY c.name ASC;
   `;
 
-  const userHeader = await db.query(userHeaderSql, [userId]);
-  const userPosts = await db.query(userPostsSql, [userId]);
-  const userClubs = await db.query(userClubsSql, [userId]);
+  const userHeader = await db.query(userHeaderSql, [
+    targetUserId,
+    currentUserId,
+  ]);
+  const userPosts = await db.query(userPostsSql, [targetUserId]);
+  const userClubs = await db.query(userClubsSql, [targetUserId]);
 
   return {
     user: userHeader.rows[0],
