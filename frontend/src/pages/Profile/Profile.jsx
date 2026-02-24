@@ -131,6 +131,7 @@ export default function Profile() {
         </section>
         <section className={styles.profileInteraction}>
           {isOwnProfile ? (
+            // TO DO:
             <button className={styles.editBtn}>Edit Profile</button>
           ) : (
             <button
