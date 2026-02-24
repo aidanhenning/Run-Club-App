@@ -110,25 +110,11 @@
   background-color: var(--color-bg-tertiary);
 }
 
-.secondaryStats {
+.photos {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding: 1rem;
-  color: var(--color-text-primary);
-}
-
-.data {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-}
-
-.posts {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 0 1rem 1rem;
   color: var(--color-text-primary);
 }
 

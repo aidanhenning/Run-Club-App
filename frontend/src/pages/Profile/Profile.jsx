@@ -151,24 +151,7 @@ export default function Profile() {
             <button className={styles.message}>Message</button>
           )}
         </section>
-        <section className={styles.secondaryStats}>
-          <h3>Stats</h3>
-          <div className={styles.data}>
-            <div className={styles.keyValue}>
-              <span>{profile?.user?.total_distance}</span>
-              <span>Total distance</span>
-            </div>
-            <div className={styles.keyValue}>
-              <span>{profile?.user?.total_elevation}</span>
-              <span>Total elevation</span>
-            </div>
-            <div className={styles.keyValue}>
-              <span>{profile?.user?.total_time}</span>
-              <span>Total time</span>
-            </div>
-          </div>
-        </section>
-        <section className={styles.posts}>
+        <section className={styles.photos}>
           <h3>Photos</h3>
           {profile?.posts.length > 0 ? (
             profile?.posts.map((picture) => (
