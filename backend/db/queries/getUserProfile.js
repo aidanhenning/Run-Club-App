@@ -5,8 +5,8 @@ import { getClubMembershipsByUserId } from "./club_memberships.js";
 export async function getUserProfile(targetUserId, currentUserId) {
   // 1. Get Core Profile Info + Social Counts + Activity Totals
   const userHeaderSql = `
-    SELECT 
-      u.id, u.first_name, u.last_name, u.bio, u.profile_picture_url, u.location,
+SELECT 
+      id, first_name, last_name, bio, profile_picture_url, location,
       EXISTS (
         SELECT 1 FROM followers 
         WHERE follower_id = $2 AND followed_id = $1
@@ -18,14 +18,9 @@ export async function getUserProfile(targetUserId, currentUserId) {
         FROM post_attendees pa
         JOIN posts p_inner ON pa.post_id = p_inner.id
         WHERE pa.user_id = $1 AND p_inner.club_id IS NOT NULL
-      ) AS club_runs_count,
-      COALESCE(SUM(p.distance), 0)::float AS total_distance,
-      COALESCE(SUM(EXTRACT(EPOCH FROM p.estimated_time)), 0)::int AS total_time,
-      COALESCE(SUM(p.elevation), 0)::int AS total_elevation
-    FROM users u
-    LEFT JOIN posts p ON u.id = p.user_id
-    WHERE u.id = $1
-    GROUP BY u.id;
+      ) AS club_runs_count
+    FROM users
+    WHERE id = $1;
   `;
   const [headerRes, posts, clubs] = await Promise.all([
     db.query(userHeaderSql, [targetUserId, currentUserId]),
