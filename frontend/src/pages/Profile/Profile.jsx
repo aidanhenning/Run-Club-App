@@ -6,7 +6,7 @@ import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header/Header";
 import BottomNav from "../../components/BottomNav/BottomNav";
 import SkeletonPictures from "../../components/SkeletonPictures/SkeletonPictures";
-import PictureGrid from "../../components/PictureGrid/PictureGrid";
+import PictureCard from "../../components/PictureCard/PictureCard";
 import ClubCard from "../../components/ClubCard/ClubCard";
 
 export default function Profile() {
@@ -157,7 +157,7 @@ export default function Profile() {
             <SkeletonPictures />
           ) : profile?.posts.length > 0 ? (
             profile?.posts.map((picture) => (
-              <PictureGrid key={picture.id} picture={picture} />
+              <PictureCard key={picture.id} picture={picture} />
             ))
           ) : (
             <div className={styles.emptyState}>

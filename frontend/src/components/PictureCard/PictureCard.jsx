@@ -1,6 +1,6 @@
-import styles from "./PictureGrid.module.css";
+import styles from "./PictureCard.module.css";
 
-export default function PictureGrid({ picture }) {
+export default function PictureCard({ picture }) {
   return (
     <img
       src={picture.image_url}
