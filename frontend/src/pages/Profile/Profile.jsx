@@ -156,9 +156,11 @@ export default function Profile() {
           {loading ? (
             <SkeletonPictures />
           ) : profile?.posts.length > 0 ? (
-            profile?.posts.map((picture) => (
-              <PictureCard key={picture.id} picture={picture} />
-            ))
+            <div className={styles.picturesContainer}>
+              {profile?.posts.map((picture) => (
+                <PictureCard key={picture.id} picture={picture} />
+              ))}
+            </div>
           ) : (
             <div className={styles.emptyState}>
               <p>No pictures uploaded</p>

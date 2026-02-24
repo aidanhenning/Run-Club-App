@@ -118,6 +118,13 @@
   color: var(--color-text-primary);
 }
 
+.picturesContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.25rem;
+}
+
 .clubs {
   display: flex;
   flex-direction: column;
