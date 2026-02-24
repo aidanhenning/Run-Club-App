@@ -5,9 +5,8 @@ import { useParams } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header/Header";
 import BottomNav from "../../components/BottomNav/BottomNav";
-import SkeletonPicture from "../../components/SkeletonPicture/SkeletonPicture";
+import SkeletonPictures from "../../components/SkeletonPictures/SkeletonPictures";
 import PictureGrid from "../../components/PictureGrid/PictureGrid";
-import SkeletonClubs from "../../components/SkeletonClubs/SkeletonClubs";
 import ClubCard from "../../components/ClubCard/ClubCard";
 
 export default function Profile() {
@@ -154,7 +153,9 @@ export default function Profile() {
         </section>
         <section className={styles.photos}>
           <h3>Photos</h3>
-          {profile?.posts.length > 0 ? (
+          {loading ? (
+            <SkeletonPictures />
+          ) : profile?.posts.length > 0 ? (
             profile?.posts.map((picture) => (
               <PictureGrid key={picture.id} picture={picture} />
             ))
