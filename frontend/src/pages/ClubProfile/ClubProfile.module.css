@@ -1,0 +1,93 @@
+.container {
+  min-height: 100vh;
+  padding-bottom: 3.75rem;
+  background-color: var(--color-bg-primary);
+}
+
+.clubBanner {
+  width: 100%;
+  aspect-ratio: 3/1;
+  background-color: var(--color-brand-base);
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem 0;
+  color: var(--color-text-primary);
+}
+
+.clubInfo {
+  padding-bottom: 2rem;
+}
+
+.clubLogo {
+  position: absolute;
+  top: -2rem;
+  z-index: 99;
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.placeholder {
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+  padding: 0.25rem;
+  border-radius: 4px;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
+}
+
+.clubName {
+  padding: 1.5rem 0 0;
+}
+
+.memberCount {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--font-size-xs);
+}
+
+.membersIcon {
+  font-size: var(--font-size-sm);
+}
+
+.description {
+  padding: 1rem 0;
+}
+
+.leave {
+  width: 30%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-tertiary);
+}
+
+.join {
+  width: 30%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  background-color: var(--color-brand-base);
+}
+
+.upcomingEvents {
+}
+
+.posts {
+}
+
+.clubMembers {
+}
