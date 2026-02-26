@@ -83,15 +83,39 @@
   background-color: var(--color-brand-base);
 }
 
-.upcomingEvents {
+.tabContainer {
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding: 0 1rem 1rem;
+  background-color: var(--color-bg-secondary);
+  padding: 4px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
 }
 
-.upcomingEventsLabel {
-  margin-bottom: 0.25rem;
+.tab,
+.activeTab {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-wight-bold);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+}
+
+.activeTab {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.eventsSection {
+  padding: 0 1rem 1.5rem;
 }
 
 .eventsContainer {
@@ -120,7 +144,7 @@
   background-color: var(--color-black);
 }
 
-.month {
+.upcomingMonth {
   width: 100%;
   padding: 0.125rem 0;
   text-align: center;
@@ -129,6 +153,17 @@
   text-transform: uppercase;
   color: var(--color-text-primary);
   background-color: var(--color-brand-base);
+}
+
+.pastMonth {
+  width: 100%;
+  padding: 0.125rem 0;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-wight-bold);
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-tertiary);
 }
 
 .day {

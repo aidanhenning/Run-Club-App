@@ -6,11 +6,7 @@ import Header from "../../components/Header/Header";
 import BottomNav from "../../components/BottomNav/BottomNav";
 import { MdFlag } from "react-icons/md";
 import { MdGroups2 } from "react-icons/md";
-import {
-  MdOutlineDirectionsRun,
-  MdOutlineLocationOn,
-  MdPeopleOutline,
-} from "react-icons/md";
+import { MdOutlineDirectionsRun, MdOutlineLocationOn } from "react-icons/md";
 
 export default function ClubProfile() {
   const { API, token, userLoading, user } = useAuth();
@@ -20,6 +16,7 @@ export default function ClubProfile() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [club, setClub] = useState([]);
+  const [view, setView] = useState("upcoming");
 
   useEffect(() => {
     const fetchClubProfile = async () => {
@@ -117,46 +114,66 @@ export default function ClubProfile() {
             {club?.club?.is_member ? "Leave Club" : "Join Club"}
           </button>
         </section>
-        <section className={styles.upcomingEvents}>
-          <h3 className={styles.upcomingEventsLabel}>Upcoming Events</h3>
+        <section className={styles.eventsSection}>
+          <div className={styles.tabContainer}>
+            <button
+              className={view === "upcoming" ? styles.activeTab : styles.tab}
+              onClick={() => setView("upcoming")}
+            >
+              Upcoming
+            </button>
+            <button
+              className={view === "past" ? styles.activeTab : styles.tab}
+              onClick={() => setView("past")}
+            >
+              Past
+            </button>
+          </div>
           <div className={styles.eventsContainer}>
             {loading ? (
               <p>Loading events...</p>
-            ) : club?.upcomingEvents?.length > 0 ? (
-              club.upcomingEvents.map((event) => {
-                const { month, day, weekday } = formatDate(event.starts_at);
-                return (
-                  <div key={event.id} className={styles.eventCard}>
-                    <div className={styles.calendarIcon}>
-                      <span className={styles.month}>{month}</span>
-                      <span className={styles.day}>{day}</span>
-                      <span className={styles.weekday}>{weekday}</span>
-                    </div>
+            ) : (view === "upcoming" ? club?.upcomingEvents : club?.pastEvents)
+                ?.length > 0 ? (
+              (view === "upcoming" ? club.upcomingEvents : club.pastEvents).map(
+                (event) => {
+                  const { month, day, weekday } = formatDate(event.starts_at);
+                  return (
+                    <div key={event.id} className={styles.eventCard}>
+                      <div className={styles.calendarIcon}>
+                        <span
+                          className={
+                            view === "upcoming"
+                              ? styles.upcomingMonth
+                              : styles.pastMonth
+                          }
+                        >
+                          {month}
+                        </span>
+                        <span className={styles.day}>{day}</span>
+                        <span className={styles.weekday}>{weekday}</span>
+                      </div>
 
-                    <div className={styles.eventDetails}>
-                      <h4 className={styles.eventTitle}>{event.title}</h4>
-                      <div className={styles.detailRow}>
-                        <MdOutlineDirectionsRun className={styles.icon} />
-                        <span>{event.run_type}</span>
-                      </div>
-                      <div className={styles.detailRow}>
-                        <MdOutlineLocationOn className={styles.icon} />
-                        <address className={styles.address}>
-                          {event.address}
-                        </address>
+                      <div className={styles.eventDetails}>
+                        <h4 className={styles.eventTitle}>{event.title}</h4>
+                        <div className={styles.detailRow}>
+                          <MdOutlineDirectionsRun className={styles.icon} />
+                          <span>{event.run_type}</span>
+                        </div>
+                        <div className={styles.detailRow}>
+                          <MdOutlineLocationOn className={styles.icon} />
+                          <address className={styles.address}>
+                            {event.address}
+                          </address>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })
+                  );
+                },
+              )
             ) : (
-              <p className={styles.emptyState}>There are no upcoming events</p>
+              <p className={styles.emptyState}>No {view} events found</p>
             )}
           </div>
-        </section>
-        <section className={styles.posts}>
-          <h3>Posts</h3>
-          <p>See more posts...</p>
         </section>
         <section className={styles.clubMembers}>
           <h3>Members</h3>
