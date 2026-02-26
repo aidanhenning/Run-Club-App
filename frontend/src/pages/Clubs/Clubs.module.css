@@ -7,5 +7,10 @@
 .content {
   display: flex;
   flex-direction: column;
-  padding: 1rem 2rem 0;
+}
+
+.emptyState {
+  margin-top: 4rem;
+  text-align: center;
+  color: var(--color-text-secondary);
 }

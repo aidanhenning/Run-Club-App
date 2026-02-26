@@ -25,6 +25,7 @@
 .skeletonClubLogo {
   width: 4rem;
   height: 4rem;
+  flex-shrink: 0;
   border-radius: 4px;
   flex-shrink: 0;
 }
