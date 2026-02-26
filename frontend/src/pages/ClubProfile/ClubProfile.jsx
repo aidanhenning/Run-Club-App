@@ -1,15 +1,21 @@
 import styles from "./ClubProfile.module.css";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import Header from "../../components/Header/Header";
 import BottomNav from "../../components/BottomNav/BottomNav";
 import { MdFlag } from "react-icons/md";
 import { MdGroups2 } from "react-icons/md";
+import {
+  MdOutlineDirectionsRun,
+  MdOutlineLocationOn,
+  MdPeopleOutline,
+} from "react-icons/md";
 
 export default function ClubProfile() {
   const { API, token, userLoading, user } = useAuth();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -73,6 +79,15 @@ export default function ClubProfile() {
     }
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return {
+      month: date.toLocaleString("en-US", { month: "short" }),
+      day: date.toLocaleString("en-US", { day: "2-digit" }),
+      weekday: date.toLocaleString("en-US", { weekday: "short" }),
+    };
+  };
+
   return (
     <div className={styles.container}>
       <Header title="Clubs" />
@@ -103,7 +118,41 @@ export default function ClubProfile() {
           </button>
         </section>
         <section className={styles.upcomingEvents}>
-          <h3>Upcoming Events</h3>
+          <h3 className={styles.upcomingEventsLabel}>Upcoming Events</h3>
+          <div className={styles.eventsContainer}>
+            {loading ? (
+              <p>Loading events...</p>
+            ) : club?.upcomingEvents?.length > 0 ? (
+              club.upcomingEvents.map((event) => {
+                const { month, day, weekday } = formatDate(event.starts_at);
+                return (
+                  <div key={event.id} className={styles.eventCard}>
+                    <div className={styles.calendarIcon}>
+                      <span className={styles.month}>{month}</span>
+                      <span className={styles.day}>{day}</span>
+                      <span className={styles.weekday}>{weekday}</span>
+                    </div>
+
+                    <div className={styles.eventDetails}>
+                      <h4 className={styles.eventTitle}>{event.title}</h4>
+                      <div className={styles.detailRow}>
+                        <MdOutlineDirectionsRun className={styles.icon} />
+                        <span>{event.run_type}</span>
+                      </div>
+                      <div className={styles.detailRow}>
+                        <MdOutlineLocationOn className={styles.icon} />
+                        <address className={styles.address}>
+                          {event.address}
+                        </address>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <p className={styles.emptyState}>There are no upcoming events</p>
+            )}
+          </div>
         </section>
         <section className={styles.posts}>
           <h3>Posts</h3>
@@ -111,6 +160,33 @@ export default function ClubProfile() {
         </section>
         <section className={styles.clubMembers}>
           <h3>Members</h3>
+          <div className={styles.membersContainer}>
+            {loading ? (
+              <p>Loading members...</p>
+            ) : club?.members?.length > 0 ? (
+              club.members.map((member) => (
+                <div
+                  key={member.id}
+                  className={styles.memberCard}
+                  onClick={() => navigate(`/profile/${member.id}`)}
+                >
+                  <img
+                    src={member.profile_picture_url}
+                    alt={`${member.first_name}'s profile picture`}
+                    className={styles.memberAvatar}
+                  />
+                  <div>
+                    <p>
+                      {member.first_name} {member.last_name}
+                    </p>
+                    <p>{member.runs_with_club} Club Runs</p>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>This club has no members</p>
+            )}
+          </div>
         </section>
       </main>
 

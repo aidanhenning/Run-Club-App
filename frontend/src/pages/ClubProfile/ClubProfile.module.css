@@ -14,12 +14,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 1rem 2rem 0;
+  padding: 1rem 0;
   color: var(--color-text-primary);
 }
 
 .clubInfo {
-  padding-bottom: 2rem;
+  padding: 0 1rem 1.5rem;
 }
 
 .clubLogo {
@@ -84,10 +84,125 @@
 }
 
 .upcomingEvents {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0 1rem 1rem;
+}
+
+.upcomingEventsLabel {
+  margin-bottom: 0.25rem;
+}
+
+.eventsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.eventCard {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background-color: var(--color-bg-secondary);
+}
+
+.calendarIcon {
+  min-width: 3.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--color-bg-tertiary);
+  border-radius: 8px;
+  background-color: var(--color-black);
+}
+
+.month {
+  width: 100%;
+  padding: 0.125rem 0;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-wight-bold);
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  background-color: var(--color-brand-base);
+}
+
+.day {
+  padding-top: 0.25rem;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-wight-bold);
+  line-height: 1;
+  color: var(--color-text-primary);
+}
+
+.weekday {
+  padding-bottom: 0.25rem;
+  font-size: var(--font-size-xs);
+  color: #888;
+}
+
+.eventDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.eventTitle {
+  margin: 0 0 0.24rem 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+.detailRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #aaa;
+  font-size: var(--font-size-xs);
+}
+
+.icon {
+  font-size: var(--font-size-sm);
+}
+
+.address {
+  max-width: 12.5rem;
+  font-style: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .posts {
+  padding: 0 1rem;
 }
 
 .clubMembers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.membersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.memberCard {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.memberAvatar {
+  width: 2rem;
+  height: 2rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
