@@ -4,6 +4,7 @@ export async function getFeed(userId) {
   const sql = `
   SELECT 
     -- Club Information
+    c.id AS club_id,
     c.name AS club_name,
     c.logo AS club_logo,
     
