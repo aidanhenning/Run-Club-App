@@ -4,11 +4,16 @@ export async function getClubProfile(clubId, userId) {
   // 1. Get the Header Info (Club details + the user's personal membership stats)
   const clubHeaderSql = `
     SELECT 
-      c.name, c.logo, c.description, c.created_at,
-      cm.runs_with_club, cm.joined_at
-    FROM clubs c
-    LEFT JOIN club_memberships cm ON c.id = cm.club_id AND cm.user_id = $2
-    WHERE c.id = $1;
+      id, name, logo, description,
+      -- Count all members in this club
+      (SELECT COUNT(*)::int FROM club_memberships WHERE club_id = $1) AS member_count,
+      -- Check if the current viewer is a member (returns true/false)
+      EXISTS (
+        SELECT 1 FROM club_memberships 
+        WHERE club_id = $1 AND user_id = $2
+      ) AS is_member
+    FROM clubs
+    WHERE id = $1;
   `;
 
   // 2. Get Upcoming Events (Runs where starts_at is in the future)
@@ -19,7 +24,15 @@ export async function getClubProfile(clubId, userId) {
     ORDER BY starts_at ASC;
   `;
 
-  // 3. Get Members List
+  // 3. Get Past Events (Runs where starts_at is in the past)
+  const pastEventsSql = `
+    SELECT id, title, starts_at, address, run_type
+    FROM posts
+    WHERE club_id = $1 AND starts_at < NOW()
+    ORDER BY starts_at DESC;
+`;
+
+  // 4. Get Members List
   const membersSql = `
     SELECT u.id, u.first_name, u.last_name, u.profile_picture_url, cm.runs_with_club
     FROM users u
@@ -28,13 +41,17 @@ export async function getClubProfile(clubId, userId) {
     ORDER BY cm.runs_with_club DESC;
   `;
 
-  const clubHeader = await db.query(clubHeaderSql, [clubId, userId]);
-  const upcoming = await db.query(upcomingEventsSql, [clubId]);
-  const members = await db.query(membersSql, [clubId]);
+  const [clubHeader, upcoming, past, members] = await Promise.all([
+    db.query(clubHeaderSql, [clubId, userId]),
+    db.query(upcomingEventsSql, [clubId]),
+    db.query(pastEventsSql, [clubId]),
+    db.query(membersSql, [clubId]),
+  ]);
 
   return {
     club: clubHeader.rows[0],
     upcomingEvents: upcoming.rows,
+    pastEvents: past.rows,
     members: members.rows,
   };
 }

@@ -49,6 +49,7 @@ router.get("/:id", requireUser, async (req, res) => {
     const profile = await getClubProfile(req.params.id, userId);
     if (!profile.club) return res.status(404).json({ error: "Club not found" });
     res.json(profile);
+    console.log(profile);
   } catch (err) {
     res.status(500).json({ error: "Failed to fetch club profile" });
   }
