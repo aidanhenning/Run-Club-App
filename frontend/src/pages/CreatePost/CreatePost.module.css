@@ -1,6 +1,6 @@
 .container {
   min-height: 100vh;
-  color: var(--color-text-primary);
+  padding-bottom: 3.75rem;
   background-color: var(--color-bg-primary);
 }
 
@@ -9,6 +9,7 @@
   flex-direction: column;
   gap: 1.5rem;
   padding: 1rem 2rem;
+  color: var(--color-text-primary);
 }
 
 .section {

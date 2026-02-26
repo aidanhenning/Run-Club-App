@@ -14,12 +14,11 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 1rem 0;
   color: var(--color-text-primary);
 }
 
 .clubInfo {
-  padding: 0 1rem 1.5rem;
+  padding: 1rem 1rem 0;
 }
 
 .clubLogo {
@@ -114,8 +113,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.eventsSection {
-  padding: 0 1rem;
+.events {
+  padding: 2rem 1rem 0;
 }
 
 .eventsContainer {
@@ -220,7 +219,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 1rem;
+  padding: 2rem 1rem 0;
 }
 
 .membersContainer {

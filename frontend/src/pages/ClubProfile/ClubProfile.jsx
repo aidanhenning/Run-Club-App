@@ -116,7 +116,7 @@ export default function ClubProfile() {
           </button>
         </section>
 
-        <section className={styles.eventsSection}>
+        <section className={styles.events}>
           <div className={styles.tabContainer}>
             <button
               className={view === "upcoming" ? styles.activeTab : styles.tab}
