@@ -1,10 +1,11 @@
-import styles from "./Home.module.css";
+import styles from "@/pages/Home/Home.module.css";
+import { useAuth } from "@/context/AuthContext";
+import Header from "@/components/Header/Header";
+import BottomNav from "@/components/BottomNav/BottomNav";
+import SkeletonHome from "@/components/SkeletonHome/SkeletonHome";
+import PostCard from "@/components/PostCard/PostCard";
+
 import { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-import Header from "../../components/Header/Header";
-import BottomNav from "../../components/BottomNav/BottomNav";
-import SkeletonHome from "../../components/SkeletonHome/SkeletonHome";
-import PostCard from "../../components/PostCard/PostCard";
 
 export default function Home() {
   const { token, userLoading, API } = useAuth();

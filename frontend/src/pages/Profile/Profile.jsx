@@ -1,13 +1,13 @@
-import styles from "./Profile.module.css";
+import styles from "@/pages/Profile/Profile.module.css";
+import { useAuth } from "@/context/AuthContext";
+import Header from "@/components/Header/Header";
+import BottomNav from "@/components/BottomNav/BottomNav";
+import SkeletonPictures from "@/components/SkeletonPictures/SkeletonPictures";
+import PictureCard from "@/components/PictureCard/PictureCard";
+import ClubCard from "@/components/ClubCard/ClubCard";
+
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
-import { useParams } from "react-router";
-import { useAuth } from "../../context/AuthContext";
-import Header from "../../components/Header/Header";
-import BottomNav from "../../components/BottomNav/BottomNav";
-import SkeletonPictures from "../../components/SkeletonPictures/SkeletonPictures";
-import PictureCard from "../../components/PictureCard/PictureCard";
-import ClubCard from "../../components/ClubCard/ClubCard";
+import { useNavigate, useParams } from "react-router";
 
 export default function Profile() {
   const { API, token, userLoading, user, logout } = useAuth();

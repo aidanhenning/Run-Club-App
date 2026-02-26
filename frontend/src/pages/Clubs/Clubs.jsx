@@ -1,10 +1,11 @@
-import styles from "./Clubs.module.css";
+import styles from "@/pages/Clubs/Clubs.module.css";
+import { useAuth } from "@/context/AuthContext";
+import Header from "@/components/Header/Header";
+import BottomNav from "@/components/BottomNav/BottomNav";
+import SkeletonClubs from "@/components/SkeletonClubs/SkeletonClubs";
+import ClubCard from "@/components/ClubCard/ClubCard";
+
 import { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext";
-import Header from "../../components/Header/Header";
-import BottomNav from "../../components/BottomNav/BottomNav";
-import SkeletonClubs from "../../components/SkeletonClubs/SkeletonClubs";
-import ClubCard from "../../components/ClubCard/ClubCard";
 
 export default function Clubs() {
   const { token, userLoading, API } = useAuth();

@@ -1,8 +1,9 @@
-import styles from "./CreatePost.module.css";
+import styles from "@/pages/CreatePost/CreatePost.module.css";
+import { useAuth } from "@/context/AuthContext";
+import Header from "@/components/Header/Header";
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../context/AuthContext";
-import Header from "../../components/Header/Header";
 import { CiImageOn } from "react-icons/ci";
 
 export default function CreatePost() {

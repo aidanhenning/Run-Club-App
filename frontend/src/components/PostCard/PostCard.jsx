@@ -1,4 +1,5 @@
-import styles from "./PostCard.module.css";
+import styles from "@/components/PostCard/PostCard.module.css";
+
 import { useNavigate } from "react-router";
 
 export default function PostCard({ post }) {

@@ -1,8 +1,8 @@
-import styles from "./Header.module.css";
+import styles from "@/components/Header/Header.module.css";
+import { useAuth } from "@/context/AuthContext";
+
 import { useState } from "react";
-import { useNavigate } from "react-router";
-import { Link } from "react-router";
-import { useAuth } from "../../context/AuthContext";
+import { Link, useNavigate } from "react-router";
 import { LuPlus, LuChevronLeft } from "react-icons/lu";
 import { BsFilePost } from "react-icons/bs";
 import { HiOutlineUserGroup } from "react-icons/hi2";

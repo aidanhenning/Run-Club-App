@@ -1,4 +1,4 @@
-import styles from "./SkeletonPictures.module.css";
+import styles from "@/components/SkeletonPictures/SkeletonPictures.module.css";
 
 export default function SkeletonPictures() {
   const SkeletonPicture = () => <div className={styles.skeletonPicture}></div>;

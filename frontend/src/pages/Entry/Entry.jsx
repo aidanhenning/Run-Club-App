@@ -1,6 +1,7 @@
-import styles from "./Entry.module.css";
+import styles from "@/pages/Entry/Entry.module.css";
+import { useAuth } from "@/context/AuthContext";
+
 import { Link } from "react-router";
-import { useAuth } from "../../context/AuthContext";
 
 export default function Entry() {
   const { token } = useAuth();

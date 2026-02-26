@@ -1,6 +1,6 @@
-import styles from "./SkeletonClubs.module.css";
-import Header from "../Header/Header";
-import BottomNav from "../BottomNav/BottomNav";
+import styles from "@/components/SkeletonClubs/SkeletonClubs.module.css";
+import Header from "@/components/Header/Header";
+import BottomNav from "@/components/BottomNav/BottomNav";
 
 export default function SkeletonClubs() {
   const SkeletonCard = () => (

@@ -1,9 +1,10 @@
-import styles from "./ClubProfile.module.css";
+import styles from "@/pages/ClubProfile/ClubProfile.module.css";
+import { useAuth } from "@/context/AuthContext";
+import Header from "@/components/Header/Header";
+import BottomNav from "@/components/BottomNav/BottomNav";
+
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { useAuth } from "../../context/AuthContext";
-import Header from "../../components/Header/Header";
-import BottomNav from "../../components/BottomNav/BottomNav";
 import { MdFlag } from "react-icons/md";
 import { MdGroups2 } from "react-icons/md";
 import { MdOutlineDirectionsRun, MdOutlineLocationOn } from "react-icons/md";

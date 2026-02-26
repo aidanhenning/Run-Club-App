@@ -1,14 +1,15 @@
-import styles from "./BottomNav.module.css";
+import styles from "@/components/BottomNav/BottomNav.module.css";
+import { useAuth } from "@/context/AuthContext";
+
 import { Link, useLocation } from "react-router";
-import { useAuth } from "../../context/AuthContext";
-import { GoHome } from "react-icons/go";
-import { GoHomeFill } from "react-icons/go";
-import { IoSearchCircleOutline } from "react-icons/io5";
-import { IoSearchCircle } from "react-icons/io5";
-import { HiOutlineRectangleGroup } from "react-icons/hi2";
-import { HiMiniRectangleGroup } from "react-icons/hi2";
 import { CgProfile } from "react-icons/cg";
-import { IoPersonCircle } from "react-icons/io5";
+import { GoHome, GoHomeFill } from "react-icons/go";
+import { HiOutlineRectangleGroup, HiMiniRectangleGroup } from "react-icons/hi2";
+import {
+  IoSearchCircleOutline,
+  IoSearchCircle,
+  IoPersonCircle,
+} from "react-icons/io5";
 
 export default function BottomNav() {
   const location = useLocation();

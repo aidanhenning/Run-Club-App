@@ -1,8 +1,9 @@
-import styles from "./CreateClub.module.css";
+import styles from "@/pages/CreateClub/CreateClub.module.css";
+import { useAuth } from "@/context/AuthContext";
+import Header from "@/components/Header/Header";
+
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../context/AuthContext";
-import Header from "../../components/Header/Header";
 import { CiImageOn } from "react-icons/ci";
 
 export default function CreateClub() {

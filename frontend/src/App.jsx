@@ -1,16 +1,17 @@
-import "./App.css";
+import "@/App.css";
+import Entry from "@/pages/Entry/Entry";
+import Login from "@/pages/Login/Login";
+import Register from "@/pages/Register/Register";
+import Home from "@/pages/Home/Home";
+import CreatePost from "@/pages/CreatePost/CreatePost";
+import CreateClub from "@/pages/CreateClub/CreateClub";
+import Search from "@/pages/Search/Search";
+import Clubs from "@/pages/Clubs/Clubs";
+import ClubProfile from "@/pages/ClubProfile/ClubProfile";
+import Profile from "@/pages/Profile/Profile";
+import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
+
 import { Route, Routes } from "react-router";
-import Entry from "./pages/Entry/Entry";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
-import Home from "./pages/Home/Home";
-import CreatePost from "./pages/CreatePost/CreatePost";
-import CreateClub from "./pages/CreateClub/CreateClub";
-import Search from "./pages/Search/Search";
-import Clubs from "./pages/Clubs/Clubs";
-import ClubProfile from "./pages/ClubProfile/ClubProfile";
-import Profile from "./pages/Profile/Profile";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 function App() {
   return (

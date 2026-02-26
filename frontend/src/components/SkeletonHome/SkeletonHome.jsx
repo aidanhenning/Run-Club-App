@@ -1,6 +1,6 @@
-import styles from "./SkeletonHome.module.css";
-import Header from "../Header/Header";
-import BottomNav from "../BottomNav/BottomNav";
+import styles from "@/components/SkeletonHome/SkeletonHome.module.css";
+import Header from "@/components/Header/Header";
+import BottomNav from "@/components/BottomNav/BottomNav";
 
 export default function SkeletonHome() {
   const SkeletonCard = () => (

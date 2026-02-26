@@ -1,7 +1,8 @@
-import styles from "./Login.module.css";
+import styles from "@/pages/Login/Login.module.css";
+import { useAuth } from "@/context/AuthContext";
+
 import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router";
-import { useAuth } from "../../context/AuthContext";
 
 export default function Login() {
   const { login, token } = useAuth();

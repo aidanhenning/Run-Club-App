@@ -1,9 +1,10 @@
-import styles from "./Search.module.css";
+import styles from "@/pages/Search/Search.module.css";
+import { useAuth } from "@/context/AuthContext";
+import Header from "@/components/Header/Header";
+import BottomNav from "@/components/BottomNav/BottomNav";
+
 import { useState, useEffect } from "react";
-import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
-import Header from "../../components/Header/Header";
-import BottomNav from "../../components/BottomNav/BottomNav";
 
 export default function Search() {
   const { API, token } = useAuth();

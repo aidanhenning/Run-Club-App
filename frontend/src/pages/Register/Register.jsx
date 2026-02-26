@@ -1,7 +1,8 @@
-import styles from "./Register.module.css";
+import styles from "@/pages/Register/Register.module.css";
+import { useAuth } from "@/context/AuthContext";
+
 import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router";
-import { useAuth } from "../../context/AuthContext";
 
 export default function Register() {
   const { register, token } = useAuth();
