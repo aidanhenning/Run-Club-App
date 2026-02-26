@@ -1,9 +1,15 @@
 import styles from "./PostCard.module.css";
+import { useNavigate } from "react-router";
 
 export default function PostCard({ post }) {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.card}>
-      <div className={styles.title}>
+      <div
+        className={styles.title}
+        onClick={() => navigate(`/clubs/${post.club_id}`)}
+      >
         <div className={styles.titleProfileImage}>
           {post.club_logo === null
             ? post.club_name.charAt(0).toUpperCase()
