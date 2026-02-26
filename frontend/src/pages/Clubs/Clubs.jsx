@@ -8,7 +8,7 @@ import ClubCard from "@/components/ClubCard/ClubCard";
 import { useEffect, useState } from "react";
 
 export default function Clubs() {
-  const { token, userLoading, API } = useAuth();
+  const { API, token, userLoading } = useAuth();
 
   const [loading, setLoading] = useState(true);
   const [clubs, setClubs] = useState([]);

@@ -8,7 +8,7 @@ import PostCard from "@/components/PostCard/PostCard";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const { token, userLoading, API } = useAuth();
+  const { API, token, userLoading } = useAuth();
 
   const [loading, setLoading] = useState(true);
   const [feed, setFeed] = useState([]);

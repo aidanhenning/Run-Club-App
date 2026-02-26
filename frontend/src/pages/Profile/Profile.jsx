@@ -13,12 +13,11 @@ export default function Profile() {
   const { API, token, userLoading, user, logout } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();
+  const isOwnProfile = user?.id === id;
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState(null);
-
-  const isOwnProfile = user?.id === id;
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -128,6 +127,7 @@ export default function Profile() {
             <p>{profile?.user?.bio}</p>
           </div>
         </section>
+
         <section className={styles.profileInteraction}>
           {isOwnProfile ? (
             // TO DO:
@@ -151,6 +151,7 @@ export default function Profile() {
             <button className={styles.message}>Message</button>
           )}
         </section>
+
         <section className={styles.photos}>
           <h3>Photos</h3>
           {loading ? (
@@ -168,6 +169,7 @@ export default function Profile() {
             </div>
           )}
         </section>
+
         <section className={styles.clubs}>
           <h3>Clubs</h3>
           {profile?.clubs.length > 0 ? (

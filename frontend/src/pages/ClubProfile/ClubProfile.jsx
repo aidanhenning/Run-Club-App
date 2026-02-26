@@ -115,6 +115,7 @@ export default function ClubProfile() {
             {club?.club?.is_member ? "Leave Club" : "Join Club"}
           </button>
         </section>
+
         <section className={styles.eventsSection}>
           <div className={styles.tabContainer}>
             <button
@@ -176,6 +177,7 @@ export default function ClubProfile() {
             )}
           </div>
         </section>
+
         <section className={styles.clubMembers}>
           <h3>Members</h3>
           <div className={styles.membersContainer}>

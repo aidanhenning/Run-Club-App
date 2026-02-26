@@ -87,7 +87,6 @@ export default function Search() {
       <Header title="Search" />
 
       <main className={styles.content}>
-        {/* TABS */}
         <div className={styles.tabGroup}>
           <button
             className={`${styles.tab} ${activeTab === "people" ? styles.activeTab : ""}`}
@@ -103,7 +102,6 @@ export default function Search() {
           </button>
         </div>
 
-        {/* SEARCH BAR */}
         <div className={styles.searchBarWrapper}>
           <input
             type="text"
@@ -114,7 +112,6 @@ export default function Search() {
           />
         </div>
 
-        {/* RESULTS LIST */}
         <div className={styles.list}>
           {results.map((item) => (
             <div key={item.id} className={styles.resultItem}>

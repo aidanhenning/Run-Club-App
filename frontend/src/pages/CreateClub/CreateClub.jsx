@@ -16,6 +16,8 @@ export default function CreateClub() {
     logo: "",
   });
 
+  const isFormValid = formData.name.trim() !== "";
+
   const handleFileSelection = (e) => {
     const files = Array.from(e.target.files);
     console.log("Files selected:", files);
@@ -56,8 +58,6 @@ export default function CreateClub() {
     }
   };
 
-  const isFormValid = formData.name.trim() !== "";
-
   return (
     <div className={styles.container}>
       <Header title="Create Club" showBack={true} />
@@ -68,7 +68,6 @@ export default function CreateClub() {
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        {/* SECTION 1: PHOTO UPLOAD */}
         <section className={styles.mediaUpload}>
           <label htmlFor="fileUpload" className={styles.uploadLabel}>
             <span className={styles.uploadLogo}>
@@ -84,7 +83,6 @@ export default function CreateClub() {
           </label>
         </section>
 
-        {/* SECTION 2: MAIN DETAILS */}
         <section className={styles.section}>
           <div className={styles.row}>
             <label className={styles.label} htmlFor="clubName">

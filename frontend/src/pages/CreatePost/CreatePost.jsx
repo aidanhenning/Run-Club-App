@@ -25,6 +25,12 @@ export default function CreatePost() {
     bibleText: "",
   });
 
+  const isFormValid =
+    formData.title.trim() !== "" &&
+    formData.clubId !== "" &&
+    formData.distance !== "" &&
+    formData.estimatedTime !== "";
+
   useEffect(() => {
     async function fetchClubs() {
       try {
@@ -83,18 +89,11 @@ export default function CreatePost() {
     }
   };
 
-  const isFormValid =
-    formData.title.trim() !== "" &&
-    formData.clubId !== "" &&
-    formData.distance !== "" &&
-    formData.estimatedTime !== "";
-
   return (
     <div className={styles.container}>
       <Header title="Create Post" showBack={true} />
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        {/* SECTION 1: MAIN DETAILS */}
         <section className={styles.section}>
           <div className={styles.row}>
             <input
@@ -140,7 +139,6 @@ export default function CreatePost() {
           </div>
         </section>
 
-        {/* SECTION 2: PHOTO UPLOAD */}
         <section className={styles.mediaUpload}>
           <label htmlFor="fileUpload" className={styles.uploadLabel}>
             <span className={styles.uploadLogo}>
@@ -157,7 +155,6 @@ export default function CreatePost() {
           </label>
         </section>
 
-        {/* SECTION 3: STATS */}
         <h3>Activity Stats</h3>
         <section className={styles.section}>
           <div className={styles.row}>
@@ -203,7 +200,6 @@ export default function CreatePost() {
           </div>
         </section>
 
-        {/* SECTION 4: DETAILS */}
         <h3>Details</h3>
         <section className={styles.section}>
           <div className={styles.row}>
@@ -219,7 +215,6 @@ export default function CreatePost() {
           </div>
         </section>
 
-        {/* SECTION 5: SCRIPTURE REFERENCE */}
         <h3>Scripture</h3>
         <section className={styles.section}>
           <div className={styles.row}>
