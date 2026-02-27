@@ -1,0 +1,96 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mediaUpload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  border: 2px dashed var(--color-brand-base);
+  border-radius: 8px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-brand-base);
+  background-color: var(--color-bg-secondary);
+}
+
+.uploadLabel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-brand-base);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+.uploadLogo {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.mainInput,
+.mainSelect,
+.textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--color-bg-secondary);
+  border-radius: 4px;
+  font-size: var(--font-size-xs);
+  background: var(--color-bg-primary);
+}
+
+.mainInput::-webkit-calendar-picker-indicator {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(200%)
+    contrast(100%);
+  cursor: pointer;
+}
+
+.mainSelect {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+}
+
+.sectionTitle {
+  font-size: var(--font-size-sm);
+}
+
+.saveButton {
+  padding: 1rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 25px;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
+}
+
+.saveButtonActive {
+  color: var(--color-white);
+  background-color: var(--color-brand-base);
+}

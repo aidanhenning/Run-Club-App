@@ -1,0 +1,72 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem 2rem;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mediaUpload {
+  width: 6.5rem;
+  aspect-ratio: 1/1;
+  margin: 0 auto;
+  border-radius: 8px;
+  background-color: var(--color-bg-secondary);
+}
+
+.uploadLabel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: var(--font-size-xs);
+}
+
+.uploadLogo {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mainInput,
+.textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--color-bg-secondary);
+  border-radius: 4px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  background: var(--color-black);
+}
+
+.saveButton {
+  padding: 1rem;
+  border: none;
+  border-radius: 25px;
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
+}
+
+.saveButtonActive {
+  color: var(--color-white);
+  background-color: var(--color-brand-base);
+}
