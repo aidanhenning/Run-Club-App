@@ -6,9 +6,9 @@ import Home from "@/pages/Home/Home";
 import CreatePost from "@/pages/CreatePost/CreatePost";
 import CreateClub from "@/pages/CreateClub/CreateClub";
 import Search from "@/pages/Search/Search";
-import Clubs from "@/pages/Clubs/Clubs";
+import ClubsList from "@/pages/ClubsList/ClubsList";
 import ClubProfile from "@/pages/ClubProfile/ClubProfile";
-import Profile from "@/pages/Profile/Profile";
+import UserProfile from "@/pages/UserProfile/UserProfile";
 import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
 
 import { Route, Routes } from "react-router";
@@ -59,7 +59,7 @@ function App() {
           path="/clubs"
           element={
             <ProtectedRoute>
-              <Clubs />
+              <ClubsList />
             </ProtectedRoute>
           }
         />
@@ -75,7 +75,7 @@ function App() {
           path="/profile/:id"
           element={
             <ProtectedRoute>
-              <Profile />
+              <UserProfile />
             </ProtectedRoute>
           }
         />

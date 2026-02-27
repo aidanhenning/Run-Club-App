@@ -1,4 +1,4 @@
-import styles from "@/pages/Profile/Profile.module.css";
+import styles from "@/pages/UserProfile/UserProfile.module.css";
 import { useAuth } from "@/context/AuthContext";
 import Header from "@/components/Header/Header";
 import BottomNav from "@/components/BottomNav/BottomNav";
@@ -9,7 +9,7 @@ import ClubCard from "@/components/ClubCard/ClubCard";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 
-export default function Profile() {
+export default function UserProfile() {
   const { API, token, userLoading, user, logout } = useAuth();
   const { id } = useParams();
   const navigate = useNavigate();

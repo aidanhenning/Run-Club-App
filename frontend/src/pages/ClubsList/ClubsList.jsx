@@ -1,4 +1,4 @@
-import styles from "@/pages/Clubs/Clubs.module.css";
+import styles from "@/pages/ClubsList/ClubsList.module.css";
 import { useAuth } from "@/context/AuthContext";
 import Header from "@/components/Header/Header";
 import BottomNav from "@/components/BottomNav/BottomNav";
@@ -7,7 +7,7 @@ import ClubCard from "@/components/ClubCard/ClubCard";
 
 import { useEffect, useState } from "react";
 
-export default function Clubs() {
+export default function ClubsList() {
   const { API, token, userLoading } = useAuth();
 
   const [error, setError] = useState(null);
