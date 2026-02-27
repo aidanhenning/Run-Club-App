@@ -10,15 +10,17 @@ import { useEffect, useState } from "react";
 export default function Clubs() {
   const { API, token, userLoading } = useAuth();
 
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [clubs, setClubs] = useState([]);
 
   useEffect(() => {
     if (!token || !API) return;
 
-    setLoading(true);
-
     const fetchClubs = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
         const response = await fetch(`${API}/clubmemberships`, {
           headers: {
@@ -29,6 +31,7 @@ export default function Clubs() {
         setClubs(data);
       } catch (err) {
         console.error("Failed to fetch clubs:", err);
+        setError(err.message);
       } finally {
         setTimeout(() => {
           setLoading(false);

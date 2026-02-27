@@ -9,7 +9,7 @@ export default function Register() {
   const navigate = useNavigate();
 
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -24,7 +24,7 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    setIsLoading(true);
+    setLoading(true);
 
     try {
       await register(formData);
@@ -32,7 +32,7 @@ export default function Register() {
     } catch (err) {
       setError(err.message);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
@@ -111,7 +111,7 @@ export default function Register() {
         <input
           type="submit"
           value="Create Account"
-          disabled={isLoading}
+          disabled={loading}
           className={styles.btnSecondary}
         />
 

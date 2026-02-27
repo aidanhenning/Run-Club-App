@@ -9,7 +9,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -22,7 +22,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    setIsLoading(true);
+    setLoading(true);
 
     try {
       await login(formData);
@@ -30,7 +30,7 @@ export default function Login() {
     } catch (err) {
       setError("Invalid email or password");
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
@@ -88,7 +88,7 @@ export default function Login() {
         <input
           type="submit"
           value="Sign In"
-          disabled={isLoading}
+          disabled={loading}
           className={styles.btnSecondary}
         />
 

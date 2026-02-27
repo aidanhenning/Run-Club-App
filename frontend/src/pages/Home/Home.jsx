@@ -10,15 +10,17 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const { API, token, userLoading } = useAuth();
 
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [feed, setFeed] = useState([]);
 
   useEffect(() => {
     if (!token || !API) return;
 
-    setLoading(true);
-
     const fetchFeed = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
         const response = await fetch(`${API}/feed`, {
           headers: {
@@ -29,6 +31,7 @@ export default function Home() {
         setFeed(data);
       } catch (err) {
         console.error("Failed to fetch feed:", err);
+        setError(err.message);
       } finally {
         setTimeout(() => {
           setLoading(false);
