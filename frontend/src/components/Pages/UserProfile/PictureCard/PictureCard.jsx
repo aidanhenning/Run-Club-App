@@ -1,4 +1,4 @@
-import styles from "@/components/PictureCard/PictureCard.module.css";
+import styles from "@/components/Pages/UserProfile/PictureCard/PictureCard.module.css";
 
 export default function PictureCard({ picture }) {
   return (

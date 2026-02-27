@@ -2,8 +2,8 @@ import styles from "@/pages/ClubsList/ClubsList.module.css";
 import { useAuth } from "@/context/AuthContext";
 import Header from "@/components/Header/Header";
 import BottomNav from "@/components/BottomNav/BottomNav";
-import SkeletonClubs from "@/components/SkeletonClubs/SkeletonClubs";
-import ClubCard from "@/components/ClubCard/ClubCard";
+import SkeletonClubs from "@/components/Pages/ClubsList/SkeletonClubs/SkeletonClubs";
+import ClubCard from "@/components/Pages/ClubsList/ClubCard/ClubCard";
 
 import { useEffect, useState } from "react";
 

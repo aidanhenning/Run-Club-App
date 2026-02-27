@@ -1,4 +1,4 @@
-import styles from "@/components/SkeletonHome/SkeletonHome.module.css";
+import styles from "@/components/Pages/Home/SkeletonHome/SkeletonHome.module.css";
 import Header from "@/components/Header/Header";
 import BottomNav from "@/components/BottomNav/BottomNav";
 

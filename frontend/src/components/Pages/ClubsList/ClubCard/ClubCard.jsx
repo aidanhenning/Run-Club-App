@@ -1,4 +1,4 @@
-import styles from "@/components/ClubCard/ClubCard.module.css";
+import styles from "@/components/Pages/ClubsList/ClubCard/ClubCard.module.css";
 
 import { Link } from "react-router";
 import { MdFlag, MdGroups } from "react-icons/md";

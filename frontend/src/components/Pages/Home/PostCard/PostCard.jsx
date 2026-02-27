@@ -1,4 +1,4 @@
-import styles from "@/components/PostCard/PostCard.module.css";
+import styles from "@/components/Pages/Home/PostCard/PostCard.module.css";
 
 import { useNavigate } from "react-router";
 

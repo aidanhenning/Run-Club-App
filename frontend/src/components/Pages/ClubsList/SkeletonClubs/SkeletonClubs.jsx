@@ -1,4 +1,4 @@
-import styles from "@/components/SkeletonClubs/SkeletonClubs.module.css";
+import styles from "@/components/Pages/ClubsList/SkeletonClubs/SkeletonClubs.module.css";
 import Header from "@/components/Header/Header";
 import BottomNav from "@/components/BottomNav/BottomNav";
 

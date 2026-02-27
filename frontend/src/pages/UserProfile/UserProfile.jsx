@@ -2,9 +2,9 @@ import styles from "@/pages/UserProfile/UserProfile.module.css";
 import { useAuth } from "@/context/AuthContext";
 import Header from "@/components/Header/Header";
 import BottomNav from "@/components/BottomNav/BottomNav";
-import SkeletonPictures from "@/components/SkeletonPictures/SkeletonPictures";
-import PictureCard from "@/components/PictureCard/PictureCard";
-import ClubCard from "@/components/ClubCard/ClubCard";
+import SkeletonPictures from "@/components/Pages/UserProfile/SkeletonPictures/SkeletonPictures";
+import PictureCard from "@/components/Pages/UserProfile/PictureCard/PictureCard";
+import ClubCard from "@/components/Pages/ClubsList/ClubCard/ClubCard";
 
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";

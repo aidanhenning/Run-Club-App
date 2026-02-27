@@ -2,8 +2,8 @@ import styles from "@/pages/Home/Home.module.css";
 import { useAuth } from "@/context/AuthContext";
 import Header from "@/components/Header/Header";
 import BottomNav from "@/components/BottomNav/BottomNav";
-import SkeletonHome from "@/components/SkeletonHome/SkeletonHome";
-import PostCard from "@/components/PostCard/PostCard";
+import SkeletonHome from "@/components/Pages/Home/SkeletonHome/SkeletonHome";
+import PostCard from "@/components/Pages/Home/PostCard/PostCard";
 
 import { useEffect, useState } from "react";
 
