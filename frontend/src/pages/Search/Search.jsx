@@ -15,6 +15,8 @@ export default function Search() {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
+    if (!token || !API) return;
+
     const fetchResults = async () => {
       const endpoint = activeTab === "people" ? "users" : "clubs";
       try {

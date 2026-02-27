@@ -20,6 +20,8 @@ export default function Profile() {
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
+    if (!token || !API) return;
+
     const fetchProfile = async () => {
       setLoading(true);
       setError(null);

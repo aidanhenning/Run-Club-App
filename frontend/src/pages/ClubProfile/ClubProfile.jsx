@@ -20,6 +20,8 @@ export default function ClubProfile() {
   const [view, setView] = useState("upcoming");
 
   useEffect(() => {
+    if (!token || !API) return;
+
     const fetchClubProfile = async () => {
       setLoading(true);
       setError(null);
