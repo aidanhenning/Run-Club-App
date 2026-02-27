@@ -1,7 +1,7 @@
 import styles from "@/components/ClubCard/ClubCard.module.css";
 
 import { Link } from "react-router";
-import { MdFlag } from "react-icons/md";
+import { MdFlag, MdGroups } from "react-icons/md";
 
 export default function ClubCard({ club }) {
   return (
@@ -18,8 +18,10 @@ export default function ClubCard({ club }) {
         )}
         <div className={styles.clubText}>
           <div className={styles.clubName}>{club.name}</div>
-          <div className={styles.clubMemberCount}>
-            {club.member_count} members
+          <div className={styles.memberCount}>
+            <MdGroups className={styles.membersIcon} />
+            <span>{club.member_count}</span>
+            <span>members</span>
           </div>
           <div className={styles.cta}>click to see details</div>
         </div>
