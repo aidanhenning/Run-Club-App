@@ -2,7 +2,35 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  color: var(--color-text-primary);
   font-family: var(--font-family-inter);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-family-inter);
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+p {
+  line-height: var(--line-height-base);
+  color: var(--color-text-primary);
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
 }
 
 :root {
@@ -16,11 +44,13 @@
 
   --color-text-primary: #e3e3e3;
   --color-text-secondary: #919191;
+  --color-text-tertiary: #dadada;
 
   --color-black: #000000;
   --color-white: #ffffff;
 
-  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-xxs: 0.75rem; /* 12px */
+  --font-size-xs: 0.875rem; /* 14px */
   --font-size-sm: 1rem; /* 16px */
   --font-size-md: 1.25rem; /* 20px */
   --font-size-lg: 1.5rem; /* 24px */
@@ -37,7 +67,7 @@
   --line-height-base: 1.5; /* descriptions */
 
   --letter-spacing-normal: 0;
-  --letter-spacing-tight: -0.125rem; /* -2px / 16 */
+  --letter-spacing-tight: -0.01em;
 
   --font-family-inter: "Inter", sans-serif;
 }

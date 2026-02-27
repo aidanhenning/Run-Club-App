@@ -131,7 +131,7 @@ export default function Search() {
                   className={styles.avatar}
                 />
                 <div className={styles.info}>
-                  <h4>
+                  <h4 className={styles.infoPrimary}>
                     {activeTab === "people"
                       ? `${item.first_name} ${item.last_name}`
                       : item.name}

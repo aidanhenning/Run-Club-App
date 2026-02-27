@@ -7,8 +7,8 @@ export default function PostCard({ post }) {
 
   return (
     <article className={styles.card}>
-      <div
-        className={styles.title}
+      <section
+        className={styles.heading}
         onClick={() => navigate(`/clubs/${post.club_id}`)}
       >
         <div>
@@ -24,10 +24,14 @@ export default function PostCard({ post }) {
             </span>
           )}
         </div>
-        <div className={styles.titleText}>{post.club_name}</div>
-      </div>
+        <span className={styles.clubName}>{post.club_name}</span>
+      </section>
 
-      <div className={styles.stats}>
+      <section>
+        <h2 className={styles.title}>{post.title}</h2>
+      </section>
+
+      <section className={styles.stats}>
         <div className={styles.statsItem}>
           <span className={styles.label}>Distance</span>
           <span className={styles.value}>{post.distance}mi</span>
@@ -44,7 +48,7 @@ export default function PostCard({ post }) {
           <span className={styles.label}>Time</span>
           <span className={styles.value}>{post.estimated_time}</span>
         </div>
-      </div>
+      </section>
 
       <div className={styles.pictures}>
         <div className={styles.mapPlaceholder}>

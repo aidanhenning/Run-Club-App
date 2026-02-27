@@ -155,7 +155,7 @@ export default function CreatePost() {
           </label>
         </section>
 
-        <h3>Activity Stats</h3>
+        <h3 className={styles.sectionTitle}>Activity Stats</h3>
         <section className={styles.section}>
           <div className={styles.row}>
             <input
@@ -200,7 +200,7 @@ export default function CreatePost() {
           </div>
         </section>
 
-        <h3>Details</h3>
+        <h3 className={styles.sectionTitle}>Details</h3>
         <section className={styles.section}>
           <div className={styles.row}>
             <input
@@ -215,7 +215,7 @@ export default function CreatePost() {
           </div>
         </section>
 
-        <h3>Scripture</h3>
+        <h3 className={styles.sectionTitle}>Scripture</h3>
         <section className={styles.section}>
           <div className={styles.row}>
             <input

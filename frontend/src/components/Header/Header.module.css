@@ -7,23 +7,22 @@
   align-items: center;
   padding: 1.5rem 1rem 1rem;
   background-color: var(--color-bg-secondary);
-  z-index: 10;
+  z-index: 100;
 }
 
 .icon {
   justify-self: start;
   font-size: var(--font-size-md);
-  color: var(--color-text-primary);
 }
 
 .headerTitle {
   justify-self: center;
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
 }
 
 .headerProfileLink {
+  display: flex;
   justify-self: end;
   text-decoration: none;
 }
@@ -37,12 +36,12 @@
 }
 
 .profileInitial {
-  background-color: var(--color-brand-base);
-  color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  background-color: var(--color-brand-base);
 }
 
 .dropdownMenu {
@@ -62,7 +61,6 @@
   flex-direction: row;
   align-items: center;
   gap: 0.5rem;
-  font-size: var(--font-size-sm);
   text-decoration: none;
   color: var(--color-text-primary);
 }

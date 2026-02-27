@@ -9,7 +9,6 @@
   flex-direction: column;
   gap: 1.5rem;
   padding: 1rem 2rem;
-  color: var(--color-text-primary);
 }
 
 .section {
@@ -60,8 +59,7 @@
   padding: 1rem;
   border: 1px solid var(--color-bg-secondary);
   border-radius: 4px;
-  font-size: var(--font-size-sm);
-  color: var(--color-text-primary);
+  font-size: var(--font-size-xs);
   background: var(--color-bg-primary);
 }
 
@@ -80,6 +78,10 @@
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1em;
+}
+
+.sectionTitle {
+  font-size: var(--font-size-sm);
 }
 
 .saveButton {

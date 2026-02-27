@@ -14,11 +14,10 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  color: var(--color-text-primary);
 }
 
 .clubInfo {
-  padding: 1rem 1rem 0;
+  padding: 2.5rem 1rem 0;
 }
 
 .clubLogo {
@@ -44,7 +43,7 @@
 }
 
 .clubName {
-  padding: 1.5rem 0 0;
+  font-size: var(--font-size-md);
 }
 
 .memberCount {
@@ -60,34 +59,19 @@
 }
 
 .description {
-  padding: 1rem 0;
+  padding: 1rem 0 0;
+  font-size: var(--font-size-xs);
 }
 
-.leave {
-  width: 30%;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  font-size: var(--font-size-xs);
-  color: var(--color-text-primary);
-  background-color: var(--color-bg-tertiary);
-}
-
-.join {
-  width: 30%;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  font-size: var(--font-size-xs);
-  color: var(--color-text-primary);
-  background-color: var(--color-brand-base);
+.events {
+  padding: 2rem 1rem 0;
 }
 
 .tabContainer {
   display: flex;
   background-color: var(--color-bg-secondary);
-  padding: 4px;
-  border-radius: 10px;
+  padding: 0.25rem;
+  border-radius: 8px;
   margin-bottom: 1rem;
 }
 
@@ -114,14 +98,10 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.events {
-  padding: 2rem 1rem 0;
-}
-
 .eventsContainer {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
 }
 
 .eventCard {
@@ -151,7 +131,6 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-wight-bold);
   text-transform: uppercase;
-  color: var(--color-text-primary);
   background-color: var(--color-brand-base);
 }
 
@@ -162,16 +141,14 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-wight-bold);
   text-transform: uppercase;
-  color: var(--color-text-primary);
   background-color: var(--color-bg-tertiary);
 }
 
 .day {
   padding-top: 0.25rem;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   font-weight: var(--font-wight-bold);
   line-height: 1;
-  color: var(--color-text-primary);
 }
 
 .weekday {
@@ -186,16 +163,11 @@
   gap: 0.25rem;
 }
 
-.eventTitle {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-primary);
-}
-
 .detailRow {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #aaa;
+  color: var(--color-text-secondary);
   font-size: var(--font-size-xs);
 }
 
@@ -211,15 +183,15 @@
   text-overflow: ellipsis;
 }
 
-.posts {
-  padding: 0 1rem;
+.emptyState {
+  color: var(--color-text-secondary);
 }
 
 .clubMembers {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 2rem 1rem 1rem;
+  padding: 2rem 1rem 0;
 }
 
 .membersContainer {
@@ -231,6 +203,7 @@
 .memberCard {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 0.5rem;
 }
 
@@ -241,7 +214,39 @@
   object-fit: cover;
 }
 
-.clubRuns {
+.memberInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.memberName {
   font-size: var(--font-size-xs);
+}
+
+.clubRuns {
+  font-size: var(--font-size-xxs);
   color: var(--color-text-secondary);
+}
+
+.clubAction {
+  padding: 2rem 1rem 1rem;
+}
+
+.leave {
+  width: 30%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-xs);
+  background-color: var(--color-bg-tertiary);
+}
+
+.join {
+  width: 30%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  background-color: var(--color-brand-base);
 }

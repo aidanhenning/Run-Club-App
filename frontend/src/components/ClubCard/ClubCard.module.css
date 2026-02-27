@@ -7,20 +7,20 @@
   flex-direction: row;
   gap: 1rem;
   padding: 1rem 2rem 0;
-  background-color: var(--color-bg-primary);
 }
 
 .clubLogo {
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   aspect-ratio: 1/1;
+  border-radius: 4px;
   object-fit: cover;
   object-position: center;
 }
 
 .placeholder {
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   flex-shrink: 0;
   padding: 0.25rem;
   border-radius: 4px;
@@ -46,7 +46,7 @@
   flex-direction: row;
   align-items: center;
   gap: 0.25rem;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xxs);
 }
 
 .membersIcon {
@@ -54,6 +54,6 @@
 }
 
 .cta {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-xxs);
   color: var(--color-text-secondary);
 }

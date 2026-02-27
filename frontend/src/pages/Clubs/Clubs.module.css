@@ -12,5 +12,8 @@
 .emptyState {
   margin-top: 4rem;
   text-align: center;
+}
+
+.emptyState p {
   color: var(--color-text-secondary);
 }

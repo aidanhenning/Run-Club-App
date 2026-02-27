@@ -160,7 +160,7 @@ export default function Profile() {
         </section>
 
         <section className={styles.photos}>
-          <h3>Photos</h3>
+          <h3 className={styles.photosTitle}>Photos</h3>
           {loading ? (
             <SkeletonPictures />
           ) : profile?.posts.length > 0 ? (
@@ -172,13 +172,12 @@ export default function Profile() {
           ) : (
             <div className={styles.emptyState}>
               <p>No pictures uploaded</p>
-              {/* add placeholder grey boxes if there are no pictures */}
             </div>
           )}
         </section>
 
         <section className={styles.clubs}>
-          <h3>Clubs</h3>
+          <h3 className={styles.clubsTitle}>Clubs</h3>
           {profile?.clubs.length > 0 ? (
             profile?.clubs.map((club) => <ClubCard key={club.id} club={club} />)
           ) : (

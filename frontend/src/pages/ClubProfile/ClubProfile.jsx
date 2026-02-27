@@ -111,12 +111,6 @@ export default function ClubProfile() {
             <span>Members</span>
           </p>
           <p className={styles.description}>{club?.club?.description}</p>
-          <button
-            onClick={handleMemberToggle}
-            className={club?.club?.is_member ? styles.leave : styles.join}
-          >
-            {club?.club?.is_member ? "Leave Club" : "Join Club"}
-          </button>
         </section>
 
         <section className={styles.events}>
@@ -159,7 +153,7 @@ export default function ClubProfile() {
                       </div>
 
                       <div className={styles.eventDetails}>
-                        <h4 className={styles.eventTitle}>{event.title}</h4>
+                        <h4>{event.title}</h4>
                         <div className={styles.detailRow}>
                           <MdOutlineDirectionsRun className={styles.icon} />
                           <span>{event.run_type}</span>
@@ -198,8 +192,8 @@ export default function ClubProfile() {
                     alt={`${member.first_name}'s profile picture`}
                     className={styles.memberAvatar}
                   />
-                  <div>
-                    <p>
+                  <div className={styles.memberInfo}>
+                    <p className={styles.memberName}>
                       {member.first_name} {member.last_name}
                     </p>
                     <p className={styles.clubRuns}>
@@ -212,6 +206,14 @@ export default function ClubProfile() {
               <p>This club has no members</p>
             )}
           </div>
+        </section>
+        <section className={styles.clubAction}>
+          <button
+            onClick={handleMemberToggle}
+            className={club?.club?.is_member ? styles.leave : styles.join}
+          >
+            {club?.club?.is_member ? "Leave Club" : "Join Club"}
+          </button>
         </section>
       </main>
 

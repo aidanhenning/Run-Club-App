@@ -9,7 +9,14 @@
   flex-direction: column;
   gap: 0.25rem;
   padding: 1rem 2rem 2rem;
-  color: var(--color-text-primary);
+}
+
+.info h2 {
+  font-size: var(--font-size-md);
+}
+
+.info p {
+  font-size: var(--font-size-xs);
 }
 
 .form {
@@ -17,7 +24,6 @@
   flex-direction: column;
   gap: 2rem;
   padding: 1rem 2rem;
-  color: var(--color-text-primary);
 }
 
 .section {
@@ -27,7 +33,7 @@
 }
 
 .mediaUpload {
-  width: 6rem;
+  width: 6.5rem;
   aspect-ratio: 1/1;
   margin: 0 auto;
   border-radius: 8px;
@@ -42,9 +48,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--color-text-primary);
   font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
 }
 
 .uploadLogo {
@@ -62,18 +66,13 @@
   gap: 0.5rem;
 }
 
-.label {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-primary);
-}
-
 .mainInput,
 .textarea {
   width: 100%;
   padding: 1rem;
   border: 1px solid var(--color-bg-secondary);
   border-radius: 4px;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--color-text-primary);
   background: var(--color-black);
 }
@@ -82,7 +81,6 @@
   padding: 1rem;
   border: none;
   border-radius: 25px;
-  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
   cursor: pointer;
   color: var(--color-text-secondary);

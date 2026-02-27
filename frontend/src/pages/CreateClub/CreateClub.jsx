@@ -85,9 +85,7 @@ export default function CreateClub() {
 
         <section className={styles.section}>
           <div className={styles.row}>
-            <label className={styles.label} htmlFor="clubName">
-              Club Name
-            </label>
+            <label htmlFor="clubName">Club Name</label>
             <input
               id="clubName"
               type="text"
@@ -100,9 +98,7 @@ export default function CreateClub() {
             />
           </div>
           <div className={styles.row}>
-            <label className={styles.label} htmlFor="description">
-              Description
-            </label>
+            <label htmlFor="description">Description</label>
             <textarea
               id="description"
               placeholder="Description"
