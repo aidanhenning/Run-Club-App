@@ -1,4 +1,5 @@
 .container {
+  min-height: 100vh;
 }
 
 .heroImage {
@@ -36,21 +37,24 @@
   text-align: center;
   font-size: var(--font-size-xxxl);
   font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-black);
 }
 
 .highlight {
   position: absolute;
-  bottom: 3.4rem;
-  left: 1.25rem;
+  bottom: 3.5rem;
+  left: 0.6rem;
   z-index: -1;
-  height: 1.4rem;
-  width: 15rem;
+  height: 1.8rem;
+  width: 16.5rem;
   background-color: var(--color-brand-base);
 }
 
 .subheading {
   text-align: center;
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
 }
 

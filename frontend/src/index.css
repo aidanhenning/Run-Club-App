@@ -67,7 +67,7 @@ select {
   --line-height-base: 1.5; /* descriptions */
 
   --letter-spacing-normal: 0;
-  --letter-spacing-tight: -0.01em;
+  --: -0.01em;
 
   --font-family-inter: "Inter", sans-serif;
 }
