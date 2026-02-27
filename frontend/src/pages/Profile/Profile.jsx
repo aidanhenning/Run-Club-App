@@ -98,7 +98,7 @@ export default function Profile() {
           <div className={styles.userKeyInfo}>
             <img
               src={profile?.user?.profile_picture_url}
-              alt={profile.user.first_name}
+              alt={profile?.user?.first_name}
               className={styles.avatar}
             />
             <div>
