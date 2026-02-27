@@ -1,4 +1,6 @@
 .container {
+  min-height: 100vh;
+  background-color: var(--color-white);
 }
 
 .header {
@@ -14,6 +16,7 @@
   text-align: center;
   font-size: var(--font-size-xxxl);
   font-weight: var(--font-weight-bold);
+  color: var(--color-black);
 }
 
 .form {
@@ -25,11 +28,13 @@
 
 .label {
   margin-bottom: 0.5rem;
+  color: var(--color-black);
 }
 
 .inputField {
   padding: 0.75rem 1rem;
   margin-bottom: 1rem;
+  color: var(--color-black);
 }
 
 .btnPrimary {
@@ -46,7 +51,6 @@
   margin-bottom: 1.5rem;
   text-align: center;
   text-decoration: none;
-  font-size: var(--font-size-sm);
   color: var(--color-white);
   background-color: var(--color-black);
 }
