@@ -27,7 +27,6 @@ export default function Home() {
         });
         const data = await response.json();
         setFeed(data);
-        console.log(data);
       } catch (err) {
         console.error("Failed to fetch feed:", err);
       } finally {

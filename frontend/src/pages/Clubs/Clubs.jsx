@@ -27,7 +27,6 @@ export default function Clubs() {
         });
         const data = await response.json();
         setClubs(data);
-        console.log(data);
       } catch (err) {
         console.error("Failed to fetch clubs:", err);
       } finally {

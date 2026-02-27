@@ -31,7 +31,6 @@ export default function Profile() {
         if (!res.ok) throw new Error("Could not find this user.");
         const data = await res.json();
         setProfile(data);
-        console.log(data);
       } catch (err) {
         console.error("Failed to fetch profile:", err);
         setError(err.message);

@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: var(--font-family-inter);
 }
 
 :root {
@@ -38,5 +39,5 @@
   --letter-spacing-normal: 0;
   --letter-spacing-tight: -0.125rem; /* -2px / 16 */
 
-  --font-family-mono: "IBM Plex Mono", monospace;
+  --font-family-inter: "Inter", sans-serif;
 }

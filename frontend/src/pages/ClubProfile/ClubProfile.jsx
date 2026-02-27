@@ -31,7 +31,6 @@ export default function ClubProfile() {
         if (!res.ok) throw new Error("Could not find this club.");
         const data = await res.json();
         setClub(data);
-        console.log(data);
       } catch (err) {
         console.error("Failed to fetch club:", err);
         setError(err.message);
@@ -201,7 +200,9 @@ export default function ClubProfile() {
                     <p>
                       {member.first_name} {member.last_name}
                     </p>
-                    <p>{member.runs_with_club} Club Runs</p>
+                    <p className={styles.clubRuns}>
+                      {member.runs_with_club} Club Runs
+                    </p>
                   </div>
                 </div>
               ))

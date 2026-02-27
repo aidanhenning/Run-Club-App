@@ -187,7 +187,6 @@
 }
 
 .eventTitle {
-  margin: 0 0 0.24rem 0;
   font-size: var(--font-size-sm);
   color: var(--color-text-primary);
 }
@@ -220,7 +219,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 2rem 1rem 0;
+  padding: 2rem 1rem 1rem;
 }
 
 .membersContainer {
@@ -240,4 +239,9 @@
   height: 2rem;
   aspect-ratio: 1/1;
   object-fit: cover;
+}
+
+.clubRuns {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
 }
