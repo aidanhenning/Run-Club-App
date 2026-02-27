@@ -23,6 +23,9 @@ async function seedUsers() {
       lastName: faker.person.lastName(),
       email: faker.internet.email(),
       password: hashedPassword,
+      bio: faker.person.bio(),
+      profilePictureUrl: faker.image.avatar(),
+      location: faker.location.city(),
     });
 
     users.push(user);
@@ -39,6 +42,7 @@ async function seedClubs(users) {
     const club = await createClub({
       name: faker.company.name(),
       description: faker.lorem.paragraph(),
+      logo: faker.image.url(),
       owner: owner.id,
     });
 
