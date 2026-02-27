@@ -1,0 +1,40 @@
+.clubMembers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2rem 1rem 0;
+}
+
+.membersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.memberCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.memberAvatar {
+  width: 2rem;
+  height: 2rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.memberInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.memberName {
+  font-size: var(--font-size-xs);
+}
+
+.clubRuns {
+  font-size: var(--font-size-xxs);
+  color: var(--color-text-secondary);
+}

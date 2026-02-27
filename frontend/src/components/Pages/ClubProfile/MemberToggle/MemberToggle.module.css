@@ -1,0 +1,22 @@
+.clubAction {
+  padding: 2rem 1rem 1rem;
+}
+
+.leave {
+  width: 30%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-xs);
+  background-color: var(--color-bg-tertiary);
+}
+
+.join {
+  width: 30%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  background-color: var(--color-brand-base);
+}

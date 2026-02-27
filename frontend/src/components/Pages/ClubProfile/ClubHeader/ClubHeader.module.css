@@ -1,0 +1,46 @@
+.clubInfo {
+  padding: 2.5rem 1rem 0;
+}
+
+.clubLogo {
+  position: absolute;
+  top: -2rem;
+  z-index: 99;
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+  border-radius: 4px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.placeholder {
+  width: 4rem;
+  height: 4rem;
+  flex-shrink: 0;
+  padding: 0.25rem;
+  border-radius: 4px;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
+}
+
+.clubName {
+  font-size: var(--font-size-md);
+}
+
+.memberCount {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--font-size-xs);
+}
+
+.membersIcon {
+  font-size: var(--font-size-sm);
+}
+
+.description {
+  padding: 1rem 0 0;
+  font-size: var(--font-size-xs);
+}

@@ -1,0 +1,123 @@
+.events {
+  padding: 2rem 1rem 0;
+}
+
+.tabContainer {
+  display: flex;
+  background-color: var(--color-bg-secondary);
+  padding: 0.25rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.tab,
+.activeTab {
+  flex: 1;
+  padding: 8px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-wight-bold);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+}
+
+.activeTab {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.eventsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.eventCard {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.5rem;
+  border-radius: 12px;
+  background-color: var(--color-bg-secondary);
+}
+
+.calendarIcon {
+  min-width: 3.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--color-bg-tertiary);
+  border-radius: 8px;
+  background-color: var(--color-black);
+}
+
+.upcomingMonth {
+  width: 100%;
+  padding: 0.125rem 0;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-wight-bold);
+  text-transform: uppercase;
+  background-color: var(--color-brand-base);
+}
+
+.pastMonth {
+  width: 100%;
+  padding: 0.125rem 0;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-wight-bold);
+  text-transform: uppercase;
+  background-color: var(--color-bg-tertiary);
+}
+
+.day {
+  padding-top: 0.25rem;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-wight-bold);
+  line-height: 1;
+}
+
+.weekday {
+  padding-bottom: 0.25rem;
+  font-size: var(--font-size-xs);
+  color: #888;
+}
+
+.eventDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.detailRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+}
+
+.icon {
+  font-size: var(--font-size-sm);
+}
+
+.address {
+  max-width: 12.5rem;
+  font-style: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.emptyState {
+  color: var(--color-text-secondary);
+}
