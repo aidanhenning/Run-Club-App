@@ -98,7 +98,7 @@ export default function Profile() {
           <div className={styles.userKeyInfo}>
             <img
               src={profile?.user?.profile_picture_url}
-              alt="avatar"
+              alt={profile.user.first_name}
               className={styles.avatar}
             />
             <div>
@@ -107,20 +107,26 @@ export default function Profile() {
                 <span>{profile?.user?.last_name}</span>
               </h2>
               <p className={styles.location}>{profile?.user?.location}</p>
-              <div className={styles.mainStats}>
-                <div className={styles.keyValue}>
-                  <span>{profile?.user?.club_runs_count}</span>
-                  <span>Activities</span>
-                </div>
-                <div className={styles.keyValue}>
-                  <span>{profile?.user?.followers_count}</span>
-                  <span>Followers</span>
-                </div>
-                <div className={styles.keyValue}>
-                  <span>{profile?.user?.following_count}</span>
-                  <span>Following</span>
-                </div>
-              </div>
+            </div>
+          </div>
+          <div className={styles.mainStats}>
+            <div className={styles.keyValue}>
+              <span className={styles.key}>Activities</span>
+              <span className={styles.value}>
+                {profile?.user?.club_runs_count}
+              </span>
+            </div>
+            <div className={styles.keyValue}>
+              <span className={styles.key}>Followers</span>
+              <span className={styles.value}>
+                {profile?.user?.followers_count}
+              </span>
+            </div>
+            <div className={styles.keyValue}>
+              <span className={styles.key}>Following</span>
+              <span className={styles.value}>
+                {profile?.user?.following_count}
+              </span>
             </div>
           </div>
           <div className={styles.userBio}>

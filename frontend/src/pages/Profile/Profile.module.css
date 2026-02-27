@@ -19,11 +19,18 @@
 .userKeyInfo {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 2rem;
   padding: 1rem 0;
 }
 
 .avatar {
+  width: 5rem;
+  height: 5rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .name {
@@ -34,7 +41,7 @@
 }
 
 .location {
-  margin-bottom: 0.25rem;
+  color: var(--color-text-secondary);
 }
 
 .mainStats {
@@ -46,6 +53,15 @@
 .keyValue {
   display: flex;
   flex-direction: column;
+}
+
+.key {
+  font-size: var(--font-size-xs);
+}
+
+.value {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
 }
 
 .userBio {

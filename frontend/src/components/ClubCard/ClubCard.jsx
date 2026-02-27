@@ -7,13 +7,15 @@ export default function ClubCard({ club }) {
   return (
     <Link to={`/clubs/${club.id}`} className={styles.cardLink}>
       <div className={styles.card}>
-        <div className={styles.clubLogo}>
-          {club.logo === null ? (
-            <MdFlag className={styles.placeholder} />
-          ) : (
-            club.logo
-          )}
-        </div>
+        {club?.logo ? (
+          <img
+            src={club.logo}
+            alt={`${club.club_name} logo`}
+            className={styles.clubLogo}
+          />
+        ) : (
+          <MdFlag className={styles.placeholder} />
+        )}
         <div className={styles.clubText}>
           <div className={styles.clubName}>{club.name}</div>
           <div className={styles.clubMemberCount}>

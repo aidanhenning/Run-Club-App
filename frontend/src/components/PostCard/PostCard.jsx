@@ -6,15 +6,23 @@ export default function PostCard({ post }) {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.card}>
+    <article className={styles.card}>
       <div
         className={styles.title}
         onClick={() => navigate(`/clubs/${post.club_id}`)}
       >
-        <div className={styles.titleProfileImage}>
-          {post.club_logo === null
-            ? post.club_name.charAt(0).toUpperCase()
-            : post.club_logo}
+        <div>
+          {post?.club_logo ? (
+            <img
+              src={post.club_logo}
+              alt={`${post.club_name} logo`}
+              className={styles.profileImage}
+            />
+          ) : (
+            <span className={styles.initial}>
+              {post?.club_name?.charAt(0).toUpperCase() || "?"}
+            </span>
+          )}
         </div>
         <div className={styles.titleText}>{post.club_name}</div>
       </div>
@@ -50,6 +58,6 @@ export default function PostCard({ post }) {
       </div>
 
       <div className={styles.comments}>View all comments</div>
-    </div>
+    </article>
   );
 }

@@ -13,9 +13,18 @@
   gap: 0.75rem;
 }
 
-.titleProfileImage {
-  width: 40px;
-  height: 40px;
+.profileImage {
+  width: 2.5rem;
+  height: 2.5rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.initial {
+  width: 2.5rem;
+  height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;

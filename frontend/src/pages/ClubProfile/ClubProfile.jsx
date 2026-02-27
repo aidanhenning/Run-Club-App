@@ -94,13 +94,15 @@ export default function ClubProfile() {
 
       <main className={styles.content}>
         <section className={styles.clubInfo}>
-          <div className={styles.clubLogo}>
-            {club?.club?.logo === null ? (
-              <MdFlag className={styles.placeholder} />
-            ) : (
-              club?.club?.logo
-            )}
-          </div>
+          {club?.club?.logo ? (
+            <img
+              src={club.club.logo}
+              alt={`${club.club.name} logo`}
+              className={styles.clubLogo}
+            />
+          ) : (
+            <MdFlag className={styles.placeholder} />
+          )}
           <h2 className={styles.clubName}>{club?.club?.name}</h2>
           <p className={styles.memberCount}>
             <MdGroups2 className={styles.membersIcon} />
