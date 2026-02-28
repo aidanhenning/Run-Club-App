@@ -1,7 +1,5 @@
 import styles from "@/components/Pages/UserProfile/ClubsList/ClubsList.module.css";
 
-import { MdGroups } from "react-icons/md";
-
 function ClubItem({ club }) {
   return (
     <div className={styles.clubCard}>
