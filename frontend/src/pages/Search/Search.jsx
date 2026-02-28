@@ -94,7 +94,6 @@ export default function Search() {
       if (!res.ok) {
         throw new Error("Server request failed");
       }
-      console.log(`${method} successful for ${itemId}`);
     } catch (err) {
       console.error("Action failed, rolling back:", err);
       setResults(previousResults);
