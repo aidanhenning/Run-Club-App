@@ -2,6 +2,7 @@ import styles from "@/pages/ClubsList/ClubsList.module.css";
 import { useAuth } from "@/context/AuthContext";
 import Header from "@/components/Header/Header";
 import BottomNav from "@/components/BottomNav/BottomNav";
+import CreateClubBanner from "@/components/Pages/ClubsList/CreateClubBanner/CreateClubBanner";
 import SkeletonClubs from "@/components/Pages/ClubsList/SkeletonClubs/SkeletonClubs";
 import ClubCard from "@/components/Pages/ClubsList/ClubCard/ClubCard";
 
@@ -47,6 +48,7 @@ export default function ClubsList() {
       <Header title="Clubs" />
 
       <main className={styles.content}>
+        <CreateClubBanner />
         {loading || userLoading ? (
           <SkeletonClubs />
         ) : clubs.length > 0 ? (
