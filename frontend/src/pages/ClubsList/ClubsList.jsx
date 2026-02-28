@@ -42,21 +42,19 @@ export default function ClubsList() {
     fetchClubs();
   }, [token, API]);
 
-  if (loading || userLoading) {
-    return (
-      <>
-        <SkeletonClubs />
-      </>
-    );
-  }
-
   return (
     <div className={styles.container}>
       <Header title="Clubs" />
 
       <main className={styles.content}>
-        {clubs.length > 0 ? (
-          clubs.map((club) => <ClubCard key={club.id} club={club} />)
+        {loading || userLoading ? (
+          <SkeletonClubs />
+        ) : clubs.length > 0 ? (
+          <div className={styles.clubsGrid}>
+            {clubs.map((club) => (
+              <ClubCard key={club.id} club={club} />
+            ))}
+          </div>
         ) : (
           <div className={styles.emptyState}>
             <p>Join clubs and see them all here!</p>

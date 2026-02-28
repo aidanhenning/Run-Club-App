@@ -1,9 +1,3 @@
-.container {
-  min-height: 100vh;
-  padding-bottom: 3.75rem;
-  background-color: var(--color-bg-primary);
-}
-
 /* Shimmer Effect */
 .skeletonTitleProfileImage,
 .skeletonTitleText,

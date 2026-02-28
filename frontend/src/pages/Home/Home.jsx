@@ -42,20 +42,14 @@ export default function Home() {
     fetchFeed();
   }, [token, API]);
 
-  if (loading || userLoading) {
-    return (
-      <>
-        <SkeletonHome />
-      </>
-    );
-  }
-
   return (
     <div className={styles.container}>
       <Header title="Home" />
 
       <main className={styles.content}>
-        {feed.length > 0 ? (
+        {loading || userLoading ? (
+          <SkeletonHome />
+        ) : feed.length > 0 ? (
           feed.map((post) => <PostCard key={post.id} post={post} />)
         ) : (
           <div className={styles.emptyState}>

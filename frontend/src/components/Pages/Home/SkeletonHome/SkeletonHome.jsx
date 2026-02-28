@@ -1,6 +1,4 @@
 import styles from "@/components/Pages/Home/SkeletonHome/SkeletonHome.module.css";
-import Header from "@/components/Header/Header";
-import BottomNav from "@/components/BottomNav/BottomNav";
 
 export default function SkeletonHome() {
   const SkeletonCard = () => (
@@ -26,16 +24,10 @@ export default function SkeletonHome() {
   );
 
   return (
-    <div className={styles.container}>
-      <Header title="Home" />
-
-      <main className={styles.content}>
-        {[1, 2, 3, 4].map((i) => (
-          <SkeletonCard key={i} />
-        ))}
-      </main>
-
-      <BottomNav />
-    </div>
+    <>
+      {[1, 2, 3, 4].map((i) => (
+        <SkeletonCard key={i} />
+      ))}
+    </>
   );
 }
