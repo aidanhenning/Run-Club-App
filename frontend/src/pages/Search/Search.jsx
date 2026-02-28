@@ -13,6 +13,8 @@ export default function Search() {
   const { API, token } = useAuth();
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState("people");
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -20,8 +22,18 @@ export default function Search() {
   useEffect(() => {
     if (!token || !API) return;
 
+    if (!query.trim()) {
+      setResults([]);
+      setLoading(false);
+      return;
+    }
+
     const fetchResults = async () => {
+      setLoading(true);
+      setError(null);
+
       const endpoint = activeTab === "people" ? "users" : "clubs";
+
       try {
         const res = await fetch(
           `${API}/${endpoint}/search?searchTerm=${query}`,
@@ -33,6 +45,9 @@ export default function Search() {
         setResults(data);
       } catch (err) {
         console.error("Search error:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -94,12 +109,23 @@ export default function Search() {
       <main className={styles.content}>
         <SearchToggle activeTab={activeTab} setActiveTab={setActiveTab} />
         <SearchBar activeTab={activeTab} query={query} setQuery={setQuery} />
-        <Results
-          activeTab={activeTab}
-          results={results}
-          handleItemSelect={handleItemSelect}
-          handleAction={handleAction}
-        />
+
+        {loading ? (
+          <div className={styles.statusMessage}>
+            Searching for {activeTab}...
+          </div>
+        ) : query.trim() !== "" && results.length === 0 ? (
+          <div className={styles.statusMessage}>
+            No {activeTab} found for "{query}"
+          </div>
+        ) : (
+          <Results
+            activeTab={activeTab}
+            results={results}
+            handleItemSelect={handleItemSelect}
+            handleAction={handleAction}
+          />
+        )}
       </main>
 
       <BottomNav />
