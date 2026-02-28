@@ -1,0 +1,48 @@
+.profileInteraction {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  padding: 1rem 1rem 0;
+  font-size: var(--font-size-xs);
+}
+
+.editBtn {
+  width: 50%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-bg-tertiary);
+}
+
+.logout {
+  width: 50%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-bg-tertiary);
+}
+
+.following {
+  width: 50%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-bg-tertiary);
+}
+
+.follow {
+  width: 50%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-brand-base);
+}
+
+.message {
+  width: 50%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-bg-tertiary);
+}

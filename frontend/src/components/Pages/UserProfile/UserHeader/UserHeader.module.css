@@ -1,0 +1,59 @@
+.user {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem 0;
+}
+
+.userKeyInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+.avatar {
+  width: 5rem;
+  height: 5rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.name {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+  font-size: var(--font-size-md);
+}
+
+.location {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+}
+
+.mainStats {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  font-size: var(--font-size-xs);
+}
+
+.keyValue {
+  display: flex;
+  flex-direction: column;
+}
+
+.key {
+}
+
+.value {
+  font-weight: var(--font-weight-bold);
+}
+
+.userBio {
+  padding: 1rem 0;
+  font-size: var(--font-size-xs);
+}

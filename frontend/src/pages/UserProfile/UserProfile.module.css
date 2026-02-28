@@ -9,123 +9,14 @@
   flex-direction: column;
 }
 
-.user {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 1rem 0;
-}
-
-.userKeyInfo {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 2rem;
-  padding: 1rem 0;
-}
-
-.avatar {
-  width: 5rem;
-  height: 5rem;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.name {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  margin-bottom: 0.25rem;
-  font-size: var(--font-size-md);
-}
-
-.location {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-tertiary);
-}
-
-.mainStats {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  font-size: var(--font-size-xs);
-}
-
-.keyValue {
-  display: flex;
-  flex-direction: column;
-}
-
-.key {
-}
-
-.value {
-  font-weight: var(--font-weight-bold);
-}
-
-.userBio {
-  padding: 1rem 0;
-  font-size: var(--font-size-xs);
-}
-
-.profileInteraction {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  gap: 0.25rem;
-  padding: 1rem 1rem 0;
-  font-size: var(--font-size-xs);
-}
-
-.editBtn {
-  width: 50%;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: var(--color-bg-tertiary);
-}
-
-.logout {
-  width: 50%;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: var(--color-bg-tertiary);
-}
-
-.following {
-  width: 50%;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: var(--color-bg-tertiary);
-}
-
-.follow {
-  width: 50%;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: var(--color-brand-base);
-}
-
-.message {
-  width: 50%;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 8px;
-  background-color: var(--color-bg-tertiary);
-}
-
-.photos {
+.pictures {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
   padding: 1rem 1rem 0;
 }
 
-.photosTitle {
+.picturesTitle {
   font-size: var(--font-size-sm);
 }
 
@@ -134,18 +25,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 0.25rem;
-}
-
-.clubs {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem 1rem 0;
-  color: var(--color-text-primary);
-}
-
-.clubsTitle {
-  font-size: var(--font-size-sm);
 }
 
 .emptyState {
