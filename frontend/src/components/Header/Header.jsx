@@ -30,7 +30,7 @@ export default function Header({ title, showBack = false }) {
           {user?.profile_picture_url ? (
             <img
               src={user.profile_picture_url}
-              alt="Me"
+              alt={`${user.first_name}'s profile picture`}
               className={styles.profileImg}
             />
           ) : (

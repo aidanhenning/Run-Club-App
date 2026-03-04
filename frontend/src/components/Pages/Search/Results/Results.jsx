@@ -20,7 +20,7 @@ export default function Results({
               item?.profile_picture_url ? (
                 <img
                   src={item.profile_picture_url}
-                  alt={item.first_name}
+                  alt={`${item.first_name}'s profile picture`}
                   className={styles.profileImg}
                 />
               ) : (
