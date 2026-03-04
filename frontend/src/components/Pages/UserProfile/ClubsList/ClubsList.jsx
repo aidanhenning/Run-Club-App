@@ -1,13 +1,19 @@
 import styles from "@/components/Pages/UserProfile/ClubsList/ClubsList.module.css";
 
+import { MdFlag } from "react-icons/md";
+
 function ClubItem({ club }) {
   return (
     <div className={styles.clubCard}>
-      <img
-        src={club.image_url || "/default-club.png"}
-        alt={club.name}
-        className={styles.clubImage}
-      />
+      {club?.logo ? (
+        <img
+          src={club.logo}
+          alt={`${club.club_name} logo`}
+          className={styles.clubLogo}
+        />
+      ) : (
+        <MdFlag className={styles.placeholder} />
+      )}
       <h4 className={styles.clubName}>{club.name}</h4>
     </div>
   );

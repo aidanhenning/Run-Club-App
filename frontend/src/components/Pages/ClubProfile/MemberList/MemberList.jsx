@@ -18,11 +18,17 @@ export default function MemberList({ club, loading }) {
               className={styles.memberCard}
               onClick={() => navigate(`/profile/${member.id}`)}
             >
-              <img
-                src={member.profile_picture_url}
-                alt={`${member.first_name}'s profile picture`}
-                className={styles.memberAvatar}
-              />
+              {member?.profile_picture_url ? (
+                <img
+                  src={member.profile_picture_url}
+                  alt={`${member.first_name}'s profile picture`}
+                  className={styles.profileImg}
+                />
+              ) : (
+                <div className={styles.profileInitial}>
+                  {member?.first_name?.charAt(0).toUpperCase()}
+                </div>
+              )}
               <div className={styles.memberInfo}>
                 <p className={styles.memberName}>
                   {member.first_name} {member.last_name}

@@ -28,10 +28,11 @@ export default function Search() {
       return;
     }
 
-    const fetchResults = async () => {
-      setLoading(true);
-      setError(null);
+    setResults([]);
+    setLoading(true);
+    setError(null);
 
+    const fetchResults = async () => {
       const endpoint = activeTab === "people" ? "users" : "clubs";
 
       try {

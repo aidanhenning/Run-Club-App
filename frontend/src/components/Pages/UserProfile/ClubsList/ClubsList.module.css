@@ -24,12 +24,22 @@
   gap: 0.5rem;
 }
 
-.clubImage {
-  width: 2.5rem;
-  height: 2.5rem;
+.clubLogo {
+  width: 3rem;
+  height: 3rem;
   aspect-ratio: 1/1;
-  border-radius: 8px;
   object-fit: cover;
+  object-position: center;
+}
+
+.placeholder {
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  padding: 0.25rem;
+  border-radius: 4px;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
 }
 
 .clubName {

@@ -18,12 +18,42 @@
   gap: 0.5rem;
 }
 
-.avatar {
+.profileImg {
   width: 2.5rem;
   height: 2.5rem;
   aspect-ratio: 1/1;
   object-fit: cover;
   object-position: center;
+}
+
+.profileInitial {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  background-color: var(--color-brand-base);
+}
+
+.clubLogo {
+  width: 2.5rem;
+  height: 2.5rem;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  object-position: center;
+}
+
+.placeholder {
+  width: 3rem;
+  height: 3rem;
+  flex-shrink: 0;
+  padding: 0.25rem;
+  border-radius: 4px;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
 }
 
 .info {

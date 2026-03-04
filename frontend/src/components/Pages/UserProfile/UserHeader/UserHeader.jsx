@@ -4,11 +4,17 @@ export default function UserHeader({ user }) {
   return (
     <section className={styles.user}>
       <div className={styles.userKeyInfo}>
-        <img
-          src={user?.icture_url}
-          alt={user?.first_name}
-          className={styles.avatar}
-        />
+        {user?.profile_picture_url ? (
+          <img
+            src={user.profile_picture_url}
+            alt="Me"
+            className={styles.profileImg}
+          />
+        ) : (
+          <div className={styles.profileInitial}>
+            {user?.first_name.charAt(0).toUpperCase()}
+          </div>
+        )}
         <div>
           <h2 className={styles.name}>
             <span>{user?.first_name}</span>

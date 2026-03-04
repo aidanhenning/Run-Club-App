@@ -1,6 +1,7 @@
 import styles from "@/components/Pages/Home/PostCard/PostCard.module.css";
 
 import { useNavigate } from "react-router";
+import { MdFlag } from "react-icons/md";
 
 export default function PostCard({ post }) {
   const navigate = useNavigate();
@@ -16,12 +17,10 @@ export default function PostCard({ post }) {
             <img
               src={post.club_logo}
               alt={`${post.club_name} logo`}
-              className={styles.profileImage}
+              className={styles.clubLogo}
             />
           ) : (
-            <span className={styles.initial}>
-              {post?.club_name?.charAt(0).toUpperCase() || "?"}
-            </span>
+            <MdFlag className={styles.placeholder} />
           )}
         </div>
         <span className={styles.clubName}>{post.club_name}</span>

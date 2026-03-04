@@ -1,5 +1,7 @@
 import styles from "@/components/Pages/Search/Results/Results.module.css";
 
+import { MdFlag } from "react-icons/md";
+
 export default function Results({
   activeTab,
   results,
@@ -14,13 +16,27 @@ export default function Results({
             className={styles.profile}
             onClick={() => handleItemSelect(item.id)}
           >
-            <img
-              src={
-                activeTab === "people" ? item.profile_picture_url : item.logo
-              }
-              alt="avatar"
-              className={styles.avatar}
-            />
+            {activeTab === "people" ? (
+              item?.profile_picture_url ? (
+                <img
+                  src={item.profile_picture_url}
+                  alt={item.first_name}
+                  className={styles.profileImg}
+                />
+              ) : (
+                <div className={styles.profileInitial}>
+                  {item?.first_name?.charAt(0).toUpperCase()}
+                </div>
+              )
+            ) : item?.club_logo ? (
+              <img
+                src={item.logo}
+                alt={`${item.name} logo`}
+                className={styles.clubLogo}
+              />
+            ) : (
+              <MdFlag className={styles.placeholder} />
+            )}
             <div className={styles.info}>
               <h4 className={styles.infoPrimary}>
                 {activeTab === "people"
