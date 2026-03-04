@@ -13,7 +13,7 @@ export default function Entry() {
       </div>
 
       <div className={styles.content}>
-        <div className={styles.textContent}>
+        <div>
           <h1 className={styles.stackedHeading}>
             <span>Community</span>
             <span>Driven</span>
