@@ -17,3 +17,15 @@
 .emptyState p {
   color: var(--color-text-secondary);
 }
+
+.loadMoreContainer {
+  padding: 2rem 0;
+  text-align: center;
+  min-height: 50px;
+}
+
+.statusText,
+.endMessage {
+  color: var(--color-text-secondary);
+  font-style: italic;
+}

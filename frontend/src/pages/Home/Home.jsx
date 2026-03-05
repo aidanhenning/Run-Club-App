@@ -5,42 +5,80 @@ import BottomNav from "@/components/BottomNav/BottomNav";
 import SkeletonHome from "@/components/Pages/Home/SkeletonHome/SkeletonHome";
 import PostCard from "@/components/Pages/Home/PostCard/PostCard";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 
 export default function Home() {
   const { API, token, userLoading } = useAuth();
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [feed, setFeed] = useState([]);
+
+  const [offset, setOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+  const LIMIT = 10;
+
+  const observer = useRef();
+
+  const lastPostElementRef = useCallback(
+    (node) => {
+      if (loadingMore) return;
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting && hasMore) {
+            handleLoadMore();
+          }
+        },
+        { rootMargin: "200px" },
+      );
+
+      if (node) observer.current.observe(node);
+    },
+    [loadingMore, hasMore, offset],
+  );
+
+  const fetchFeed = async (currentOffset, isInitial = false) => {
+    if (isInitial) setLoading(true);
+    else setLoadingMore(true);
+
+    setError(null);
+
+    try {
+      const response = await fetch(
+        `${API}/feed?limit=${LIMIT}&offset=${currentOffset}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+      const data = await response.json();
+
+      if (data.length < LIMIT) {
+        setHasMore(false);
+      }
+
+      setFeed((prev) => (isInitial ? data : [...prev, ...data]));
+    } catch (err) {
+      console.error("Failed to fetch feed:", err);
+      setError(err.message);
+    } finally {
+      setLoading(false);
+      setLoadingMore(false);
+    }
+  };
 
   useEffect(() => {
     if (!token || !API) return;
-
-    const fetchFeed = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch(`${API}/feed`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const data = await response.json();
-        setFeed(data);
-      } catch (err) {
-        console.error("Failed to fetch feed:", err);
-        setError(err.message);
-      } finally {
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000);
-      }
-    };
-
-    fetchFeed();
+    fetchFeed(0, true);
   }, [token, API]);
+
+  const handleLoadMore = () => {
+    const nextOffset = offset + LIMIT;
+    setOffset(nextOffset);
+    fetchFeed(nextOffset);
+  };
 
   return (
     <div className={styles.container}>
@@ -50,7 +88,18 @@ export default function Home() {
         {loading || userLoading ? (
           <SkeletonHome />
         ) : feed.length > 0 ? (
-          feed.map((post) => <PostCard key={post.id} post={post} />)
+          <>
+            {feed.map((post) => (
+              <PostCard key={post.id} post={post} />
+            ))}
+            <div ref={lastPostElementRef} className={styles.loadMoreContainer}>
+              {loadingMore ? (
+                <p className={styles.statusText}>Loading more activities...</p>
+              ) : !hasMore ? (
+                <p className={styles.endMessage}>You're all caught up!</p>
+              ) : null}
+            </div>
+          </>
         ) : (
           <div className={styles.emptyState}>
             <p>No runs yet. Join a club to see what's happening!</p>
