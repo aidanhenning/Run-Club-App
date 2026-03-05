@@ -1,6 +1,6 @@
 import db from "../client.js";
 
-export async function getFeed(userId) {
+export async function getFeed(userId, limit = 5, offset = 0) {
   const sql = `
   SELECT 
     -- Club Information
@@ -22,7 +22,7 @@ export async function getFeed(userId) {
     -- Formatting the INTERVAL to a simple string (e.g., "01:30:00")
     p.estimated_time::TEXT AS estimated_time,
 
-    -- Counts (Simple Sub-queries)
+    -- Counts
     (SELECT COUNT(*) FROM post_likes WHERE post_id = p.id) AS like_count,
     (SELECT COUNT(*) FROM post_comments WHERE post_id = p.id) AS comment_count,
     (SELECT COUNT(*) FROM post_attendees WHERE post_id = p.id) AS attendee_count
@@ -31,8 +31,9 @@ export async function getFeed(userId) {
   JOIN clubs c ON p.club_id = c.id
   JOIN club_memberships cm ON p.club_id = cm.club_id
   WHERE cm.user_id = $1
-  ORDER BY p.starts_at DESC;
-    `;
-  const { rows } = await db.query(sql, [userId]);
+  ORDER BY p.starts_at DESC
+  LIMIT $2 OFFSET $3;
+  `;
+  const { rows } = await db.query(sql, [userId, limit, offset]);
   return rows;
 }
