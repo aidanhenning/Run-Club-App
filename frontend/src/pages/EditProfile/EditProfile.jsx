@@ -1,5 +1,6 @@
 import styles from "@/pages/EditProfile/EditProfile.module.css";
 import { useAuth } from "@/context/AuthContext";
+import Header from "@/components/Header/Header";
 
 import { useParams, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
@@ -84,67 +85,10 @@ export default function EditProfile() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
+      <Header title="Edit Profile" showBack={true} />
+
       <form onSubmit={handleSubmit} className={styles.form}>
-        <label htmlFor="firstName" className={styles.label}>
-          First Name
-        </label>
-        <input
-          type="text"
-          id="firstName"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-          placeholder="First Name"
-          className={styles.inputField}
-        />
-        <label htmlFor="lastName" className={styles.label}>
-          Last Name
-        </label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-          placeholder="Last Name"
-          className={styles.inputField}
-        />
-        <label htmlFor="email" className={styles.label}>
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Enter Email"
-          className={styles.inputField}
-        />
-        <label htmlFor="password" className={styles.label}>
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Enter Password"
-          className={styles.inputField}
-        />
-        <label htmlFor="bio" className={styles.label}>
-          Bio
-        </label>
-        <textarea
-          id="bio"
-          name="bio"
-          value={formData.bio}
-          onChange={handleChange}
-          placeholder="bio"
-          className={styles.textarea}
-        ></textarea>
         <div className={styles.mediaUpload}>
           <label htmlFor="fileUpload" className={styles.uploadLabel}>
             <span className={styles.uploadLogo}>
@@ -159,18 +103,91 @@ export default function EditProfile() {
             />
           </label>
         </div>
-        <label htmlFor="location" className={styles.label}>
-          Location
-        </label>
-        <input
-          type="text"
-          id="location"
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-          placeholder="location"
-          className={styles.inputField}
-        />
+        <div className={styles.textFields}>
+          <div className={styles.row}>
+            <label htmlFor="firstName" className={styles.label}>
+              First Name
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              placeholder="First Name"
+              className={styles.inputField}
+            />
+          </div>
+          <div className={styles.row}>
+            <label htmlFor="lastName" className={styles.label}>
+              Last Name
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              placeholder="Last Name"
+              className={styles.inputField}
+            />
+          </div>
+          <div className={styles.row}>
+            <label htmlFor="bio" className={styles.label}>
+              Bio
+            </label>
+            <textarea
+              id="bio"
+              name="bio"
+              value={formData.bio}
+              onChange={handleChange}
+              placeholder="bio"
+              className={styles.textarea}
+            ></textarea>
+          </div>
+          <div className={styles.row}>
+            <label htmlFor="location" className={styles.label}>
+              Location
+            </label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              value={formData.location}
+              onChange={handleChange}
+              placeholder="location"
+              className={styles.inputField}
+            />
+          </div>
+          <div className={styles.row}>
+            <label htmlFor="email" className={styles.label}>
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter Email"
+              className={styles.inputField}
+            />
+          </div>
+          <div className={styles.row}>
+            <label htmlFor="password" className={styles.label}>
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Enter Password"
+              className={styles.inputField}
+            />
+          </div>
+        </div>
 
         <div className={styles.buttonGroup}>
           <button type="submit" disabled={loading} className={styles.saveBtn}>

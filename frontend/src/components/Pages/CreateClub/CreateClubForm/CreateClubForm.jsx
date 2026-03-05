@@ -76,7 +76,7 @@ export default function CreateClubForm({
             id="clubName"
             type="text"
             placeholder="Club Name"
-            className={styles.mainInput}
+            className={styles.inputField}
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />

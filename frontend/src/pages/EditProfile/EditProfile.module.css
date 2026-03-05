@@ -1,3 +1,16 @@
+.container {
+  min-height: 100vh;
+  padding-bottom: 3.75rem;
+  background-color: var(--color-bg-primary);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
 .mediaUpload {
   width: 6.5rem;
   aspect-ratio: 1/1;
@@ -24,4 +37,56 @@
 
 .hiddenInput {
   display: none;
+}
+
+.textFields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+}
+
+.label {
+  width: 30%;
+  padding: 1rem 0;
+  font-size: var(--font-size-xs);
+}
+
+.inputField,
+.textarea {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-bottom: 1px solid var(--color-bg-secondary);
+  font-size: var(--font-size-xs);
+  background: transparent;
+}
+
+.buttonGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  font-size: var(--font-size-xs);
+}
+
+.saveBtn {
+  width: 50%;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-brand-base);
+}
+
+.cancelBtn {
+  width: 50%;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-bg-tertiary);
 }

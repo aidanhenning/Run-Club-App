@@ -63,7 +63,7 @@ export default function CreatePostForm({
           <input
             type="text"
             placeholder="Title"
-            className={styles.mainInput}
+            className={styles.inputField}
             value={formData.title}
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
@@ -73,7 +73,7 @@ export default function CreatePostForm({
         <div className={styles.row}>
           <select
             value={formData.clubId}
-            className={styles.mainSelect}
+            className={styles.selectField}
             onChange={(e) =>
               setFormData({ ...formData, clubId: e.target.value })
             }
@@ -89,7 +89,7 @@ export default function CreatePostForm({
         <div className={styles.row}>
           <select
             value={formData.runType}
-            className={styles.mainSelect}
+            className={styles.selectField}
             onChange={(e) =>
               setFormData({ ...formData, runType: e.target.value })
             }
@@ -124,7 +124,7 @@ export default function CreatePostForm({
         <div className={styles.row}>
           <input
             type="datetime-local"
-            className={styles.mainInput}
+            className={styles.inputField}
             onChange={(e) =>
               setFormData({ ...formData, startsAt: e.target.value })
             }
@@ -135,7 +135,7 @@ export default function CreatePostForm({
             type="time"
             step="1"
             placeholder="00:00:00"
-            className={styles.mainInput}
+            className={styles.inputField}
             onChange={(e) =>
               setFormData({ ...formData, estimatedTime: e.target.value })
             }
@@ -146,7 +146,7 @@ export default function CreatePostForm({
             type="number"
             step="0.01"
             placeholder="0.00 mi"
-            className={styles.mainInput}
+            className={styles.inputField}
             onChange={(e) =>
               setFormData({ ...formData, distance: e.target.value })
             }
@@ -156,7 +156,7 @@ export default function CreatePostForm({
           <input
             type="number"
             placeholder="0 ft"
-            className={styles.mainInput}
+            className={styles.inputField}
             onChange={(e) =>
               setFormData({ ...formData, elevation: e.target.value })
             }
@@ -170,7 +170,7 @@ export default function CreatePostForm({
           <input
             type="text"
             placeholder="Location"
-            className={styles.mainInput}
+            className={styles.inputField}
             value={formData.address}
             onChange={(e) =>
               setFormData({ ...formData, address: e.target.value })
@@ -185,7 +185,7 @@ export default function CreatePostForm({
           <input
             type="text"
             placeholder="Bible Reference (eg. John 3:16)"
-            className={styles.mainInput}
+            className={styles.inputField}
             onChange={(e) =>
               setFormData({ ...formData, bibleReference: e.target.value })
             }
