@@ -116,7 +116,9 @@ export default function EditClub() {
 
         <div className={styles.textFields}>
           <div className={styles.row}>
-            <label htmlFor="clubName">Club Name</label>
+            <label htmlFor="clubName" className={styles.label}>
+              Club Name
+            </label>
             <input
               id="clubName"
               name="name"
@@ -127,7 +129,9 @@ export default function EditClub() {
             />
           </div>
           <div className={styles.row}>
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description" className={styles.label}>
+              Description
+            </label>
             <textarea
               id="description"
               name="description"
@@ -146,7 +150,7 @@ export default function EditClub() {
 
           <button
             type="button"
-            onClick={() => navigate(`/profile/${user.id}`)}
+            onClick={() => navigate(-1)}
             className={styles.cancelBtn}
           >
             Cancel

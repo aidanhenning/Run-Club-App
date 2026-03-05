@@ -195,7 +195,7 @@ export default function EditProfile() {
 
           <button
             type="button"
-            onClick={() => navigate(`/profile/${user.id}`)}
+            onClick={() => navigate(-1)}
             className={styles.cancelBtn}
           >
             Cancel
