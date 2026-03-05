@@ -2,8 +2,8 @@ import styles from "@/pages/EditProfile/EditProfile.module.css";
 import { useAuth } from "@/context/AuthContext";
 import Header from "@/components/Header/Header";
 
-import { useParams, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router";
 import { CiImageOn } from "react-icons/ci";
 
 export default function EditProfile() {
@@ -26,7 +26,6 @@ export default function EditProfile() {
   useEffect(() => {
     if (user) {
       if (id != user.id) {
-        console.log("Redirecting: URL id is", id, "but user.id is", user.id);
         navigate("/home");
         return;
       }
@@ -42,6 +41,23 @@ export default function EditProfile() {
       });
     }
   }, [user, id, navigate]);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleFileSelection = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // MOCK LOGIC: In a production app, upload 'files' to the cloud here
+    // and get a URL back. For now, we'll just pretend:
+    const mockUrl = "https://via.placeholder.com/150";
+    setFormData((prev) => ({ ...prev, profilePictureUrl: mockUrl }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,23 +81,6 @@ export default function EditProfile() {
     } catch (err) {
       console.error("Update failed:", err);
     }
-  };
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleFileSelection = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    // MOCK LOGIC: In a production app, upload 'files' to the cloud here
-    // and get a URL back. For now, we'll just pretend:
-    const mockUrl = "https://via.placeholder.com/150";
-    setFormData((prev) => ({ ...prev, profilePictureUrl: mockUrl }));
   };
 
   return (
