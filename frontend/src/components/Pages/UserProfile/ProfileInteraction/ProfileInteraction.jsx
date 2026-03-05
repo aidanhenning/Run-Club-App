@@ -60,9 +60,13 @@ export default function ProfileInteraction({
   return (
     <section className={styles.profileInteraction}>
       {isOwnProfile ? (
-        // TO DO:
         <>
-          <button className={styles.editBtn}>Edit Profile</button>
+          <button
+            onClick={() => navigate(`/profile/${profile.user.id}/edit`)}
+            className={styles.editBtn}
+          >
+            Edit Profile
+          </button>
           <button onClick={handleLogout} className={styles.logout}>
             Log Out
           </button>
