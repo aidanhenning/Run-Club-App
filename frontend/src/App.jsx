@@ -8,7 +8,9 @@ import CreateClub from "@/pages/CreateClub/CreateClub";
 import Search from "@/pages/Search/Search";
 import ClubsList from "@/pages/ClubsList/ClubsList";
 import ClubProfile from "@/pages/ClubProfile/ClubProfile";
+import EditClub from "@/pages/EditClub/EditClub";
 import UserProfile from "@/pages/UserProfile/UserProfile";
+import EditProfile from "@/pages/EditProfile/EditProfile";
 import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
 
 import { Route, Routes } from "react-router";
@@ -72,10 +74,26 @@ function App() {
           }
         />
         <Route
+          path="/clubs/:id/edit"
+          element={
+            <ProtectedRoute>
+              <EditClub />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/profile/:id"
           element={
             <ProtectedRoute>
               <UserProfile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile/:id/edit"
+          element={
+            <ProtectedRoute>
+              <EditProfile />
             </ProtectedRoute>
           }
         />

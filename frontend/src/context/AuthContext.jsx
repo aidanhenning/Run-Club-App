@@ -68,9 +68,35 @@ export function AuthProvider({ children }) {
     setToken(null);
   };
 
+  const refreshUser = async () => {
+    if (!token) return;
+
+    try {
+      const res = await fetch(`${API}/users/me`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (res.ok) {
+        const freshData = await res.json();
+        setUser(freshData);
+      }
+    } catch (err) {
+      console.error("Context Refresh Error:", err);
+    }
+  };
+
   return (
     <AuthContext.Provider
-      value={{ token, user, userLoading, login, register, logout, API }}
+      value={{
+        token,
+        user,
+        userLoading,
+        refreshUser,
+        login,
+        register,
+        logout,
+        API,
+      }}
     >
       {children}
     </AuthContext.Provider>
