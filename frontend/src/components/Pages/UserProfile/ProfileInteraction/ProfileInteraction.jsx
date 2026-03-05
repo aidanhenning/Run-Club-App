@@ -10,6 +10,7 @@ export default function ProfileInteraction({
   profile,
   setProfile,
   isOwnProfile,
+  logout,
 }) {
   const navigate = useNavigate();
 

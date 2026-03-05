@@ -61,6 +61,7 @@ export default function UserProfile() {
           profile={profile}
           setProfile={setProfile}
           isOwnProfile={isOwnProfile}
+          logout={logout}
         />
 
         <section className={styles.pictures}>

@@ -19,15 +19,11 @@ export default function CreateClubForm({
     // MOCK LOGIC: In a production app, upload 'files' to the cloud here
     // and get a URL back. For now, we'll just pretend:
     const mockUrl = "https://via.placeholder.com/150";
-    setFormData({ ...formData, logo: [mockUrl] });
+    setFormData({ ...formData, logo: mockUrl });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const payload = {
-      formData,
-    };
 
     try {
       const response = await fetch(`${API}/clubs`, {
@@ -36,12 +32,13 @@ export default function CreateClubForm({
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
         alert("Club Saved!");
-        navigate("/clubs");
+        const data = await response.json();
+        navigate(`/clubs/${data.id}`);
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.error}`);
