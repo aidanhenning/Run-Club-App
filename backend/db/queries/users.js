@@ -78,7 +78,7 @@ export async function searchUsers(userId, searchTerm) {
   return rows;
 }
 
-export async function updateUserById(userId, updates) {
+export async function updateUserById(targetUserId, currentUserId, updates) {
   const {
     firstName,
     lastName,
@@ -92,21 +92,22 @@ export async function updateUserById(userId, updates) {
   const sql = `
   UPDATE users
   SET 
-    first_name = COALESCE($2, first_name), 
-    last_name = COALESCE($3, last_name), 
-    email = COALESCE($4, email), 
-    password = COALESCE($5, password), 
-    bio = COALESCE($6, bio), 
-    profile_picture_url = COALESCE($7, profile_picture_url), 
-    location = COALESCE($8, location)
-  WHERE id = $1 
+    first_name = COALESCE($3, first_name), 
+    last_name = COALESCE($4, last_name), 
+    email = COALESCE($5, email), 
+    password = COALESCE($6, password), 
+    bio = COALESCE($7, bio), 
+    profile_picture_url = COALESCE($8, profile_picture_url), 
+    location = COALESCE($9, location)
+  WHERE id = $1 AND id = $2
   RETURNING id, first_name, last_name, email, bio, profile_picture_url, location;
   `;
 
   const {
     rows: [user],
   } = await db.query(sql, [
-    userId,
+    targetUserId,
+    currentUserId,
     firstName || null,
     lastName || null,
     email || null,
@@ -115,6 +116,7 @@ export async function updateUserById(userId, updates) {
     profilePictureUrl || null,
     location || null,
   ]);
+
   return user;
 }
 

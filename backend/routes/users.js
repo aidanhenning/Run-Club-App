@@ -117,7 +117,11 @@ router.put("/:id", requireUser, async (req, res) => {
         .json({ error: "Unauthorized to update this profile" });
     }
 
-    const updatedUser = await updateUserById(req.params.id, req.body);
+    const updatedUser = await updateUserById(
+      req.params.id,
+      req.user.id,
+      req.body,
+    );
     res.json(updatedUser);
   } catch (err) {
     res.status(500).json({ error: "Update failed" });

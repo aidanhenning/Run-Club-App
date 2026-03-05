@@ -4,6 +4,7 @@ const router = express.Router();
 import {
   createClub,
   getClubsByOwner,
+  getClubById,
   searchClubs,
   updateClub,
   removeClub,
@@ -52,13 +53,24 @@ router.get("/owned", requireUser, async (req, res) => {
   }
 });
 
+router.get("/:id/basic", requireUser, async (req, res) => {
+  try {
+    const club = await getClubById(req.params.id);
+    if (!club) return res.status(404).json({ error: "Club not found" });
+
+    res.json(club);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 router.get("/:id", requireUser, async (req, res) => {
   try {
     const userId = req.user.id;
     const profile = await getClubProfile(req.params.id, userId);
     if (!profile.club) return res.status(404).json({ error: "Club not found" });
     res.json(profile);
-    console.log(profile);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to fetch club profile" });
@@ -70,9 +82,7 @@ router.put("/:id", requireUser, async (req, res) => {
     const updatedClub = await updateClub(req.params.id, req.user.id, req.body);
 
     if (!updatedClub) {
-      return res
-        .status(403)
-        .json({ error: "Unauthorized: You do not own this club" });
+      return res.status(403).json({ error: "Unauthorized or club not found" });
     }
 
     res.json(updatedClub);
