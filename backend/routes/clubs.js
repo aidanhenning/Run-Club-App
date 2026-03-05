@@ -14,9 +14,16 @@ import requireUser from "../middleware/requireUser.js";
 router.post("/", async (req, res) => {
   try {
     const { name, description, logo } = req.body;
-    const newClub = await createClub(name, description, logo, req.user.id);
+    const owner = req.user.id;
+    const newClub = await createClub({
+      name,
+      description,
+      logo,
+      owner,
+    });
     res.status(201).json(newClub);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to create club" });
   }
 });
@@ -28,6 +35,7 @@ router.get("/search", requireUser, async (req, res) => {
     const clubs = await searchClubs(userId, searchTerm || "");
     res.json(clubs);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch clubs" });
   }
 });
@@ -39,6 +47,7 @@ router.get("/owned", requireUser, async (req, res) => {
     if (!clubs) return res.status(404).json({ error: "Clubs not found" });
     res.json(clubs);
   } catch (error) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch your clubs" });
   }
 });
@@ -51,6 +60,7 @@ router.get("/:id", requireUser, async (req, res) => {
     res.json(profile);
     console.log(profile);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch club profile" });
   }
 });
@@ -67,6 +77,7 @@ router.put("/:id", requireUser, async (req, res) => {
 
     res.json(updatedClub);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Update failed" });
   }
 });
@@ -83,6 +94,7 @@ router.delete("/:id", requireUser, async (req, res) => {
 
     res.json({ message: "Club deleted successfully" });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Delete failed" });
   }
 });

@@ -1,17 +1,28 @@
 import db from "../client.js";
 
 export async function createClub({ name, description, logo, owner }) {
-  const sql = `
-  INSERT INTO clubs
-    (name, description, logo, owner)
-  VALUES
-    ($1, $2, $3, $4)
-  RETURNING *
+  const clubSql = `
+    INSERT INTO clubs (name, description, logo, owner)
+    VALUES ($1, $2, $3, $4)
+    RETURNING *;
   `;
   const {
-    rows: [club],
-  } = await db.query(sql, [name, description, logo, owner]);
-  return club;
+    rows: [newClub],
+  } = await db.query(clubSql, [name, description, logo, owner]);
+
+  const memberSql = `
+    INSERT INTO club_memberships (club_id, user_id)
+    VALUES ($1, $2)
+    RETURNING *;
+  `;
+  const {
+    rows: [membership],
+  } = await db.query(memberSql, [newClub.id, owner]);
+
+  return {
+    ...newClub,
+    membershipId: membership.id,
+  };
 }
 
 export async function getClubsByOwner(userId) {
