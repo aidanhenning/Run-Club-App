@@ -78,26 +78,8 @@ export async function searchUsers(userId, searchTerm) {
   return rows;
 }
 
-export async function updateUserById(
-  userId,
-  firstName,
-  lastName,
-  email,
-  password,
-  bio,
-  profilePictureUrl,
-  location,
-) {
-  const sql = `
-  UPDATE users
-  SET first_name = $2, last_name = $3, email = $4, password = $5, bio = $6, profile_picture_url = $7, location = $8
-  WHERE id = $1 
-  RETURNING *
-  `;
+export async function updateUserById(userId, updates) {
   const {
-    rows: [user],
-  } = await db.query(sql, [
-    userId,
     firstName,
     lastName,
     email,
@@ -105,6 +87,33 @@ export async function updateUserById(
     bio,
     profilePictureUrl,
     location,
+  } = updates;
+
+  const sql = `
+  UPDATE users
+  SET 
+    first_name = COALESCE($2, first_name), 
+    last_name = COALESCE($3, last_name), 
+    email = COALESCE($4, email), 
+    password = COALESCE($5, password), 
+    bio = COALESCE($6, bio), 
+    profile_picture_url = COALESCE($7, profile_picture_url), 
+    location = COALESCE($8, location)
+  WHERE id = $1 
+  RETURNING id, first_name, last_name, email, bio, profile_picture_url, location;
+  `;
+
+  const {
+    rows: [user],
+  } = await db.query(sql, [
+    userId,
+    firstName || null,
+    lastName || null,
+    email || null,
+    password || null,
+    bio || null,
+    profilePictureUrl || null,
+    location || null,
   ]);
   return user;
 }
@@ -113,7 +122,7 @@ export async function removeUser(userId) {
   const sql = `
   DELETE FROM users
   WHERE id = $1
-  RETURNING*
+  RETURNING *
   `;
   const {
     rows: [user],
