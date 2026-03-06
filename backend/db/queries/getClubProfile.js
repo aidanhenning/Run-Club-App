@@ -4,7 +4,7 @@ export async function getClubProfile(clubId, userId) {
   // 1. Get the Header Info (Club details + the user's personal membership stats)
   const clubHeaderSql = `
     SELECT 
-      id, name, logo, description,
+      id, name, logo, description, owner,
       -- Count all members in this club
       (SELECT COUNT(*)::int FROM club_memberships WHERE club_id = $1) AS member_count,
       -- Check if the current viewer is a member (returns true/false)
