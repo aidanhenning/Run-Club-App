@@ -13,6 +13,7 @@ router.get("/:commentId", requireUser, async (req, res) => {
     const likes = await getCommentLikesByCommentId(req.params.commentId);
     res.json(likes);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch likes" });
   }
 });
@@ -30,6 +31,7 @@ router.post("/:commentId", requireUser, async (req, res) => {
     }
     res.status(201).json(like);
   } catch (err) {
+    console.error(err);
     res.status(400).json({ error: "Already liked or comment does not exist." });
   }
 });
@@ -44,6 +46,7 @@ router.delete("/:commentId", requireUser, async (req, res) => {
     }
     res.json({ message: "Comment unliked." });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to remove like." });
   }
 });

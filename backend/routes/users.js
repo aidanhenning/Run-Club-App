@@ -34,12 +34,12 @@ router.post(
       const token = createToken({ id: user.id });
       delete user.password;
       res.status(201).json({ token, user });
-    } catch (error) {
-      if (error.code === "23505") {
+    } catch (err) {
+      if (err.code === "23505") {
         return res.status(409).json({ error: "Email already in use" });
       }
 
-      console.error(error);
+      console.error(err);
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
@@ -63,6 +63,7 @@ router.post("/login", requireBody(["email", "password"]), async (req, res) => {
     delete user.password;
     res.status(200).json({ token, user });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
@@ -74,6 +75,7 @@ router.get("/search", requireUser, async (req, res) => {
     const users = await searchUsers(userId, searchTerm || "");
     res.json(users);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to search users" });
   }
 });
@@ -84,6 +86,7 @@ router.get("/me", requireUser, async (req, res) => {
     delete user.password;
     res.json(user);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch user data" });
   }
 });
@@ -104,7 +107,7 @@ router.get("/:id", requireUser, async (req, res) => {
     }
     res.json(profile);
   } catch (err) {
-    console.error("Profile Route Error:", err);
+    console.error(err);
     res.status(500).json({ error: "Database query failed" });
   }
 });
@@ -124,6 +127,7 @@ router.put("/:id", requireUser, async (req, res) => {
     );
     res.json(updatedUser);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Update failed" });
   }
 });
@@ -139,6 +143,7 @@ router.delete("/:id", requireUser, async (req, res) => {
     const deleted = await removeUser(req.params.id);
     res.json({ message: "User deleted successfully", user: deleted });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Delete failed" });
   }
 });

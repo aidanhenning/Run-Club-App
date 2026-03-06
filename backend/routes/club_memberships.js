@@ -14,6 +14,7 @@ router.get("/", requireUser, async (req, res) => {
     const clubs = await getClubMembershipsByUserId(userId);
     res.json(clubs);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch your memberships" });
   }
 });
@@ -25,6 +26,7 @@ router.post("/:id", requireUser, async (req, res) => {
     const membership = await createClubMembership({ userId, clubId });
     res.status(201).json(membership);
   } catch (err) {
+    console.error(err);
     res
       .status(400)
       .json({ error: "Could not join club. You might already be a member." });
@@ -41,6 +43,7 @@ router.delete("/:id", requireUser, async (req, res) => {
     }
     res.json({ message: "Successfully left the club", membership: deleted });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to leave club" });
   }
 });

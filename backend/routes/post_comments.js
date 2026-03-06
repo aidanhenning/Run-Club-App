@@ -14,6 +14,7 @@ router.get("/:postId", requireUser, async (req, res) => {
     const comments = await getPostCommentsByPostId(req.params.postId);
     res.json(comments);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch comments" });
   }
 });
@@ -33,6 +34,7 @@ router.post("/", requireUser, async (req, res) => {
     }
     res.status(201).json(comment);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Comment failed" });
   }
 });
@@ -51,6 +53,7 @@ router.put("/:id", requireUser, async (req, res) => {
     }
     res.json(updated);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Update failed" });
   }
 });
@@ -65,6 +68,7 @@ router.delete("/:id", requireUser, async (req, res) => {
     }
     res.json({ message: "Comment deleted" });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Delete failed" });
   }
 });

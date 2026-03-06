@@ -13,6 +13,7 @@ router.get("/:postId", requireUser, async (req, res) => {
     const pictures = await getPostPicturesByPostId(req.params.postId);
     res.json(pictures);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch pictures" });
   }
 });
@@ -49,6 +50,7 @@ router.delete("/:id", requireUser, async (req, res) => {
     }
     res.json({ message: "Picture removed" });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Delete failed" });
   }
 });

@@ -14,6 +14,7 @@ router.get("/followers", requireUser, async (req, res) => {
     const followers = await getFollowers(req.user.id);
     res.json(followers);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch followers" });
   }
 });
@@ -37,6 +38,7 @@ router.post("/:id", requireUser, async (req, res) => {
     await createFollower({ followerId, followedId });
     res.status(201).json({ success: true, message: "User followed" });
   } catch (err) {
+    console.error(err);
     res.status(400).json({ error: "Already following or user not found" });
   }
 });
@@ -48,6 +50,7 @@ router.delete("/:id", requireUser, async (req, res) => {
     await removeFollower(followerId, followedId);
     res.json({ success: true, message: "User unfollowed" });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to unfollow user" });
   }
 });

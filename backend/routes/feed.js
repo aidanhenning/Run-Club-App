@@ -13,8 +13,8 @@ router.get("/", requireUser, async (req, res) => {
     const posts = await getFeed(userId, limit, offset);
     res.status(200).json(posts);
   } catch (err) {
-    res.status(500).json({ error: "Failed to fetch feed" });
     console.error(err);
+    res.status(500).json({ error: "Failed to fetch feed" });
   }
 });
 

@@ -41,7 +41,7 @@ router.post("/", requireUser, async (req, res) => {
 
     res.status(201).json(newPost);
   } catch (err) {
-    console.error("Error creating post with images:", err);
+    console.error(err);
     res.status(500).json({ error: "Failed to create post" });
   }
 });
@@ -52,6 +52,7 @@ router.get("/:id", requireUser, async (req, res) => {
     if (!post) return res.status(404).json({ error: "Post not found" });
     res.json(post);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch post" });
   }
 });
@@ -71,6 +72,7 @@ router.put("/:id", requireUser, async (req, res) => {
     }
     res.json(updatedPost);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Update failed" });
   }
 });
@@ -86,6 +88,7 @@ router.delete("/:id", requireUser, async (req, res) => {
     }
     res.json({ message: "Post deleted successfully", post: deletedPost });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Delete failed" });
   }
 });

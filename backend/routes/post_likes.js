@@ -13,6 +13,7 @@ router.get("/:postId", requireUser, async (req, res) => {
     const likes = await getPostLikesByPostId(req.params.postId);
     res.json(likes);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch likes" });
   }
 });
@@ -30,6 +31,7 @@ router.post("/:postId", requireUser, async (req, res) => {
     }
     res.status(201).json(like);
   } catch (err) {
+    console.error(err);
     res.status(400).json({ error: "Already liked this post." });
   }
 });
@@ -44,6 +46,7 @@ router.delete("/:postId", requireUser, async (req, res) => {
     }
     res.json({ message: "Post unliked." });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to remove like." });
   }
 });

@@ -13,6 +13,7 @@ router.get("/:postId", requireUser, async (req, res) => {
     const attendees = await getPostAttendeesByPostId(req.params.postId);
     res.json(attendees);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to fetch attendees" });
   }
 });
@@ -30,6 +31,7 @@ router.post("/:postId", requireUser, async (req, res) => {
     }
     res.status(201).json(attendee);
   } catch (err) {
+    console.error(err);
     res.status(400).json({ error: "Already RSVP'd or post does not exist." });
   }
 });
@@ -44,6 +46,7 @@ router.delete("/:postId", requireUser, async (req, res) => {
     }
     res.json({ message: "Successfully left the run." });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Failed to remove RSVP." });
   }
 });
