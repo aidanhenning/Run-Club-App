@@ -33,6 +33,20 @@ export default function PostCard({ post }) {
     return `${datePart} at ${timePart}`;
   };
 
+  const handleCardClick = () => {
+    navigate(`/posts/${post.id}`);
+  };
+
+  const handleHeaderClick = (e) => {
+    e.stopPropagation();
+    navigate(`/clubs/${post.club_id}`);
+  };
+
+  const handleLikeClick = (e) => {
+    e.stopPropagation();
+    handleLikeToggle();
+  };
+
   const handleLikeToggle = async () => {
     const previouslyLiked = isLiked;
     const previousCount = likeCount;
@@ -61,11 +75,8 @@ export default function PostCard({ post }) {
   };
 
   return (
-    <article className={styles.card}>
-      <section
-        className={styles.heading}
-        onClick={() => navigate(`/clubs/${post.club_id}`)}
-      >
+    <article className={styles.card} onClick={handleCardClick}>
+      <section className={styles.heading} onClick={handleHeaderClick}>
         <div>
           {post?.club_logo ? (
             <img
@@ -115,9 +126,12 @@ export default function PostCard({ post }) {
         </div>
       </div>
 
-      <div className={styles.postInteraction}>
+      <div
+        className={styles.postInteraction}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className={styles.likes}>
-          <button onClick={handleLikeToggle} className={styles.likeBtn}>
+          <button onClick={handleLikeClick} className={styles.likeBtn}>
             {isLiked ? <FaHeart /> : <FaRegHeart />}
           </button>
           <span>{likeCount}</span>
