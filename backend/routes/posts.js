@@ -1,12 +1,8 @@
 import express from "express";
 const router = express.Router();
 
-import {
-  createPost,
-  getPostById,
-  updatePostById,
-  removePost,
-} from "../db/queries/posts.js";
+import { createPost, updatePostById, removePost } from "../db/queries/posts.js";
+import { getPostDetails } from "../db/queries/getPostDetails.js";
 import requireUser from "../middleware/requireUser.js";
 
 router.post("/", requireUser, async (req, res) => {
@@ -48,7 +44,7 @@ router.post("/", requireUser, async (req, res) => {
 
 router.get("/:id", requireUser, async (req, res) => {
   try {
-    const post = await getPostById(req.params.id);
+    const post = await getPostDetails(req.params.id, req.user.id);
     if (!post) return res.status(404).json({ error: "Post not found" });
     res.json(post);
   } catch (err) {
