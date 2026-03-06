@@ -30,7 +30,7 @@ export async function getFeed(userId, limit = 5, offset = 0) {
   FROM posts p
   JOIN clubs c ON p.club_id = c.id
   JOIN club_memberships cm ON p.club_id = cm.club_id
-  WHERE cm.user_id = $1
+  WHERE cm.user_id = $1 AND p.starts_at < NOW()
   ORDER BY p.starts_at DESC
   LIMIT $2 OFFSET $3;
   `;

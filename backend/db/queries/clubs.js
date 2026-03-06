@@ -61,7 +61,7 @@ export async function searchClubs(userId, searchTerm) {
   WHERE c.name ILIKE $2
   GROUP BY c.id, c.name, c.logo
   ORDER BY 
-    is_member DESC, -- Prioritize joined clubs
+    is_member DESC,
     c.name ASC;
   `;
   const { rows } = await db.query(sql, [userId, `%${searchTerm}%`]);
