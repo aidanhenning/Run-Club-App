@@ -1,10 +1,16 @@
 import styles from "@/components/Pages/UserProfile/ClubsList/ClubsList.module.css";
 
+import { useNavigate } from "react-router";
 import { MdFlag } from "react-icons/md";
 
 function ClubItem({ club }) {
+  const navigate = useNavigate();
+
   return (
-    <div className={styles.clubCard}>
+    <div
+      className={styles.clubCard}
+      onClick={() => navigate(`/clubs/${club.id}`)}
+    >
       {club?.logo ? (
         <img
           src={club.logo}
