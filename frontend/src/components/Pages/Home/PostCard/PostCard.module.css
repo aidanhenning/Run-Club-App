@@ -93,6 +93,31 @@
   color: var(--color-text-secondary);
 }
 
+.postInteraction {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.likes,
+.comments {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.likeBtn,
+.commentBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  background-color: transparent;
+}
+
 .bibleVerse {
   padding: 0.25rem 0;
 }
@@ -108,9 +133,4 @@
   font-size: var(--font-size-xs);
   line-height: var(--letter-spacing-tight);
   font-style: italic;
-}
-
-.comments {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
 }

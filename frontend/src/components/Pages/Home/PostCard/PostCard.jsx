@@ -1,10 +1,18 @@
 import styles from "@/components/Pages/Home/PostCard/PostCard.module.css";
+import { useAuth } from "@/context/AuthContext";
 
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { MdFlag } from "react-icons/md";
+import { FaRegHeart, FaHeart, FaRegComment } from "react-icons/fa";
 
 export default function PostCard({ post }) {
+  const { API, token } = useAuth();
   const navigate = useNavigate();
+
+  const [isLiked, setIsLiked] = useState(post.id_liked);
+  const [likeCount, setLikeCount] = useState(Number(post.like_count));
+
   console.log(post);
 
   const formatPostDate = (dateString) => {
@@ -23,6 +31,33 @@ export default function PostCard({ post }) {
     });
 
     return `${datePart} at ${timePart}`;
+  };
+
+  const handleLikeToggle = async () => {
+    const previouslyLiked = isLiked;
+    const previousCount = likeCount;
+
+    setIsLiked(!previouslyLiked);
+    setLikeCount((prev) => (previouslyLiked ? prev - 1 : prev + 1));
+
+    try {
+      const method = previouslyLiked ? "DELETE" : "POST";
+      const response = await fetch(`${API}/post-likes/${post.id}`, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update like");
+      }
+    } catch (err) {
+      console.error(err);
+      setIsLiked(previouslyLiked);
+      setLikeCount(previousCount);
+    }
   };
 
   return (
@@ -80,12 +115,25 @@ export default function PostCard({ post }) {
         </div>
       </div>
 
+      <div className={styles.postInteraction}>
+        <div className={styles.likes}>
+          <button onClick={handleLikeToggle} className={styles.likeBtn}>
+            {isLiked ? <FaHeart /> : <FaRegHeart />}
+          </button>
+          <span>{likeCount}</span>
+        </div>
+        <div className={styles.comments}>
+          <span className={styles.commentBtn}>
+            <FaRegComment />
+          </span>
+          <span>{post.comment_count}</span>
+        </div>
+      </div>
+
       <div className={styles.bibleVerse}>
         <p className={styles.reference}>{post.bible_reference}</p>
         <p className={styles.verseText}>{post.bible_text}</p>
       </div>
-
-      <div className={styles.comments}>View all comments</div>
     </article>
   );
 }
