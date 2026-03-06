@@ -3,6 +3,7 @@ import Entry from "@/pages/Entry/Entry";
 import Login from "@/pages/Login/Login";
 import Register from "@/pages/Register/Register";
 import Home from "@/pages/Home/Home";
+import PostDetails from "@/pages/PostDetails/PostDetails";
 import CreatePost from "@/pages/CreatePost/CreatePost";
 import CreateClub from "@/pages/CreateClub/CreateClub";
 import Search from "@/pages/Search/Search";
@@ -30,6 +31,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/posts/:id"
+          element={
+            <ProtectedRoute>
+              <PostDetails />
             </ProtectedRoute>
           }
         />
