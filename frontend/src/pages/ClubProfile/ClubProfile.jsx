@@ -5,7 +5,7 @@ import BottomNav from "@/components/BottomNav/BottomNav";
 import ClubHeader from "@/components/Pages/ClubProfile/ClubHeader/ClubHeader";
 import EventList from "@/components/Pages/ClubProfile/EventList/EventList";
 import MemberList from "@/components/Pages/ClubProfile/MemberList/MemberList";
-import MemberToggle from "@/components/Pages/ClubProfile/MemberToggle/MemberToggle";
+import ClubInteraction from "@/components/Pages/ClubProfile/ClubInteraction/ClubInteraction";
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -55,7 +55,13 @@ export default function ClubProfile() {
         <ClubHeader club={club.club} />
         <EventList club={club} loading={loading} />
         <MemberList club={club} loading={loading} />
-        <MemberToggle API={API} token={token} club={club} setClub={setClub} />
+        <ClubInteraction
+          API={API}
+          user={user}
+          token={token}
+          club={club}
+          setClub={setClub}
+        />
       </main>
 
       <BottomNav />

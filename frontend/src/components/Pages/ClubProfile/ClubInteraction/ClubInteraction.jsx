@@ -1,8 +1,15 @@
-import styles from "@/components/Pages/ClubProfile/MemberToggle/MemberToggle.module.css";
+import styles from "@/components/Pages/ClubProfile/ClubInteraction/ClubInteraction.module.css";
 
-export default function MemberToggle({ API, token, club, setClub }) {
+import { useNavigate } from "react-router";
+
+export default function ClubInteraction({ API, user, token, club, setClub }) {
+  const isOwnClub = club?.club?.owner === user?.id;
+  const navigate = useNavigate();
+
   const handleMemberToggle = async () => {
     if (!club?.club) return;
+
+    console.log(club);
 
     const { is_member, id } = club.club;
     const method = is_member ? "DELETE" : "POST";
@@ -35,6 +42,14 @@ export default function MemberToggle({ API, token, club, setClub }) {
 
   return (
     <div className={styles.clubAction}>
+      {isOwnClub && (
+        <button
+          onClick={() => navigate(`/clubs/${club.club.id}/edit`)}
+          className={styles.editBtn}
+        >
+          Edit Club
+        </button>
+      )}
       <button
         onClick={handleMemberToggle}
         className={club?.club?.is_member ? styles.leave : styles.join}
