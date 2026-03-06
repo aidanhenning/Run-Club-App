@@ -5,6 +5,25 @@ import { MdFlag } from "react-icons/md";
 
 export default function PostCard({ post }) {
   const navigate = useNavigate();
+  console.log(post);
+
+  const formatPostDate = (dateString) => {
+    const date = new Date(dateString);
+
+    const datePart = date.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+
+    const timePart = date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+
+    return `${datePart} at ${timePart}`;
+  };
 
   return (
     <article className={styles.card}>
@@ -23,7 +42,13 @@ export default function PostCard({ post }) {
             <MdFlag className={styles.placeholder} />
           )}
         </div>
-        <span className={styles.clubName}>{post.club_name}</span>
+        <div className={styles.headingText}>
+          <span className={styles.clubName}>{post.club_name}</span>
+          <span className={styles.startingTime}>
+            {formatPostDate(post.starts_at)}
+          </span>
+          <span className={styles.address}>{post.address}</span>
+        </div>
       </section>
 
       <section>

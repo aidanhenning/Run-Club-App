@@ -31,9 +31,25 @@
   background-color: var(--color-bg-secondary);
 }
 
+.headingText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
 .clubName {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
+}
+
+.startingTime {
+  font-size: var(--font-size-xxs);
+  color: var(--color-text-tertiary);
+}
+
+.address {
+  font-size: var(--font-size-xxs);
+  color: var(--color-text-tertiary);
 }
 
 .title {
