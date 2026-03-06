@@ -45,7 +45,7 @@ export default function CreatePostForm({
 
       if (response.ok) {
         alert("Activity Saved!");
-        navigate("/");
+        navigate("/home");
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.error}`);
