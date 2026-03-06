@@ -22,6 +22,11 @@ export async function getFeed(userId, limit = 5, offset = 0) {
     -- Formatting the INTERVAL to a simple string (e.g., "01:30:00")
     p.estimated_time::TEXT AS estimated_time,
 
+    EXISTS (
+      SELECT 1 FROM post_likes 
+      WHERE post_id = p.id AND user_id = $1
+    ) AS is_liked,
+
     -- Counts
     (SELECT COUNT(*) FROM post_likes WHERE post_id = p.id) AS like_count,
     (SELECT COUNT(*) FROM post_comments WHERE post_id = p.id) AS comment_count,
