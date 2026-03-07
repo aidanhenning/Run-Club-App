@@ -43,7 +43,8 @@ export async function getPostDetails(postId, userId) {
     (SELECT COALESCE(json_agg(json_build_object(
         'user_id', u.id,
         'profile_picture_url', u.profile_picture_url,
-        'first_name', u.first_name
+        'first_name', u.first_name,
+        'last_name', u.last_name
       )), '[]')
      FROM post_attendees pa
      JOIN users u ON pa.user_id = u.id
