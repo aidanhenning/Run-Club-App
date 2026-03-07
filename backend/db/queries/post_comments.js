@@ -2,13 +2,27 @@ import db from "../client.js";
 
 export async function createPostComment({ postId, userId, content }) {
   const sql = `
-    INSERT INTO post_comments (post_id, user_id, content)
-    SELECT $1, $2, $3
-    FROM posts p
-    JOIN club_memberships cm ON p.club_id = cm.club_id
-    WHERE p.id = $1 AND cm.user_id = $2
-    RETURNING *;
+    WITH inserted_comment AS (
+      INSERT INTO post_comments (post_id, user_id, content)
+      SELECT $1, $2, $3
+      FROM posts p
+      JOIN club_memberships cm ON p.club_id = cm.club_id
+      WHERE p.id = $1 AND cm.user_id = $2
+      RETURNING *
+    )
+    SELECT 
+      ic.*, 
+      u.first_name, 
+      u.last_name, 
+      u.profile_picture_url,
+      -- We manually add these since a new comment has 0 likes
+      0 AS comment_like_count,
+      false AS is_liked,
+      true AS is_my_comment
+    FROM inserted_comment ic
+    JOIN users u ON ic.user_id = u.id;
   `;
+
   const {
     rows: [postComment],
   } = await db.query(sql, [postId, userId, content]);
