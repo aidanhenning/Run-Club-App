@@ -21,15 +21,24 @@ export default function RsvpList({ post }) {
       </h3>
 
       <div className={styles.peopleIcons}>
-        {displayAttendees.map((person) => (
-          <img
-            key={person.user_id}
-            src={person.profile_picture_url}
-            alt={person.first_name}
-            onClick={() => navigate(`/profile/${person.user_id}`)}
-            className={styles.peopleIcon}
-          />
-        ))}
+        {displayAttendees.map((person) =>
+          person?.profile_picture_url ? (
+            <img
+              key={person.user_id}
+              src={person.profile_picture_url}
+              alt={`${person.first_name}'s profile picture`}
+              onClick={() => navigate(`/profile/${person.user_id}`)}
+              className={styles.profileImg}
+            />
+          ) : (
+            <div
+              className={styles.profileInitial}
+              onClick={() => navigate(`/profile/${person.user_id}`)}
+            >
+              {user?.first_name.charAt(0).toUpperCase()}
+            </div>
+          ),
+        )}
         {post?.attendees?.length > 5 && (
           <div
             className={styles.moreCircle}

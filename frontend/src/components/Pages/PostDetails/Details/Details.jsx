@@ -84,12 +84,21 @@ export default function Details({ post }) {
           </span>
           <span>Hosted by</span>
         </h3>
-        <img
-          src={post.owner_profile_picture}
-          alt={`${post.owner_first_name} ${post.owner_last_name}'s profile picture`}
-          onClick={() => navigate(`/profile/${post.club_owner_id}`)}
-          className={styles.profilePicture}
-        />
+        {post?.owner_profile_picture ? (
+          <img
+            src={post.owner_profile_picture}
+            alt={`${post.owner_first_name}'s profile picture`}
+            onClick={() => navigate(`/profile/${post.club_owner_id}`)}
+            className={styles.profileImg}
+          />
+        ) : (
+          <div
+            className={styles.profileInitial}
+            onClick={() => navigate(`/profile/${post.club_owner_id}`)}
+          >
+            {post?.owner_first_name?.charAt(0).toUpperCase()}
+          </div>
+        )}
       </div>
     </section>
   );

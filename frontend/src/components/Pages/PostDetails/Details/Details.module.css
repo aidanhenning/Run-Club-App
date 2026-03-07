@@ -86,14 +86,23 @@
   font-size: var(--font-size-sm);
 }
 
-.profilePicture {
+.profileImg,
+.profileInitial {
   width: 2rem;
   height: 2rem;
-  aspect-ratio: 1/1;
+  margin-left: 1.25rem;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-  margin-left: 1.25rem;
+}
+
+.profileInitial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  background-color: var(--color-brand-base);
 }
 
 .location {

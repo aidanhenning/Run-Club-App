@@ -1,15 +1,9 @@
 import styles from "@/components/Pages/PostDetails/Comments/Comments.module.css";
 
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { FaEllipsisH, FaHeart, FaRegHeart } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
-
-const formatCommentDate = (dateString) => {
-  const diffInDays = Math.floor(
-    (new Date() - new Date(dateString)) / (1000 * 60 * 60 * 24),
-  );
-  return diffInDays < 1 ? "today" : `${diffInDays}d`;
-};
 
 export default function Comments({
   comments,
@@ -64,15 +58,34 @@ export default function Comments({
 }
 
 function CommentItem({ comment, onDelete, onLike }) {
+  const navigate = useNavigate();
+
   const [showMenu, setShowMenu] = useState(false);
+
+  const formatCommentDate = (dateString) => {
+    const diffInDays = Math.floor(
+      (new Date() - new Date(dateString)) / (1000 * 60 * 60 * 24),
+    );
+    return diffInDays < 1 ? "today" : `${diffInDays}d`;
+  };
 
   return (
     <div className={styles.commentItem}>
-      <img
-        src={comment.profile_picture_url}
-        className={styles.avatar}
-        alt="Profile"
-      />
+      {comment?.profile_picture_url ? (
+        <img
+          src={comment.profile_picture_url}
+          alt={`${comment.first_name}'s profile picture`}
+          onClick={() => navigate(`/profile/${comment.user_id}`)}
+          className={styles.profileImg}
+        />
+      ) : (
+        <div
+          className={styles.profileInitial}
+          onClick={() => navigate(`/profile/${comment.user_id}`)}
+        >
+          {user?.first_name.charAt(0).toUpperCase()}
+        </div>
+      )}
 
       <div className={styles.body}>
         <div className={styles.header}>

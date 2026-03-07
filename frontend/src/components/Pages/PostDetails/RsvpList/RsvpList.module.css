@@ -22,13 +22,22 @@
   margin-left: 1.25rem;
 }
 
-.peopleIcon {
+.profileImg,
+.profileInitial {
   width: 2rem;
   height: 2rem;
-  aspect-ratio: 1/1;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
+}
+
+.profileInitial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  background-color: var(--color-brand-base);
 }
 
 .moreCircle {

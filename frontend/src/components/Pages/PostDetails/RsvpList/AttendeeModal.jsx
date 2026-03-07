@@ -27,11 +27,21 @@ export default function AttendeeModal({ isOpen, onClose, attendees }) {
                 onClose();
               }}
             >
-              <img
-                src={person.profile_picture_url}
-                alt={person.first_name}
-                className={styles.avatar}
-              />
+              {person?.profile_picture_url ? (
+                <img
+                  src={person.profile_picture_url}
+                  alt={`${person.first_name}'s profile picture`}
+                  onClick={() => navigate(`/profile/${person.user_id}`)}
+                  className={styles.profileImg}
+                />
+              ) : (
+                <div
+                  className={styles.profileInitial}
+                  onClick={() => navigate(`/profile/${person.user_id}`)}
+                >
+                  {user?.first_name.charAt(0).toUpperCase()}
+                </div>
+              )}
               <span className={styles.userName}>
                 {person.first_name} {person.last_name || ""}
               </span>
