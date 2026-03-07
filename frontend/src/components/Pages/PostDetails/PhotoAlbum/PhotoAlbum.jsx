@@ -5,7 +5,10 @@ import PictureCard from "@/components/Pages/UserProfile/PictureCard/PictureCard"
 export default function PhotoAlbum({ pictures, loading }) {
   return (
     <section className={styles.pictures}>
-      <h3 className={styles.picturesTitle}>Photo Album</h3>
+      <h3 className={styles.picturesTitle}>
+        <span>Photo Album</span>
+        <span className={styles.countBadge}>{pictures?.length}</span>
+      </h3>
       {loading ? (
         <SkeletonPictures />
       ) : pictures?.length > 0 ? (

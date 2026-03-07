@@ -1,11 +1,18 @@
 .pictures {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.5rem;
 }
 
 .picturesTitle {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
   font-size: var(--font-size-sm);
+}
+
+.countBadge {
+  color: var(--color-text-secondary);
 }
 
 .picturesContainer {

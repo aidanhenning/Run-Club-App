@@ -38,6 +38,97 @@ export default function PostDetails() {
     }
   };
 
+  const handleAddComment = async (content) => {
+    try {
+      const response = await fetch(`${API}/post-comments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ postId: id, content }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.error);
+
+      setPost((prev) => ({
+        ...prev,
+        comments: [...prev.comments, data],
+        comment_count: String(Number(prev.comment_count) + 1),
+      }));
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    const previousPost = { ...post };
+
+    setPost((prev) => ({
+      ...prev,
+      comments: prev.comments.filter((c) => c.id !== commentId),
+      comment_count: String(Number(prev.comment_count) - 1),
+    }));
+
+    try {
+      const response = await fetch(`${API}/post-comments/${commentId}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!response.ok) throw new Error();
+    } catch (err) {
+      setPost(previousPost);
+      alert("Could not delete comment.");
+    }
+  };
+
+  const handleLikeComment = async (commentId) => {
+    const comment = post.comments.find((c) => c.id === commentId);
+    if (!comment) return;
+
+    const previouslyLiked = comment.is_liked;
+    const previousPost = { ...post };
+
+    setPost((prev) => ({
+      ...prev,
+      comments: prev.comments.map((c) =>
+        c.id === commentId
+          ? {
+              ...c,
+              is_liked: !previouslyLiked,
+              comment_like_count: previouslyLiked
+                ? Number(c.comment_like_count) - 1
+                : Number(c.comment_like_count) + 1,
+            }
+          : c,
+      ),
+    }));
+
+    try {
+      const method = previouslyLiked ? "DELETE" : "POST";
+
+      const response = await fetch(`${API}/comment-likes/${commentId}`, {
+        method: method,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to update like");
+      }
+    } catch (err) {
+      setPost(previousPost);
+      alert(err.message);
+      console.error("Like error:", err);
+    }
+  };
+
   useEffect(() => {
     if (!token || !API) return;
     fetchPostDetails(0, true);
@@ -51,7 +142,12 @@ export default function PostDetails() {
         <Details post={post} />
         <RsvpList post={post} />
         <PhotoAlbum pictures={post.pictures} loading={loading} />
-        <Comments comments={post.comments} />
+        <Comments
+          comments={post.comments}
+          onAddComment={handleAddComment}
+          onDeleteComment={handleDeleteComment}
+          onLikeComment={handleLikeComment}
+        />
       </div>
 
       <BottomNav />
