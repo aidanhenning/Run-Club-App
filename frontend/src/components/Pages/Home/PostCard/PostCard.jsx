@@ -13,8 +13,6 @@ export default function PostCard({ post }) {
   const [isLiked, setIsLiked] = useState(post.id_liked);
   const [likeCount, setLikeCount] = useState(Number(post.like_count));
 
-  console.log(post);
-
   const formatPostDate = (dateString) => {
     const date = new Date(dateString);
 

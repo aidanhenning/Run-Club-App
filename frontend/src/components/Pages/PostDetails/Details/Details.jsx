@@ -51,6 +51,20 @@ export default function Details({ post }) {
           {formatPostDateTime(post.starts_at)}
         </span>
       </div>
+      <div className={styles.host}>
+        <h3 className={styles.hostTitle}>
+          <span className={styles.icon}>
+            <FaCrown />
+          </span>
+          <span>Hosted by</span>
+        </h3>
+        <img
+          src={post.owner_profile_picture}
+          alt={`${post.owner_first_name} ${post.owner_last_name}'s profile picture`}
+          onClick={() => navigate(`/profile/${post.club_owner_id}`)}
+          className={styles.profilePicture}
+        />
+      </div>
       <div className={styles.stats}>
         <div className={styles.statsItem}>
           <span className={styles.label}>Distance</span>
@@ -68,20 +82,6 @@ export default function Details({ post }) {
           <span className={styles.label}>Time</span>
           <span className={styles.value}>{post.estimated_time}</span>
         </div>
-      </div>
-      <div className={styles.host}>
-        <h3 className={styles.hostTitle}>
-          <span className={styles.icon}>
-            <FaCrown />
-          </span>
-          <span>Hosted by</span>
-        </h3>
-        <img
-          src={post.owner_profile_picture}
-          alt={`${post.owner_first_name} ${post.owner_last_name}'s profile picture`}
-          onClick={() => navigate(`/profile/${post.club_owner_id}`)}
-          className={styles.profilePicture}
-        />
       </div>
       <div>
         <p className={styles.location}>

@@ -18,8 +18,6 @@ export default function PostDetails() {
   const [loading, setLoading] = useState(true);
   const [post, setPost] = useState([]);
 
-  console.log(post);
-
   const fetchPostDetails = async () => {
     setLoading(true);
     setError(null);
