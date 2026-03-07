@@ -1,0 +1,43 @@
+.rsvpList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.attendeesTitle {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  font-size: var(--font-size-sm);
+}
+
+.countBadge {
+  color: var(--color-text-secondary);
+}
+
+.peopleIcons {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+  margin-left: 1.25rem;
+}
+
+.peopleIcon {
+  width: 2rem;
+  height: 2rem;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.moreCircle {
+  width: 2rem;
+  height: 2rem;
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--color-bg-secondary);
+}

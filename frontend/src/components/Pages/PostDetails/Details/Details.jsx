@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { MdFlag, MdLocationOn } from "react-icons/md";
 import { FaCrown } from "react-icons/fa";
 
-export default function Details({ details }) {
+export default function Details({ post }) {
   const navigate = useNavigate();
 
   const formatPostDateDay = (dateString) => {
@@ -34,41 +34,39 @@ export default function Details({ details }) {
   return (
     <section className={styles.details}>
       <div>
-        <h2 className={styles.title}>{details.title}</h2>
+        <h2 className={styles.title}>{post.title}</h2>
       </div>
-      {details?.club_logo ? (
+      {post?.club_logo ? (
         <img
-          src={details.club_logo}
-          alt={`${details.club_name} logo`}
+          src={post.club_logo}
+          alt={`${post.club_name} logo`}
           className={styles.clubLogo}
         />
       ) : (
         <MdFlag className={styles.placeholder} />
       )}
       <div className={styles.date}>
-        <span className={styles.day}>
-          {formatPostDateDay(details.starts_at)}
-        </span>
+        <span className={styles.day}>{formatPostDateDay(post.starts_at)}</span>
         <span className={styles.time}>
-          {formatPostDateTime(details.starts_at)}
+          {formatPostDateTime(post.starts_at)}
         </span>
       </div>
       <div className={styles.stats}>
         <div className={styles.statsItem}>
           <span className={styles.label}>Distance</span>
-          <span className={styles.value}>{details.distance}mi</span>
+          <span className={styles.value}>{post.distance}mi</span>
         </div>
         <div className={styles.statsItem}>
           <span className={styles.label}>Elev</span>
-          <span className={styles.value}>{details.elevation}ft</span>
+          <span className={styles.value}>{post.elevation}ft</span>
         </div>
         <div className={styles.statsItem}>
           <span className={styles.label}>Type</span>
-          <span className={styles.value}>{details.run_type}</span>
+          <span className={styles.value}>{post.run_type}</span>
         </div>
         <div className={styles.statsItem}>
           <span className={styles.label}>Time</span>
-          <span className={styles.value}>{details.estimated_time}</span>
+          <span className={styles.value}>{post.estimated_time}</span>
         </div>
       </div>
       <div className={styles.host}>
@@ -79,9 +77,9 @@ export default function Details({ details }) {
           <span>Hosted by</span>
         </h3>
         <img
-          src={details.owner_profile_picture}
-          alt={`${details.owner_first_name} ${details.owner_last_name}'s profile picture`}
-          onClick={() => navigate(`/profile/${details.club_owner_id}`)}
+          src={post.owner_profile_picture}
+          alt={`${post.owner_first_name} ${post.owner_last_name}'s profile picture`}
+          onClick={() => navigate(`/profile/${post.club_owner_id}`)}
           className={styles.profilePicture}
         />
       </div>
@@ -90,10 +88,10 @@ export default function Details({ details }) {
           <span className={styles.icon}>
             <MdLocationOn />
           </span>
-          <span>{details.address}</span>
+          <span>{post.address}</span>
         </p>
       </div>
-      {/* <section>{details.description}</section> */}
+      {/* <section>{post.description}</section> */}
     </section>
   );
 }

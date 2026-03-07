@@ -48,8 +48,8 @@ export default function PostDetails() {
       <Header title="" showBack={true} />
 
       <div className={styles.content}>
-        <Details details={post} />
-        <RsvpList attendees={post.attendees} />
+        <Details post={post} />
+        <RsvpList post={post} />
         <PhotoAlbum pictures={post.pictures} />
         <Comments comments={post.comments} />
       </div>
