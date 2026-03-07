@@ -1,9 +1,12 @@
 import styles from "@/components/Pages/ClubProfile/EventList/EventList.module.css";
 
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { MdOutlineDirectionsRun, MdOutlineLocationOn } from "react-icons/md";
 
 export default function EventList({ club, loading }) {
+  const navigate = useNavigate();
+
   const [view, setView] = useState("upcoming");
 
   const formatDate = (dateString) => {
@@ -40,7 +43,11 @@ export default function EventList({ club, loading }) {
             (event) => {
               const { month, day, weekday } = formatDate(event.starts_at);
               return (
-                <div key={event.id} className={styles.eventCard}>
+                <div
+                  key={event.id}
+                  className={styles.eventCard}
+                  onClick={() => navigate(`/posts/${event.id}`)}
+                >
                   <div className={styles.calendarIcon}>
                     <span
                       className={
