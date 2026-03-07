@@ -50,7 +50,7 @@ export default function PostDetails() {
       <div className={styles.content}>
         <Details post={post} />
         <RsvpList post={post} />
-        <PhotoAlbum pictures={post.pictures} />
+        <PhotoAlbum pictures={post.pictures} loading={loading} />
         <Comments comments={post.comments} />
       </div>
 

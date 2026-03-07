@@ -1,0 +1,20 @@
+.pictures {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.picturesTitle {
+  font-size: var(--font-size-sm);
+}
+
+.picturesContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.25rem;
+}
+
+.emptyState {
+  font-size: var(--font-size-xs);
+}
