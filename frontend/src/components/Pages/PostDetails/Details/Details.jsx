@@ -51,6 +51,14 @@ export default function Details({ post }) {
           {formatPostDateTime(post.starts_at)}
         </span>
       </div>
+      <div>
+        <p className={styles.location}>
+          <span className={styles.icon}>
+            <MdLocationOn />
+          </span>
+          <span>{post.address}</span>
+        </p>
+      </div>
       <div className={styles.stats}>
         <div className={styles.statsItem}>
           <span className={styles.label}>Distance</span>
@@ -68,14 +76,6 @@ export default function Details({ post }) {
           <span className={styles.label}>Time</span>
           <span className={styles.value}>{post.estimated_time}</span>
         </div>
-      </div>
-      <div>
-        <p className={styles.location}>
-          <span className={styles.icon}>
-            <MdLocationOn />
-          </span>
-          <span>{post.address}</span>
-        </p>
       </div>
       <div className={styles.host}>
         <h3 className={styles.hostTitle}>

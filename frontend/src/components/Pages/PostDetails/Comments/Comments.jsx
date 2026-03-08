@@ -83,7 +83,7 @@ function CommentItem({ comment, onDelete, onLike }) {
           className={styles.profileInitial}
           onClick={() => navigate(`/profile/${comment.user_id}`)}
         >
-          {user?.first_name.charAt(0).toUpperCase()}
+          {comment?.first_name?.charAt(0).toUpperCase()}
         </div>
       )}
 
