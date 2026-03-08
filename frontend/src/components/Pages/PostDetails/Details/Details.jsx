@@ -1,25 +1,18 @@
 import styles from "@/components/Pages/PostDetails/Details/Details.module.css";
 
-import { useNavigate } from "react-router";
-import { MdFlag, MdLocationOn } from "react-icons/md";
-import { FaCrown } from "react-icons/fa";
+import { MdFlag, MdLocationOn, MdOutlineAccessTime } from "react-icons/md";
 
 export default function Details({ post }) {
-  const navigate = useNavigate();
-
-  const formatPostDateDay = (dateString) => {
+  const formatDate = (dateString) => {
     const date = new Date(dateString);
-
-    const datePart = date.toLocaleDateString("en-US", {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-    });
-
-    return datePart;
+    return {
+      month: date.toLocaleString("en-US", { month: "short" }),
+      day: date.toLocaleString("en-US", { day: "2-digit" }),
+      weekday: date.toLocaleString("en-US", { weekday: "short" }),
+    };
   };
 
-  const formatPostDateTime = (dateString) => {
+  const formatTime = (dateString) => {
     const date = new Date(dateString);
 
     const timePart = date.toLocaleTimeString("en-US", {
@@ -31,34 +24,12 @@ export default function Details({ post }) {
     return timePart;
   };
 
+  const { month, day, weekday } = formatDate(post.starts_at);
+
+  const isFuture = new Date(post.starts_at) > new Date();
+
   return (
     <section className={styles.details}>
-      <div>
-        <h2 className={styles.title}>{post.title}</h2>
-      </div>
-      {post?.club_logo ? (
-        <img
-          src={post.club_logo}
-          alt={`${post.club_name} logo`}
-          className={styles.clubLogo}
-        />
-      ) : (
-        <MdFlag className={styles.placeholder} />
-      )}
-      <div className={styles.date}>
-        <span className={styles.day}>{formatPostDateDay(post.starts_at)}</span>
-        <span className={styles.time}>
-          {formatPostDateTime(post.starts_at)}
-        </span>
-      </div>
-      <div>
-        <p className={styles.location}>
-          <span className={styles.icon}>
-            <MdLocationOn />
-          </span>
-          <span>{post.address}</span>
-        </p>
-      </div>
       <div className={styles.stats}>
         <div className={styles.statsItem}>
           <span className={styles.label}>Distance</span>
@@ -77,28 +48,43 @@ export default function Details({ post }) {
           <span className={styles.value}>{post.estimated_time}</span>
         </div>
       </div>
-      <div className={styles.host}>
-        <h3 className={styles.hostTitle}>
-          <span className={styles.icon}>
-            <FaCrown />
-          </span>
-          <span>Hosted by</span>
-        </h3>
-        {post?.owner_profile_picture ? (
+      <div>
+        {post?.club_logo ? (
           <img
-            src={post.owner_profile_picture}
-            alt={`${post.owner_first_name}'s profile picture`}
-            onClick={() => navigate(`/profile/${post.club_owner_id}`)}
-            className={styles.profileImg}
+            src={post.club_logo}
+            alt={`${post.club_name} logo`}
+            className={styles.clubLogo}
           />
         ) : (
-          <div
-            className={styles.profileInitial}
-            onClick={() => navigate(`/profile/${post.club_owner_id}`)}
-          >
-            {post?.owner_first_name?.charAt(0).toUpperCase()}
-          </div>
+          <MdFlag className={styles.placeholder} />
         )}
+      </div>
+      <div>
+        <div>
+          <h2 className={styles.title}>{post.title}</h2>
+        </div>
+        <div className={styles.dateTimeLocation}>
+          <div className={styles.calendarIcon}>
+            <span
+              className={isFuture ? styles.upcomingMonth : styles.pastMonth}
+            >
+              {month}
+            </span>
+            <span className={styles.day}>{day}</span>
+            <span className={styles.weekday}>{weekday}</span>
+          </div>
+
+          <div className={styles.infoWrapper}>
+            <p className={styles.time}>
+              <MdOutlineAccessTime className={styles.smallIcon} />
+              {formatTime(post.starts_at)}
+            </p>
+            <p className={styles.location}>
+              <MdLocationOn className={styles.smallIcon} />
+              <span>{post.address}</span>
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

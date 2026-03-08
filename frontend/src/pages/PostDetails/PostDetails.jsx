@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 
 export default function PostDetails() {
-  const { API, token } = useAuth();
+  const { API, token, user } = useAuth();
   const { id } = useParams();
 
   const [error, setError] = useState(null);
@@ -33,6 +33,46 @@ export default function PostDetails() {
       setError(err.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleToggleAttendance = async () => {
+    const isAlreadyAttending = post.attendees.some((a) => a.id === user.id);
+    const previousPost = { ...post };
+
+    setPost((prev) => {
+      const newAttendees = isAlreadyAttending
+        ? prev.attendees.filter((a) => a.id !== user.id)
+        : [
+            ...prev.attendees,
+            {
+              id: user.id,
+              first_name: user.first_name,
+              last_name: user.last_name,
+              profile_picture_url: user.profile_picture_url,
+            },
+          ];
+
+      return { ...prev, attendees: newAttendees };
+    });
+
+    try {
+      const method = isAlreadyAttending ? "DELETE" : "POST";
+      const response = await fetch(`${API}/post-attendees/${id}`, {
+        method: method,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to update attendance");
+      }
+    } catch (err) {
+      setPost(previousPost);
+      alert(err.message);
     }
   };
 
@@ -138,7 +178,11 @@ export default function PostDetails() {
 
       <div className={styles.content}>
         <Details post={post} />
-        <RsvpList post={post} />
+        <RsvpList
+          post={post}
+          user={user}
+          onToggleAttendance={handleToggleAttendance}
+        />
         <PhotoAlbum pictures={post.pictures} loading={loading} />
         <Comments
           comments={post.comments}
