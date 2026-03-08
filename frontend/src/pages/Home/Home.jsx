@@ -64,8 +64,10 @@ export default function Home() {
       console.error("Failed to fetch feed:", err);
       setError(err.message);
     } finally {
-      setLoading(false);
-      setLoadingMore(false);
+      setTimeout(() => {
+        setLoading(false);
+        setLoadingMore(false);
+      }, 1000);
     }
   };
 
