@@ -106,6 +106,7 @@ export default function EditClub() {
             </span>
             <span>Upload Photo</span>
             <input
+              id="fileUpload"
               type="file"
               accept="image/*"
               onChange={handleFileSelection}

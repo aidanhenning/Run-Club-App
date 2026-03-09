@@ -95,6 +95,7 @@ export default function EditProfile() {
             </span>
             <span>Upload Photo</span>
             <input
+              id="fileUpload"
               type="file"
               accept="image/*"
               onChange={handleFileSelection}
