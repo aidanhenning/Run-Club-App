@@ -36,7 +36,7 @@ export default function ClubsList() {
       } finally {
         setTimeout(() => {
           setLoading(false);
-        }, 1000);
+        }, 500);
       }
     };
 

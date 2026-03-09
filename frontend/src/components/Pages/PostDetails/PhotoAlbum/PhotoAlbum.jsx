@@ -1,6 +1,5 @@
 import styles from "@/components/Pages/PostDetails/PhotoAlbum/PhotoAlbum.module.css";
 import { useAuth } from "@/context/AuthContext";
-import SkeletonPictures from "@/components/Pages/UserProfile/SkeletonPictures/SkeletonPictures";
 import PictureGridModal from "@/components/PictureGrid/PictureGridModal/PictureGridModal";
 import PictureCard from "@/components/Pages/UserProfile/PictureCard/PictureCard";
 
@@ -75,9 +74,7 @@ export default function PhotoAlbum({ pictures, loading, setPost }) {
         <span>Photo Album</span>
         <span className={styles.countBadge}>{pictures?.length}</span>
       </h3>
-      {loading ? (
-        <SkeletonPictures />
-      ) : pictures?.length > 0 ? (
+      {pictures?.length > 0 ? (
         <div className={styles.picturesContainer}>
           {displayPictures.map((picture) => (
             <PictureCard key={picture.id} picture={picture} />

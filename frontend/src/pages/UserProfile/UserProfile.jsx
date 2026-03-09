@@ -4,7 +4,6 @@ import Header from "@/components/Header/Header";
 import BottomNav from "@/components/BottomNav/BottomNav";
 import UserHeader from "../../components/Pages/UserProfile/UserHeader/UserHeader";
 import ProfileInteraction from "../../components/Pages/UserProfile/ProfileInteraction/ProfileInteraction";
-import SkeletonPictures from "@/components/Pages/UserProfile/SkeletonPictures/SkeletonPictures";
 import PictureCard from "@/components/Pages/UserProfile/PictureCard/PictureCard";
 
 import { useParams } from "react-router";
@@ -38,9 +37,7 @@ export default function UserProfile() {
         console.error("Failed to fetch profile:", err);
         setError(err.message);
       } finally {
-        setTimeout(() => {
-          setLoading(false);
-        }, 1000);
+        setLoading(false);
       }
     };
 
@@ -66,9 +63,7 @@ export default function UserProfile() {
 
         <section className={styles.pictures}>
           <h3 className={styles.picturesTitle}>Photos</h3>
-          {loading ? (
-            <SkeletonPictures />
-          ) : profile?.posts.length > 0 ? (
+          {profile?.posts.length > 0 ? (
             <div className={styles.picturesContainer}>
               {profile?.posts.map((picture) => (
                 <PictureCard key={picture.id} picture={picture} />
