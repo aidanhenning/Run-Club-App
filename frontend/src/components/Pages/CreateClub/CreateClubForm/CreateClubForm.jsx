@@ -1,5 +1,6 @@
 import styles from "@/components/Pages/CreateClub/CreateClubForm/CreateClubForm.module.css";
 
+import { useRef } from "react";
 import { useNavigate } from "react-router";
 import { CiImageOn } from "react-icons/ci";
 
@@ -11,15 +12,15 @@ export default function CreateClubForm({
   isFormValid,
 }) {
   const navigate = useNavigate();
+  const fileInputRef = useRef(null);
 
   const handleFileSelection = (e) => {
-    const files = Array.from(e.target.files);
-    console.log("Files selected:", files);
+    const file = e.target.files[0];
+    if (!file) return;
 
-    // MOCK LOGIC: In a production app, upload 'files' to the cloud here
-    // and get a URL back. For now, we'll just pretend:
-    const mockUrl = "https://via.placeholder.com/150";
-    setFormData({ ...formData, logo: mockUrl });
+    // Replace MOCK with actual preview URL
+    const previewUrl = URL.createObjectURL(file);
+    setFormData({ ...formData, logo: previewUrl });
   };
 
   const handleSubmit = async (e) => {
@@ -52,18 +53,32 @@ export default function CreateClubForm({
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <section className={styles.mediaUpload}>
-        <label htmlFor="fileUpload" className={styles.uploadLabel}>
+        {formData.logo && (
+          <div className={styles.previewContainer}>
+            <img
+              src={formData.logo}
+              alt="Club Preview"
+              className={styles.previewImage}
+            />
+          </div>
+        )}
+
+        <div
+          className={styles.uploadLabel}
+          onClick={() => fileInputRef.current.click()}
+        >
           <span className={styles.uploadLogo}>
             <CiImageOn />
           </span>
-          <span>Upload Photo</span>
+          <span>{formData.logo ? "Change Photo" : "Upload Photo"}</span>
           <input
+            ref={fileInputRef}
             type="file"
             accept="image/*"
             onChange={handleFileSelection}
-            className={styles.hiddenInput}
+            style={{ display: "none" }}
           />
-        </label>
+        </div>
       </section>
 
       <section className={styles.section}>

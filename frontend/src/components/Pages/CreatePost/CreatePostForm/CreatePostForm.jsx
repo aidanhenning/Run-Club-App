@@ -1,5 +1,6 @@
 import styles from "@/components/Pages/CreatePost/CreatePostForm/CreatePostForm.module.css";
 
+import { useRef } from "react";
 import { useNavigate } from "react-router";
 import { CiImageOn } from "react-icons/ci";
 
@@ -12,11 +13,12 @@ export default function CreatePostForm({
   isFormValid,
 }) {
   const navigate = useNavigate();
+  const fileInputRef = useRef(null);
 
   const handleFileSelection = (e) => {
     const files = Array.from(e.target.files);
 
-    // Using URL.createObjectURL so you can actually see the images in the preview
+    // Replace MOCK with actual preview URL
     const newImages = files.map((file) => URL.createObjectURL(file));
     setFormData({ ...formData, images: [...formData.images, ...newImages] });
   };
@@ -102,20 +104,23 @@ export default function CreatePostForm({
       </section>
 
       <section className={styles.mediaUpload}>
-        <label htmlFor="fileUpload" className={styles.uploadLabel}>
+        <div
+          className={styles.uploadLabel}
+          onClick={() => fileInputRef.current.click()}
+        >
           <span className={styles.uploadLogo}>
             <CiImageOn />
           </span>
           <span>Add Photos</span>
           <input
-            id="fileUpload"
+            ref={fileInputRef}
             type="file"
             multiple
             accept="image/*"
             onChange={handleFileSelection}
-            className={styles.hiddenInput}
+            style={{ display: "none" }}
           />
-        </label>
+        </div>
 
         {formData.images?.length > 0 && (
           <div className={styles.previewGrid}>

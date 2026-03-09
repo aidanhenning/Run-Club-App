@@ -2,7 +2,7 @@ import styles from "@/pages/EditProfile/EditProfile.module.css";
 import { useAuth } from "@/context/AuthContext";
 import Header from "@/components/Header/Header";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router";
 import { CiImageOn } from "react-icons/ci";
 
@@ -10,6 +10,7 @@ export default function EditProfile() {
   const { id } = useParams();
   const { API, token, user, refreshUser } = useAuth();
   const navigate = useNavigate();
+  const fileInputRef = useRef(null);
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -53,10 +54,9 @@ export default function EditProfile() {
     const file = e.target.files[0];
     if (!file) return;
 
-    // MOCK LOGIC: In a production app, upload 'files' to the cloud here
-    // and get a URL back. For now, we'll just pretend:
-    const mockUrl = "https://via.placeholder.com/150";
-    setFormData((prev) => ({ ...prev, profilePictureUrl: mockUrl }));
+    // Replace MOCK with actual preview URL
+    const previewUrl = URL.createObjectURL(file);
+    setFormData((prev) => ({ ...prev, profilePictureUrl: previewUrl }));
   };
 
   const handleSubmit = async (e) => {
@@ -89,19 +89,32 @@ export default function EditProfile() {
 
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.mediaUpload}>
-          <label htmlFor="fileUpload" className={styles.uploadLabel}>
+          {formData.profilePictureUrl && (
+            <div className={styles.profilePreviewWrapper}>
+              <img
+                src={formData.profilePictureUrl}
+                alt="Profile Preview"
+                className={styles.profilePreviewImage}
+              />
+            </div>
+          )}
+
+          <div
+            className={styles.uploadLabel}
+            onClick={() => fileInputRef.current.click()}
+          >
             <span className={styles.uploadLogo}>
               <CiImageOn />
             </span>
-            <span>Upload Photo</span>
+            <span>Change Profile Picture</span>
             <input
-              id="fileUpload"
+              ref={fileInputRef}
               type="file"
               accept="image/*"
               onChange={handleFileSelection}
               className={styles.hiddenInput}
             />
-          </label>
+          </div>
         </div>
         <div className={styles.textFields}>
           <div className={styles.row}>

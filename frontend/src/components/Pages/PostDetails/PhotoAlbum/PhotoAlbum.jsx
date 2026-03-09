@@ -21,7 +21,7 @@ export default function PhotoAlbum({ pictures, loading, setPost }) {
   const remainingCount = pictures?.length - maxDisplay;
 
   const handleOpenGallery = (e) => {
-    // e.stopPropagation();
+    e.stopPropagation();
     setIsGalleryOpen(true);
   };
 
