@@ -15,12 +15,10 @@ export default function CreatePostForm({
 
   const handleFileSelection = (e) => {
     const files = Array.from(e.target.files);
-    console.log("Files selected:", files);
 
-    // MOCK LOGIC: In a production app, upload 'files' to the cloud here
-    // and get a URL back. For now, we'll just pretend:
-    const mockUrl = "https://via.placeholder.com/150";
-    setFormData({ ...formData, images: [...formData.images, mockUrl] });
+    // Using URL.createObjectURL so you can actually see the images in the preview
+    const newImages = files.map((file) => URL.createObjectURL(file));
+    setFormData({ ...formData, images: [...formData.images, ...newImages] });
   };
 
   const handleSubmit = async (e) => {
@@ -118,6 +116,19 @@ export default function CreatePostForm({
             className={styles.hiddenInput}
           />
         </label>
+
+        {formData.images?.length > 0 && (
+          <div className={styles.previewGrid}>
+            {formData.images.map((url, idx) => (
+              <img
+                key={idx}
+                src={url}
+                className={styles.previewImage}
+                alt="Preview"
+              />
+            ))}
+          </div>
+        )}
       </section>
 
       <h3 className={styles.sectionTitle}>Activity Stats</h3>
@@ -133,13 +144,14 @@ export default function CreatePostForm({
         </div>
         <div className={styles.row}>
           <input
-            type="time"
-            step="1"
-            placeholder="00:00:00"
+            type="text"
+            placeholder="Duration (HH:MM:SS)"
             className={styles.inputField}
-            onChange={(e) =>
-              setFormData({ ...formData, estimatedTime: e.target.value })
-            }
+            value={formData.estimatedTime || ""}
+            onChange={(e) => {
+              const value = e.target.value.replace(/[^0-9:]/g, "");
+              setFormData({ ...formData, estimatedTime: value });
+            }}
           />
         </div>
         <div className={styles.row}>
