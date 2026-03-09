@@ -3,6 +3,10 @@ import SkeletonPictures from "@/components/Pages/UserProfile/SkeletonPictures/Sk
 import PictureCard from "@/components/Pages/UserProfile/PictureCard/PictureCard";
 
 export default function PhotoAlbum({ pictures, loading }) {
+  const maxDisplay = 5;
+  const displayPictures = pictures?.slice(0, maxDisplay);
+  const remainingCount = pictures?.length - maxDisplay;
+
   return (
     <section className={styles.pictures}>
       <h3 className={styles.picturesTitle}>
@@ -13,9 +17,21 @@ export default function PhotoAlbum({ pictures, loading }) {
         <SkeletonPictures />
       ) : pictures?.length > 0 ? (
         <div className={styles.picturesContainer}>
-          {pictures.map((picture) => (
+          {displayPictures.map((picture) => (
             <PictureCard key={picture.id} picture={picture} />
           ))}
+
+          {remainingCount > 0 && (
+            <div
+              className={styles.morePicturesSquare}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleCardClick();
+              }}
+            >
+              <span>+{remainingCount}</span>
+            </div>
+          )}
         </div>
       ) : (
         <div className={styles.emptyState}>

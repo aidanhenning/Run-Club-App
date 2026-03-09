@@ -1,5 +1,6 @@
 import styles from "@/components/Pages/Home/PostCard/PostCard.module.css";
 import { useAuth } from "@/context/AuthContext";
+import PictureCard from "@/components/Pages/UserProfile/PictureCard/PictureCard";
 
 import { useState } from "react";
 import { useNavigate } from "react-router";
@@ -12,6 +13,11 @@ export default function PostCard({ post }) {
 
   const [isLiked, setIsLiked] = useState(post.id_liked);
   const [likeCount, setLikeCount] = useState(Number(post.like_count));
+
+  const maxDisplay = 5;
+  const pictures = post?.pictures || [];
+  const displayPictures = pictures.slice(0, maxDisplay);
+  const remainingCount = pictures.length - maxDisplay;
 
   const formatPostDate = (dateString) => {
     const date = new Date(dateString);
@@ -118,10 +124,30 @@ export default function PostCard({ post }) {
         </div>
       </section>
 
-      <div className={styles.pictures}>
-        <div className={styles.mapPlaceholder}>
-          <span>Route Map</span>
-        </div>
+      <div className={styles.mediaSection}>
+        {pictures.length > 0 ? (
+          <div className={styles.picturesContainer}>
+            {displayPictures.map((picture) => (
+              <PictureCard key={picture.id} picture={picture} />
+            ))}
+
+            {remainingCount > 0 && (
+              <div
+                className={styles.morePicturesSquare}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleCardClick();
+                }}
+              >
+                <span>+{remainingCount}</span>
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className={styles.picturePlaceholder}>
+            <span>Upload a picture and see here!</span>
+          </div>
+        )}
       </div>
 
       <div
