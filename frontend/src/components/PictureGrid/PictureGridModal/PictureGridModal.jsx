@@ -1,5 +1,5 @@
 import styles from "@/components/PictureGrid/PictureGridModal/PictureGridModal.module.css";
-import PictureCard from "@/components/Pages/UserProfile/PictureCard/PictureCard";
+import PictureCard from "@/components/PictureGrid/PictureCard/PictureCard";
 import { IoClose } from "react-icons/io5";
 
 export default function PictureGridModal({ isOpen, onClose, pictures, title }) {

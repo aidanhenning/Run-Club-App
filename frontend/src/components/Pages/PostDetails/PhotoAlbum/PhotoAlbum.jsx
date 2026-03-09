@@ -1,7 +1,7 @@
 import styles from "@/components/Pages/PostDetails/PhotoAlbum/PhotoAlbum.module.css";
 import { useAuth } from "@/context/AuthContext";
 import PictureGridModal from "@/components/PictureGrid/PictureGridModal/PictureGridModal";
-import PictureCard from "@/components/Pages/UserProfile/PictureCard/PictureCard";
+import PictureCard from "@/components/PictureGrid/PictureCard/PictureCard";
 
 import { useState, useRef } from "react";
 import { useParams } from "react-router";

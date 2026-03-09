@@ -1,6 +1,6 @@
 import styles from "@/components/Pages/Home/PostCard/PostCard.module.css";
 import { useAuth } from "@/context/AuthContext";
-import PictureCard from "@/components/Pages/UserProfile/PictureCard/PictureCard";
+import PictureCard from "@/components/PictureGrid/PictureCard/PictureCard";
 import PictureGridModal from "@/components/PictureGrid/PictureGridModal/PictureGridModal";
 
 import { useState } from "react";

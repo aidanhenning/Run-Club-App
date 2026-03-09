@@ -4,7 +4,7 @@ import Header from "@/components/Header/Header";
 import BottomNav from "@/components/BottomNav/BottomNav";
 import UserHeader from "../../components/Pages/UserProfile/UserHeader/UserHeader";
 import ProfileInteraction from "../../components/Pages/UserProfile/ProfileInteraction/ProfileInteraction";
-import PictureCard from "@/components/Pages/UserProfile/PictureCard/PictureCard";
+import PictureCard from "@/components/PictureGrid/PictureCard/PictureCard";
 
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
