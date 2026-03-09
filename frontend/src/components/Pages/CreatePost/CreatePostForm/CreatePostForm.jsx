@@ -110,6 +110,7 @@ export default function CreatePostForm({
           </span>
           <span>Add Photos</span>
           <input
+            id="fileUpload"
             type="file"
             multiple
             accept="image/*"
