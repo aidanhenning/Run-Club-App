@@ -2,6 +2,7 @@ import express from "express";
 const router = express.Router();
 
 import { createPost, updatePostById, removePost } from "../db/queries/posts.js";
+import { createPostPicture } from "../db/queries/post_pictures.js";
 import { getPostDetails } from "../db/queries/getPostDetails.js";
 import requireUser from "../middleware/requireUser.js";
 
