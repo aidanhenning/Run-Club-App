@@ -183,7 +183,11 @@ export default function PostDetails() {
           user={user}
           onToggleAttendance={handleToggleAttendance}
         />
-        <PhotoAlbum pictures={post.pictures} loading={loading} />
+        <PhotoAlbum
+          pictures={post.pictures}
+          loading={loading}
+          setPost={setPost}
+        />
         <Comments
           comments={post.comments}
           onAddComment={handleAddComment}

@@ -47,3 +47,33 @@
 .emptyState {
   font-size: var(--font-size-xs);
 }
+
+.addImages {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 12px;
+  border: 1px dashed var(--color-brand-base);
+  border-radius: 8px;
+  font-weight: bold;
+  color: var(--color-brand-base);
+  background-color: var(--color-bg-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addImages:hover {
+  background-color: var(--color-bg-tertiary);
+}
+
+.addImages:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.icon {
+  font-size: var(--font-size-md);
+}
