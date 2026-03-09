@@ -1,6 +1,7 @@
 import styles from "@/components/Pages/Home/PostCard/PostCard.module.css";
 import { useAuth } from "@/context/AuthContext";
 import PictureCard from "@/components/Pages/UserProfile/PictureCard/PictureCard";
+import PictureGridModal from "@/components/PictureGrid/PictureGridModal/PictureGridModal";
 
 import { useState } from "react";
 import { useNavigate } from "react-router";
@@ -11,6 +12,7 @@ export default function PostCard({ post }) {
   const { API, token } = useAuth();
   const navigate = useNavigate();
 
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [isLiked, setIsLiked] = useState(post.id_liked);
   const [likeCount, setLikeCount] = useState(Number(post.like_count));
 
@@ -35,6 +37,11 @@ export default function PostCard({ post }) {
     });
 
     return `${datePart} at ${timePart}`;
+  };
+
+  const handleOpenGallery = (e) => {
+    e.stopPropagation();
+    setIsGalleryOpen(true);
   };
 
   const handleCardClick = () => {
@@ -136,7 +143,7 @@ export default function PostCard({ post }) {
                 className={styles.morePicturesSquare}
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleCardClick();
+                  handleOpenGallery();
                 }}
               >
                 <span>+{remainingCount}</span>
@@ -149,6 +156,13 @@ export default function PostCard({ post }) {
           </div>
         )}
       </div>
+
+      <PictureGridModal
+        isOpen={isGalleryOpen}
+        onClose={() => setIsGalleryOpen(false)}
+        pictures={post.pictures}
+        title={post.title}
+      />
 
       <div
         className={styles.postInteraction}

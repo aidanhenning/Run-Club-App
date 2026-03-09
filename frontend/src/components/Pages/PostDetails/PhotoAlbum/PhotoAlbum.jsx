@@ -1,11 +1,21 @@
 import styles from "@/components/Pages/PostDetails/PhotoAlbum/PhotoAlbum.module.css";
 import SkeletonPictures from "@/components/Pages/UserProfile/SkeletonPictures/SkeletonPictures";
+import PictureGridModal from "@/components/PictureGrid/PictureGridModal/PictureGridModal";
 import PictureCard from "@/components/Pages/UserProfile/PictureCard/PictureCard";
 
+import { useState } from "react";
+
 export default function PhotoAlbum({ pictures, loading }) {
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+
   const maxDisplay = 5;
   const displayPictures = pictures?.slice(0, maxDisplay);
   const remainingCount = pictures?.length - maxDisplay;
+
+  const handleOpenGallery = (e) => {
+    e.stopPropagation();
+    setIsGalleryOpen(true);
+  };
 
   return (
     <section className={styles.pictures}>
@@ -26,7 +36,7 @@ export default function PhotoAlbum({ pictures, loading }) {
               className={styles.morePicturesSquare}
               onClick={(e) => {
                 e.stopPropagation();
-                handleCardClick();
+                handleOpenGallery();
               }}
             >
               <span>+{remainingCount}</span>
@@ -38,6 +48,12 @@ export default function PhotoAlbum({ pictures, loading }) {
           <p>No photos uploaded</p>
         </div>
       )}
+
+      <PictureGridModal
+        isOpen={isGalleryOpen}
+        onClose={() => setIsGalleryOpen(false)}
+        pictures={pictures}
+      />
     </section>
   );
 }
