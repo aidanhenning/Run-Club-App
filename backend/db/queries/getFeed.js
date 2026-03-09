@@ -30,7 +30,17 @@ export async function getFeed(userId, limit = 5, offset = 0) {
     -- Counts
     (SELECT COUNT(*) FROM post_likes WHERE post_id = p.id) AS like_count,
     (SELECT COUNT(*) FROM post_comments WHERE post_id = p.id) AS comment_count,
-    (SELECT COUNT(*) FROM post_attendees WHERE post_id = p.id) AS attendee_count
+    (SELECT COUNT(*) FROM post_attendees WHERE post_id = p.id) AS attendee_count,
+
+    -- Nested Pictures Array
+    (SELECT COALESCE(json_agg(json_build_object(
+        'id', pp.id,
+        'user_id', pp.user_id,
+        'image_url', pp.image_url
+      )), '[]')
+     FROM post_pictures pp
+     WHERE pp.post_id = p.id
+    ) AS pictures
 
   FROM posts p
   JOIN clubs c ON p.club_id = c.id
