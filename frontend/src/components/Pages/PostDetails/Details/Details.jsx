@@ -1,6 +1,11 @@
 import styles from "@/components/Pages/PostDetails/Details/Details.module.css";
 
-import { MdFlag, MdLocationOn, MdOutlineAccessTime } from "react-icons/md";
+import {
+  MdFlag,
+  MdOutlineAccessTime,
+  MdOutlineLocationOn,
+  MdOutlineDirectionsRun,
+} from "react-icons/md";
 
 export default function Details({ post }) {
   const formatDate = (dateString) => {
@@ -60,9 +65,6 @@ export default function Details({ post }) {
         )}
       </div>
       <div>
-        <div>
-          <h2 className={styles.title}>{post.title}</h2>
-        </div>
         <div className={styles.dateTimeLocation}>
           <div className={styles.calendarIcon}>
             <span
@@ -74,15 +76,20 @@ export default function Details({ post }) {
             <span className={styles.weekday}>{weekday}</span>
           </div>
 
-          <div className={styles.infoWrapper}>
-            <p className={styles.time}>
-              <MdOutlineAccessTime className={styles.smallIcon} />
-              {formatTime(post.starts_at)}
-            </p>
-            <p className={styles.location}>
-              <MdLocationOn className={styles.smallIcon} />
-              <span>{post.address}</span>
-            </p>
+          <div className={styles.postDetails}>
+            <h2 className={styles.title}>{post.title}</h2>
+            <div className={styles.detailRow}>
+              <MdOutlineAccessTime className={styles.icon} />
+              <span>{formatTime(post.starts_at)}</span>
+            </div>
+            <div className={styles.detailRow}>
+              <MdOutlineLocationOn className={styles.icon} />
+              <address className={styles.address}>{post.address}</address>
+            </div>
+            <div className={styles.detailRow}>
+              <MdOutlineDirectionsRun className={styles.icon} />
+              <span>{post.run_type}</span>
+            </div>
           </div>
         </div>
       </div>

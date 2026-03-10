@@ -99,29 +99,28 @@
   color: #888;
 }
 
-.infoWrapper {
+.postDetails {
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
 }
 
-.time {
+.detailRow {
   display: flex;
-  flex-direction: row;
   align-items: center;
   gap: 0.5rem;
+  color: var(--color-text-secondary);
   font-size: var(--font-size-xs);
-  font-weight: var(--font-wight-bold);
 }
 
-.smallIcon {
+.icon {
   font-size: var(--font-size-sm);
 }
 
-.location {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
+.address {
+  max-width: 12.5rem;
+  font-style: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
