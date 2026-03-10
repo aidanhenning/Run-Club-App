@@ -81,7 +81,7 @@ export default function Details({ post }) {
         </div>
       </div>
 
-      <div>
+      <div className={additionalDetails}>
         <h3 className={styles.subTitle}>Details</h3>
         <div className={styles.detailRow}>
           <MdOutlineLocationOn className={styles.icon} />
