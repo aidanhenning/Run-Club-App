@@ -87,8 +87,8 @@ export default function PostCard({ post }) {
 
   return (
     <article className={styles.card} onClick={handleCardClick}>
-      <section className={styles.heading} onClick={handleHeaderClick}>
-        <div>
+      <section className={styles.heading}>
+        <div onClick={handleHeaderClick}>
           {post?.club_logo ? (
             <img
               src={post.club_logo}
@@ -100,7 +100,9 @@ export default function PostCard({ post }) {
           )}
         </div>
         <div className={styles.headingText}>
-          <span className={styles.clubName}>{post.club_name}</span>
+          <span onClick={handleHeaderClick} className={styles.clubName}>
+            {post.club_name}
+          </span>
           <span className={styles.startingTime}>
             {formatPostDate(post.starts_at)}
           </span>
@@ -164,12 +166,9 @@ export default function PostCard({ post }) {
         title={post.title}
       />
 
-      <div
-        className={styles.postInteraction}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className={styles.likes}>
-          <button onClick={handleLikeClick} className={styles.likeBtn}>
+      <div className={styles.postInteraction}>
+        <div onClick={handleLikeClick} className={styles.likes}>
+          <button className={styles.likeBtn}>
             {isLiked ? <FaHeart /> : <FaRegHeart />}
           </button>
           <span>{likeCount}</span>
