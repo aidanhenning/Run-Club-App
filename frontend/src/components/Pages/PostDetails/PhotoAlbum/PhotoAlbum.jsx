@@ -1,5 +1,6 @@
 import styles from "@/components/Pages/PostDetails/PhotoAlbum/PhotoAlbum.module.css";
 import { useAuth } from "@/context/AuthContext";
+import { uploadImage } from "@/utils/uploadImage";
 import PictureGridModal from "@/components/PictureGrid/PictureGridModal/PictureGridModal";
 import PictureCard from "@/components/PictureGrid/PictureCard/PictureCard";
 
@@ -37,10 +38,9 @@ export default function PhotoAlbum({ pictures, loading, setPost }) {
 
     try {
       for (const file of files) {
-        // 1. MOCK UPLOAD LOGIC
-        // In a real app, you'd upload the 'file' to Cloudinary/S3 here
-        // const imageUrl = await uploadToCloudinary(file);
-        const imageUrl = URL.createObjectURL(file);
+        const imageUrl = await uploadImage(file);
+
+        if (!imageUrl) continue;
 
         const response = await fetch(`${API}/post-pictures`, {
           method: "POST",

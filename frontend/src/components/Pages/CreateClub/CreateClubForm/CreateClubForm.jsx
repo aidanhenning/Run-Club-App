@@ -1,6 +1,7 @@
 import styles from "@/components/Pages/CreateClub/CreateClubForm/CreateClubForm.module.css";
+import { uploadImage } from "@/utils/uploadImage";
 
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router";
 import { CiImageOn } from "react-icons/ci";
 
@@ -14,17 +15,23 @@ export default function CreateClubForm({
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
 
+  const [selectedFile, setSelectedFile] = useState(null);
+
   const handleFileSelection = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-
-    // Replace MOCK with actual preview URL
-    const previewUrl = URL.createObjectURL(file);
-    setFormData({ ...formData, logo: previewUrl });
+    setSelectedFile(file);
+    setFormData({ ...formData, logo: URL.createObjectURL(file) });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let logoUrl = formData.logo;
+
+    if (selectedFile) {
+      const uploaded = await uploadImage(selectedFile);
+      if (uploaded) logoUrl = uploaded;
+    }
 
     try {
       const response = await fetch(`${API}/clubs`, {
@@ -33,7 +40,7 @@ export default function CreateClubForm({
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, logo: logoUrl }),
       });
 
       if (response.ok) {

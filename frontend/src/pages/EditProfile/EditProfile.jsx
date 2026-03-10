@@ -1,5 +1,6 @@
 import styles from "@/pages/EditProfile/EditProfile.module.css";
 import { useAuth } from "@/context/AuthContext";
+import { uploadImage } from "@/utils/uploadImage";
 import Header from "@/components/Header/Header";
 
 import { useState, useEffect, useRef } from "react";
@@ -23,6 +24,7 @@ export default function EditProfile() {
     profilePictureUrl: "",
     location: "",
   });
+  const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
     if (user) {
@@ -53,16 +55,24 @@ export default function EditProfile() {
   const handleFileSelection = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-
-    // Replace MOCK with actual preview URL
-    const previewUrl = URL.createObjectURL(file);
-    setFormData((prev) => ({ ...prev, profilePictureUrl: previewUrl }));
+    setSelectedFile(file);
+    setFormData((prev) => ({
+      ...prev,
+      profilePictureUrl: URL.createObjectURL(file),
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
+
+    let picUrl = formData.profilePictureUrl;
+
+    if (selectedFile) {
+      const uploaded = await uploadImage(selectedFile);
+      if (uploaded) picUrl = uploaded;
+    }
 
     try {
       const res = await fetch(`${API}/users/${user.id}`, {
@@ -71,7 +81,7 @@ export default function EditProfile() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, profilePictureUrl: picUrl }),
       });
 
       if (res.ok) {

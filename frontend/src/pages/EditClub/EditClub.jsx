@@ -1,5 +1,6 @@
 import styles from "@/pages/EditClub/EditClub.module.css";
 import { useAuth } from "@/context/AuthContext";
+import { uploadImage } from "@/utils/uploadImage";
 import Header from "@/components/Header/Header";
 
 import { useState, useEffect, useRef } from "react";
@@ -19,6 +20,7 @@ export default function EditClub() {
     description: "",
     logo: "",
   });
+  const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
     const fetchClub = async () => {
@@ -59,16 +61,21 @@ export default function EditClub() {
   const handleFileSelection = (e) => {
     const file = e.target.files[0];
     if (!file) return;
-
-    // Replace MOCK with actual preview URL
-    const previewUrl = URL.createObjectURL(file);
-    setFormData((prev) => ({ ...prev, logo: previewUrl }));
+    setSelectedFile(file);
+    setFormData((prev) => ({ ...prev, logo: URL.createObjectURL(file) }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
+
+    let logoUrl = formData.logo;
+
+    if (selectedFile) {
+      const uploaded = await uploadImage(selectedFile);
+      if (uploaded) logoUrl = uploaded;
+    }
 
     try {
       const res = await fetch(`${API}/clubs/${id}`, {
@@ -77,7 +84,7 @@ export default function EditClub() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, logo: logoUrl }),
       });
 
       if (res.ok) {

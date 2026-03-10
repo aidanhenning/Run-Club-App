@@ -1,6 +1,7 @@
 import styles from "@/components/Pages/CreatePost/CreatePostForm/CreatePostForm.module.css";
+import { uploadImage } from "@/utils/uploadImage";
 
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router";
 import { CiImageOn } from "react-icons/ci";
 
@@ -15,22 +16,28 @@ export default function CreatePostForm({
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
 
+  const [imageFiles, setImageFiles] = useState([]);
+
   const handleFileSelection = (e) => {
     const files = Array.from(e.target.files);
-
-    // Replace MOCK with actual preview URL
-    const newImages = files.map((file) => URL.createObjectURL(file));
-    setFormData({ ...formData, images: [...formData.images, ...newImages] });
+    setImageFiles((prev) => [...prev, ...files]);
+    const previews = files.map((f) => URL.createObjectURL(f));
+    setFormData({ ...formData, images: [...formData.images, ...previews] });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const uploadedUrls = await Promise.all(
+      imageFiles.map((file) => uploadImage(file)),
+    );
+    const validUrls = uploadedUrls.filter((url) => url !== null);
+
     const payload = {
       ...formData,
+      images: validUrls,
       distance: parseFloat(formData.distance) || 0,
       elevation: parseFloat(formData.elevation) || 0,
-      startsAt: formData.startsAt || new Date().toISOString(),
     };
 
     try {
