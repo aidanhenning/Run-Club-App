@@ -47,7 +47,7 @@ export default function Details({ post }) {
         )}
       </div>
 
-      <div className={styles.dateTimeLocation}>
+      <div>
         <div className={styles.calendarIcon}>
           <span className={isFuture ? styles.upcomingMonth : styles.pastMonth}>
             {month}
@@ -55,24 +55,12 @@ export default function Details({ post }) {
           <span className={styles.day}>{day}</span>
           <span className={styles.weekday}>{weekday}</span>
         </div>
-
-        <div className={styles.postDetails}>
-          <div className={styles.detailRow}>
-            <MdOutlineAccessTime className={styles.icon} />
-            <span>{formatTime(post.starts_at)}</span>
-          </div>
-          <div className={styles.detailRow}>
-            <MdOutlineDirectionsRun className={styles.icon} />
-            <span>{post.run_type}</span>
-          </div>
-          <div className={styles.detailRow}>
-            <MdOutlineLocationOn className={styles.icon} />
-            <address className={styles.address}>{post.address}</address>
-          </div>
-        </div>
       </div>
 
-      <h2 className={styles.title}>{post.title}</h2>
+      <div>
+        <h2 className={styles.title}>{post.title}</h2>
+        <span>{formatTime(post.starts_at)}</span>
+      </div>
 
       <div className={styles.stats}>
         <div className={styles.statsItem}>
@@ -90,6 +78,14 @@ export default function Details({ post }) {
         <div className={styles.statsItem}>
           <span className={styles.label}>Time</span>
           <span className={styles.value}>{post.estimated_time}</span>
+        </div>
+      </div>
+
+      <div>
+        <h3 className={styles.subTitle}>Details</h3>
+        <div className={styles.detailRow}>
+          <MdOutlineLocationOn className={styles.icon} />
+          <address className={styles.address}>{post.address}</address>
         </div>
       </div>
     </section>

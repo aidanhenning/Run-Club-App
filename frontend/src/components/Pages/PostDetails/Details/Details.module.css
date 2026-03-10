@@ -49,11 +49,6 @@
   font-size: var(--font-size-lg);
 }
 
-.dateTimeLocation {
-  display: flex;
-  gap: 0.5rem;
-}
-
 .calendarIcon {
   min-width: 3.75rem;
   display: flex;
@@ -95,13 +90,11 @@
 .weekday {
   padding-bottom: 0.25rem;
   font-size: var(--font-size-xs);
-  color: var(--color-bg-secondary);
+  color: #888;
 }
 
-.postDetails {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+.subTitle {
+  font-size: var(--font-size-sm);
 }
 
 .detailRow {
