@@ -35,6 +35,18 @@ export default function Details({ post }) {
 
   return (
     <section className={styles.details}>
+      <div>
+        {post?.club_logo ? (
+          <img
+            src={post.club_logo}
+            alt={`${post.club_name} logo`}
+            className={styles.clubLogo}
+          />
+        ) : (
+          <MdFlag className={styles.placeholder} />
+        )}
+      </div>
+
       <div className={styles.stats}>
         <div className={styles.statsItem}>
           <span className={styles.label}>Distance</span>
@@ -53,43 +65,30 @@ export default function Details({ post }) {
           <span className={styles.value}>{post.estimated_time}</span>
         </div>
       </div>
-      <div>
-        {post?.club_logo ? (
-          <img
-            src={post.club_logo}
-            alt={`${post.club_name} logo`}
-            className={styles.clubLogo}
-          />
-        ) : (
-          <MdFlag className={styles.placeholder} />
-        )}
-      </div>
-      <div>
-        <div className={styles.dateTimeLocation}>
-          <div className={styles.calendarIcon}>
-            <span
-              className={isFuture ? styles.upcomingMonth : styles.pastMonth}
-            >
-              {month}
-            </span>
-            <span className={styles.day}>{day}</span>
-            <span className={styles.weekday}>{weekday}</span>
-          </div>
 
-          <div className={styles.postDetails}>
-            <h2 className={styles.title}>{post.title}</h2>
-            <div className={styles.detailRow}>
-              <MdOutlineAccessTime className={styles.icon} />
-              <span>{formatTime(post.starts_at)}</span>
-            </div>
-            <div className={styles.detailRow}>
-              <MdOutlineLocationOn className={styles.icon} />
-              <address className={styles.address}>{post.address}</address>
-            </div>
-            <div className={styles.detailRow}>
-              <MdOutlineDirectionsRun className={styles.icon} />
-              <span>{post.run_type}</span>
-            </div>
+      <h2 className={styles.title}>{post.title}</h2>
+
+      <div className={styles.dateTimeLocation}>
+        <div className={styles.calendarIcon}>
+          <span className={isFuture ? styles.upcomingMonth : styles.pastMonth}>
+            {month}
+          </span>
+          <span className={styles.day}>{day}</span>
+          <span className={styles.weekday}>{weekday}</span>
+        </div>
+
+        <div className={styles.postDetails}>
+          <div className={styles.detailRow}>
+            <MdOutlineAccessTime className={styles.icon} />
+            <span>{formatTime(post.starts_at)}</span>
+          </div>
+          <div className={styles.detailRow}>
+            <MdOutlineDirectionsRun className={styles.icon} />
+            <span>{post.run_type}</span>
+          </div>
+          <div className={styles.detailRow}>
+            <MdOutlineLocationOn className={styles.icon} />
+            <address className={styles.address}>{post.address}</address>
           </div>
         </div>
       </div>
