@@ -89,7 +89,7 @@
 .weekday {
   padding-bottom: 0.25rem;
   font-size: var(--font-size-xs);
-  color: var(--color-bg-secondary);
+  color: var(--color-text-tertiary);
 }
 
 .eventDetails {

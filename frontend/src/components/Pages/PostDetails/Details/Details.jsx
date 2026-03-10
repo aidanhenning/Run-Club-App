@@ -47,27 +47,6 @@ export default function Details({ post }) {
         )}
       </div>
 
-      <div className={styles.stats}>
-        <div className={styles.statsItem}>
-          <span className={styles.label}>Distance</span>
-          <span className={styles.value}>{post.distance}mi</span>
-        </div>
-        <div className={styles.statsItem}>
-          <span className={styles.label}>Elev</span>
-          <span className={styles.value}>{post.elevation}ft</span>
-        </div>
-        <div className={styles.statsItem}>
-          <span className={styles.label}>Type</span>
-          <span className={styles.value}>{post.run_type}</span>
-        </div>
-        <div className={styles.statsItem}>
-          <span className={styles.label}>Time</span>
-          <span className={styles.value}>{post.estimated_time}</span>
-        </div>
-      </div>
-
-      <h2 className={styles.title}>{post.title}</h2>
-
       <div className={styles.dateTimeLocation}>
         <div className={styles.calendarIcon}>
           <span className={isFuture ? styles.upcomingMonth : styles.pastMonth}>
@@ -90,6 +69,27 @@ export default function Details({ post }) {
             <MdOutlineLocationOn className={styles.icon} />
             <address className={styles.address}>{post.address}</address>
           </div>
+        </div>
+      </div>
+
+      <h2 className={styles.title}>{post.title}</h2>
+
+      <div className={styles.stats}>
+        <div className={styles.statsItem}>
+          <span className={styles.label}>Distance</span>
+          <span className={styles.value}>{post.distance}mi</span>
+        </div>
+        <div className={styles.statsItem}>
+          <span className={styles.label}>Elev</span>
+          <span className={styles.value}>{post.elevation}ft</span>
+        </div>
+        <div className={styles.statsItem}>
+          <span className={styles.label}>Type</span>
+          <span className={styles.value}>{post.run_type}</span>
+        </div>
+        <div className={styles.statsItem}>
+          <span className={styles.label}>Time</span>
+          <span className={styles.value}>{post.estimated_time}</span>
         </div>
       </div>
     </section>
