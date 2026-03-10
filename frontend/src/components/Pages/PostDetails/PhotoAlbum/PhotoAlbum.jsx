@@ -74,7 +74,7 @@ export default function PhotoAlbum({ pictures, loading, setPost }) {
         <span>Photo Album</span>
         <span className={styles.countBadge}>{pictures?.length}</span>
       </h3>
-      {pictures?.length > 0 ? (
+      {pictures?.length > 0 && (
         <div className={styles.picturesContainer}>
           {displayPictures.map((picture) => (
             <PictureCard key={picture.id} picture={picture} />
@@ -91,10 +91,6 @@ export default function PhotoAlbum({ pictures, loading, setPost }) {
               <span>+{remainingCount}</span>
             </div>
           )}
-        </div>
-      ) : (
-        <div className={styles.emptyState}>
-          <p>No photos uploaded</p>
         </div>
       )}
 

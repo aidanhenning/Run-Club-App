@@ -44,10 +44,6 @@
   background-color: var(--color-bg-secondary);
 }
 
-.emptyState {
-  font-size: var(--font-size-xs);
-}
-
 .addImages {
   width: 100%;
   display: flex;
