@@ -1,4 +1,4 @@
-import styles from "@/components/Pages/UserProfile/PictureCard/PictureCard.module.css";
+import styles from "@/components/PictureGrid/PictureCard/PictureCard.module.css";
 
 import { useState } from "react";
 import { IoCloseCircle } from "react-icons/io5";
