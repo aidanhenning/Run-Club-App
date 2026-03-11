@@ -143,10 +143,7 @@ export default function PostCard({ post }) {
             {remainingCount > 0 && (
               <div
                 className={styles.morePicturesSquare}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleOpenGallery();
-                }}
+                onClick={handleOpenGallery}
               >
                 <span>+{remainingCount}</span>
               </div>

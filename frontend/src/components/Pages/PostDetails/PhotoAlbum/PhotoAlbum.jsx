@@ -83,10 +83,7 @@ export default function PhotoAlbum({ pictures, loading, setPost }) {
           {remainingCount > 0 && (
             <div
               className={styles.morePicturesSquare}
-              onClick={(e) => {
-                e.stopPropagation();
-                handleOpenGallery();
-              }}
+              onClick={handleOpenGallery}
             >
               <span>+{remainingCount}</span>
             </div>
