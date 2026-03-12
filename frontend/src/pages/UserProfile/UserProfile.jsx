@@ -65,9 +65,9 @@ export default function UserProfile() {
 
         <section className={styles.pictures}>
           <h3 className={styles.picturesTitle}>Photos</h3>
-          {profile?.posts.length > 0 ? (
+          {profile?.pictures?.length > 0 ? (
             <div className={styles.picturesContainer}>
-              {profile?.posts.map((picture) => (
+              {profile.pictures.map((picture) => (
                 <PictureCard key={picture.id} picture={picture} />
               ))}
             </div>
