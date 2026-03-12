@@ -21,7 +21,7 @@ SELECT
     FROM users
     WHERE id = $1;
   `;
-  const [headerRes, posts, clubs] = await Promise.all([
+  const [headerRes, pictures, clubs] = await Promise.all([
     db.query(userHeaderSql, [targetUserId, currentUserId]),
     getPostPicturesByUserId(targetUserId),
     getClubMembershipsByUserId(targetUserId),
@@ -29,7 +29,7 @@ SELECT
 
   return {
     user: headerRes.rows[0],
-    posts: posts,
+    pictures: pictures,
     clubs: clubs,
   };
 }
