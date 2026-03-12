@@ -100,7 +100,7 @@ export default function UserProfile() {
         <PictureGridModal
           isOpen={isGalleryOpen}
           onClose={() => setIsGalleryOpen(false)}
-          pictures={profile.pictures}
+          pictures={profile?.pictures}
           title="All Uploads"
         />
 
