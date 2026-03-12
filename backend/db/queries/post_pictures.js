@@ -32,8 +32,8 @@ export async function getPostPicturesByUserId(userId) {
     SELECT 
       pp.id, 
       pp.image_url, 
-      p.title as post_title, 
-      p.id as post_id,
+      p.title, 
+      pp.post_id,
       pp.created_at
     FROM post_pictures pp
     INNER JOIN posts p ON pp.post_id = p.id
