@@ -29,12 +29,16 @@ export async function getPostPicturesByPostId(postId) {
 
 export async function getPostPicturesByUserId(userId) {
   const sql = `
-    SELECT DISTINCT ON (p.id) 
-      p.id, p.title, p.created_at, pp.image_url
-    FROM posts p
-    LEFT JOIN post_pictures pp ON p.id = pp.post_id
+    SELECT 
+      pp.id, 
+      pp.image_url, 
+      p.title as post_title, 
+      p.id as post_id,
+      pp.created_at
+    FROM post_pictures pp
+    INNER JOIN posts p ON pp.post_id = p.id
     WHERE p.user_id = $1
-    ORDER BY p.id, p.created_at DESC;
+    ORDER BY pp.created_at DESC;
   `;
   const { rows } = await db.query(sql, [userId]);
   return rows;

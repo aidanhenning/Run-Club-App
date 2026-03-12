@@ -3,7 +3,6 @@ import { getPostPicturesByUserId } from "./post_pictures.js";
 import { getClubMembershipsByUserId } from "./club_memberships.js";
 
 export async function getUserProfile(targetUserId, currentUserId) {
-  // 1. Get Core Profile Info + Social Counts + Activity Totals
   const userHeaderSql = `
 SELECT 
       id, first_name, last_name, bio, profile_picture_url, location,
