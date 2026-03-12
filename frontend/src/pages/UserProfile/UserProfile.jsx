@@ -44,6 +44,8 @@ export default function UserProfile() {
     fetchProfile();
   }, [API, token, id]);
 
+  console.log(profile);
+
   return (
     <div className={styles.container}>
       <Header title="Profile" />
