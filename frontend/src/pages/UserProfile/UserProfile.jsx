@@ -18,6 +18,12 @@ export default function UserProfile() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState(null);
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+
+  const maxDisplay = 5;
+  const pictures = profile?.pictures || [];
+  const displayPictures = pictures.slice(0, maxDisplay);
+  const remainingCount = pictures.length - maxDisplay;
 
   useEffect(() => {
     if (!token || !API) return;
@@ -44,7 +50,10 @@ export default function UserProfile() {
     fetchProfile();
   }, [API, token, id]);
 
-  console.log(profile);
+  const handleOpenGallery = (e) => {
+    e.stopPropagation();
+    setIsGalleryOpen(true);
+  };
 
   return (
     <div className={styles.container}>
@@ -67,9 +76,18 @@ export default function UserProfile() {
           <h3 className={styles.picturesTitle}>Photos</h3>
           {profile?.pictures?.length > 0 ? (
             <div className={styles.picturesContainer}>
-              {profile.pictures.map((picture) => (
+              {displayPictures.map((picture) => (
                 <PictureCard key={picture.id} picture={picture} />
               ))}
+
+              {remainingCount > 0 && (
+                <div
+                  className={styles.morePicturesSquare}
+                  onClick={handleOpenGallery}
+                >
+                  <span>+{remainingCount}</span>
+                </div>
+              )}
             </div>
           ) : (
             <div className={styles.emptyState}>
@@ -77,6 +95,13 @@ export default function UserProfile() {
             </div>
           )}
         </section>
+
+        <PictureGridModal
+          isOpen={isGalleryOpen}
+          onClose={() => setIsGalleryOpen(false)}
+          pictures={profile.pictures}
+          title="All Uploads"
+        />
 
         <ClubsList clubs={profile?.clubs} />
       </main>

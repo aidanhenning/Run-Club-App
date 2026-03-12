@@ -27,6 +27,28 @@
   gap: 0.25rem;
 }
 
+.morePicturesSquare {
+  width: 100%;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--color-bg-secondary);
+  border-radius: 8px;
+  background-color: var(--color-bg-tertiary);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.morePicturesSquare span {
+  font-size: var(--font-size-sm);
+  font-weight: bold;
+}
+
+.morePicturesSquare:hover {
+  background-color: var(--color-bg-secondary);
+}
+
 .emptyState {
   font-size: var(--font-size-xs);
 }
